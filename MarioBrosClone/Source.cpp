@@ -3,19 +3,17 @@
 #include <SDL_mixer.h>
 #include "Constants.h"
 #include <iostream>
+#include "Texture2D.h"
+#include "Commons.h"
 
 // Globals
 SDL_Window* gWindow = NULL;
-
-// Variables
 SDL_Renderer* gRenderer = NULL;
-SDL_Texture* gTexture = NULL;
+Texture2D* gTexture = NULL;
 
 // Function Prototypes
 void CloseSDL();
-void FreeTexture();
 bool InitSDL();
-SDL_Texture* LoadTextureFromFile(std::string path);
 void Render();
 bool Update();
 
@@ -80,9 +78,10 @@ bool InitSDL()
 					return false;
 				}
 
-				// Load Texture
-				gTexture = LoadTextureFromFile("Textures/test.bmp");
-				if (gTexture == NULL) return false;
+				// Load the background texture
+				gTexture = new Texture2D(gRenderer);
+				if (!gTexture->LoadFromFile("Textures/test.bmp")) return false;
+
 			}
 			else
 			{
@@ -95,37 +94,24 @@ bool InitSDL()
 	return true;
 }
 
-SDL_Texture* LoadTextureFromFile(std::string path)
+void Render()
 {
-	// Remove memory used for previous texture
-	FreeTexture();
+	// Clear the screen - Black
+	SDL_SetRenderDrawColor(gRenderer, 0x00, 0x00, 0x00, 0x00);
+	SDL_RenderClear(gRenderer);
 
-	SDL_Texture* pFinalTexutre = NULL;
+	gTexture->Render(Vector2D(), SDL_FLIP_NONE);
 
-	// Load Image
-	SDL_Surface* pSurface = IMG_Load(path.c_str());
-	if (pSurface != NULL)
-	{
-		// Create the texture from the pixels on the surface
-		pFinalTexutre = SDL_CreateTextureFromSurface(gRenderer, pSurface);
-		if (pFinalTexutre == NULL)
-			std::cout << "Unable to create texture from surface.Error: " << SDL_GetError() << std::endl;
-		
-		// Free the loaded surface now that we have the texture
-		SDL_FreeSurface(pSurface);
-	}
-	else
-	{
-		std::cout << "Unable to load image. Error: " << IMG_GetError() << std::endl;
-	}
-
-	return pFinalTexutre;
+	// Update screen
+	SDL_RenderPresent(gRenderer);
 }
+
 
 void CloseSDL()
 {
-	// Clear up textures
-	FreeTexture();
+	//// Clear up textures
+	delete gTexture;
+	gTexture = NULL;
 
 	// Release the window
 	SDL_DestroyWindow(gWindow);
@@ -134,32 +120,6 @@ void CloseSDL()
 	// Quit SDL subsystems
 	IMG_Quit();
 	SDL_Quit();
-}
-
-void FreeTexture()
-{
-	// Check if the texture exists before removing it
-	if (gTexture != NULL)
-	{
-		SDL_DestroyTexture(gTexture);
-		gTexture = NULL;
-	}
-}
-
-void Render()
-{
-	// Clear the screen
-	SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
-	SDL_RenderClear(gRenderer);
-
-	// Set where to render the texture
-	SDL_Rect renderLocation = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
-
-	// Render texture to screen
-	SDL_RenderCopyEx(gRenderer, gTexture, NULL, &renderLocation, 0, NULL, SDL_FLIP_NONE);
-
-	// Update screen
-	SDL_RenderPresent(gRenderer);
 }
 
 bool Update()
@@ -189,6 +149,7 @@ bool Update()
 					break;
 			}
 			break;
+
 	}
 
 	return false;
