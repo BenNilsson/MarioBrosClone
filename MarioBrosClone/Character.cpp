@@ -1,5 +1,6 @@
 #include "Character.h"
 #include "Texture2D.h"
+#include "Constants.h"
 #include <iostream>
 
 Character::Character(SDL_Renderer* renderer, std::string imagePath, Vector2D startPosition)
@@ -12,6 +13,7 @@ Character::Character(SDL_Renderer* renderer, std::string imagePath, Vector2D sta
 	mfacingDirection = FACING_RIGHT;
 	mMovingLeft = false;
 	mMovingRight = false;
+	mJumping = false;
 }
 
 Character::~Character()
@@ -33,6 +35,23 @@ void Character::Render()
 
 void Character::Update(float deltaTime, SDL_Event e)
 {
+	// Apply gravity
+	AddGravity(deltaTime);
+
+	// Jumping
+	if (mJumping)
+	{
+		// Adjust position
+		mPosition.y -= mJumpForce * deltaTime;
+
+		// Reduce jump force
+		mJumpForce -= JUMP_FORCE_DECREMENT * deltaTime;
+
+		if (mJumpForce <= 0.0f)
+			mJumping = false;
+	}
+
+	// Control movement
 	if (mMovingLeft)
 		MoveLeft(deltaTime);
 	else if (mMovingRight)
@@ -54,6 +73,10 @@ void Character::Update(float deltaTime, SDL_Event e)
 		case(SDLK_RIGHT):
 			mMovingRight = true;
 			break;
+		// If the user hits the up arrow
+		case(SDLK_UP):
+			Jump();
+			break;
 		}
 	break;
 	// KeyUp
@@ -74,6 +97,23 @@ void Character::Update(float deltaTime, SDL_Event e)
 	}
 }
 
+void Character::Jump()
+{
+	if (!mJumping)
+	{
+		mJumpForce = INITIAL_JUMP_FORCE;
+		mJumping = true;
+		mCanJump = false;
+	}
+}
+
+void Character::AddGravity(float deltaTime)
+{
+	if (mPosition.y < (SCREEN_HEIGHT - 42)) mPosition.y += gravityValue * deltaTime;
+	// Else colided with ground, set jump to true
+	else if (mPosition.y > (SCREEN_HEIGHT - 42)) mCanJump = true;
+}
+
 void Character::SetPosition(Vector2D newPosition)
 {
 	mPosition = newPosition;
@@ -87,11 +127,11 @@ Vector2D Character::GetPosition()
 void Character::MoveLeft(float deltaTime)
 {
 	mfacingDirection = FACING_LEFT;
-	mPosition.x -= 220 * deltaTime;
+	mPosition.x -= movementSpeed * deltaTime;
 }
 
 void Character::MoveRight(float deltaTime)
 {
 	mfacingDirection = FACING_RIGHT;
-	mPosition.x += 220 * deltaTime;
+	mPosition.x += movementSpeed * deltaTime;
 }

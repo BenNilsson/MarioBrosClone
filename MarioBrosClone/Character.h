@@ -5,6 +5,9 @@
 
 class Texture2D;
 
+const float movementSpeed = 220.0f;
+const float gravityValue = 300.0f;
+
 class Character
 {
 public:
@@ -13,7 +16,9 @@ public:
 
 	virtual void Render();
 	virtual void Update(float deltaTime, SDL_Event e);
-
+	
+	void Jump();
+	void AddGravity(float deltaTime);
 	void SetPosition(Vector2D newPosition);
 	Vector2D GetPosition();
 protected:
@@ -27,4 +32,7 @@ private:
 	FACING mfacingDirection;
 	bool mMovingLeft;
 	bool mMovingRight;
+	bool mJumping;
+	bool mCanJump;
+	float mJumpForce;
 };

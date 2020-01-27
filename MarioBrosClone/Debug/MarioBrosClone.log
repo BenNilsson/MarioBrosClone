@@ -1,4 +1,14 @@
 ﻿  Character.cpp
 C:\Users\n020868i\Documents\GitHub\MarioBrosClone\MarioBrosClone\Commons.h(16): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
 C:\Users\n020868i\Documents\GitHub\MarioBrosClone\MarioBrosClone\Commons.h(17): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  GameSceenLevel1.cpp
+C:\Users\n020868i\Documents\GitHub\MarioBrosClone\MarioBrosClone\Commons.h(16): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\n020868i\Documents\GitHub\MarioBrosClone\MarioBrosClone\Commons.h(17): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  GameScreenManager.cpp
+C:\Users\n020868i\Documents\GitHub\MarioBrosClone\MarioBrosClone\Commons.h(16): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\n020868i\Documents\GitHub\MarioBrosClone\MarioBrosClone\Commons.h(17): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  Source.cpp
+C:\Users\n020868i\Documents\GitHub\MarioBrosClone\MarioBrosClone\Commons.h(16): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\n020868i\Documents\GitHub\MarioBrosClone\MarioBrosClone\Commons.h(17): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  Generating Code...
   MarioBrosClone.vcxproj -> C:\Users\n020868i\Documents\GitHub\MarioBrosClone\Debug\MarioBrosClone.exe
