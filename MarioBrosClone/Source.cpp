@@ -5,11 +5,14 @@
 #include <iostream>
 #include "Texture2D.h"
 #include "Commons.h"
+#include "GameScreenManager.h"
 
 // Globals
 SDL_Window* gWindow = NULL;
 SDL_Renderer* gRenderer = NULL;
-Texture2D* gTexture = NULL;
+
+GameScreenManager* gameScreenManager;
+Uint32 gOldTime;
 
 // Function Prototypes
 void CloseSDL();
@@ -22,6 +25,12 @@ int main(int argc, char* args[])
 	// Check if SDL was set up correctly
 	if (InitSDL())
 	{
+		// Set up GameScreenManager
+		gameScreenManager = new GameScreenManager(gRenderer, SCREEN_INTRO);
+
+		// Set start time
+		gOldTime = SDL_GetTicks();
+
 		// Flag to check if the user wishes to exit
 		bool quit = false;
 
@@ -32,6 +41,8 @@ int main(int argc, char* args[])
 			quit = Update();
 		}
 	}
+
+	
 
 	// Close Window and free resources
 	CloseSDL();
@@ -78,10 +89,6 @@ bool InitSDL()
 					return false;
 				}
 
-				// Load the background texture
-				gTexture = new Texture2D(gRenderer);
-				if (!gTexture->LoadFromFile("Textures/test.bmp")) return false;
-
 			}
 			else
 			{
@@ -100,7 +107,8 @@ void Render()
 	SDL_SetRenderDrawColor(gRenderer, 0x00, 0x00, 0x00, 0x00);
 	SDL_RenderClear(gRenderer);
 
-	gTexture->Render(Vector2D(), SDL_FLIP_NONE);
+	// Render gameScreenManager
+	gameScreenManager->Render();
 
 	// Update screen
 	SDL_RenderPresent(gRenderer);
@@ -109,13 +117,15 @@ void Render()
 
 void CloseSDL()
 {
-	//// Clear up textures
-	delete gTexture;
-	gTexture = NULL;
+	// Clear up textures
 
 	// Release the window
 	SDL_DestroyWindow(gWindow);
 	gWindow = NULL;
+
+	// Destroy game screen manager
+	delete gameScreenManager;
+	gameScreenManager = NULL;
 
 	// Quit SDL subsystems
 	IMG_Quit();
@@ -129,6 +139,9 @@ bool Update()
 
 	// Get events
 	SDL_PollEvent(&e);
+
+	// get the new time
+	Uint32 newTime = SDL_GetTicks();
 
 	// Handle events
 	switch (e.type)
@@ -147,10 +160,20 @@ bool Update()
 				case(SDLK_ESCAPE):
 					return true;
 					break;
+				// If the user hits space
+				case(SDLK_SPACE):
+					gameScreenManager->ChangeScreen(SCREEN_LEVEL1);
+					break;
 			}
 			break;
 
 	}
+
+	// Update gameScreenmanager
+	gameScreenManager->Update((float)(newTime - gOldTime) / 1000.f, e);
+
+	// set the current time to be the old time
+	gOldTime = newTime;
 
 	return false;
 }
