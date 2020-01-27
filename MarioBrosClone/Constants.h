@@ -2,7 +2,7 @@
 
 // Screen Dimensions
 #define SCREEN_WIDTH 512
-#define SCREEN_HEIGHT 416
+#define SCREEN_HEIGHT 412
 
 
 const float JUMP_FORCE_DECREMENT = 1000.0f;

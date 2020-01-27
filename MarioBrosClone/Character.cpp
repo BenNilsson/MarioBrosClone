@@ -24,13 +24,9 @@ Character::~Character()
 void Character::Render()
 {
 	if (mfacingDirection == FACING_RIGHT)
-	{
 		mTexture->Render(mPosition, SDL_FLIP_NONE);
-	}
 	else
-	{
 		mTexture->Render(mPosition, SDL_FLIP_HORIZONTAL);
-	}
 }
 
 void Character::Update(float deltaTime, SDL_Event e)
@@ -99,7 +95,7 @@ void Character::Update(float deltaTime, SDL_Event e)
 
 void Character::Jump()
 {
-	if (!mJumping)
+	if (!mJumping && mCanJump)
 	{
 		mJumpForce = INITIAL_JUMP_FORCE;
 		mJumping = true;
@@ -109,9 +105,9 @@ void Character::Jump()
 
 void Character::AddGravity(float deltaTime)
 {
-	if (mPosition.y < (SCREEN_HEIGHT - 42)) mPosition.y += gravityValue * deltaTime;
+	if (mPosition.y < (SCREEN_HEIGHT - mTexture->GetHeight())) mPosition.y += gravityValue * deltaTime;
 	// Else colided with ground, set jump to true
-	else if (mPosition.y > (SCREEN_HEIGHT - 42)) mCanJump = true;
+	else if (mPosition.y > (SCREEN_HEIGHT - mTexture->GetHeight()) && !mJumping) mCanJump = true;
 }
 
 void Character::SetPosition(Vector2D newPosition)
