@@ -11,16 +11,24 @@ GameScreenLevel1::~GameScreenLevel1()
 {
 	delete mBackgroundTexture;
 	mBackgroundTexture = nullptr;
+
+	delete myCharacter;
+	myCharacter = nullptr;
 }
 
 void GameScreenLevel1::Render()
 {
 	// Draw the background
 	mBackgroundTexture->Render(Vector2D(), SDL_FLIP_NONE);
+
+	// Draw the player
+	myCharacter->Render();
 }
 
 void GameScreenLevel1::Update(float deltaTime, SDL_Event e)
 {
+	// Update the player
+	myCharacter->Update(deltaTime, e);
 }
 
 bool GameScreenLevel1::SetUpLevel()
@@ -32,6 +40,9 @@ bool GameScreenLevel1::SetUpLevel()
 		std::cout << "Failed to load background texture!";
 		return false;
 	}
+
+	// Set up the player character
+	myCharacter = new Character(mRenderer, "Textures/Mario.png", Vector2D(64, 330));
 
 	return true;
 }
