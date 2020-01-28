@@ -18,7 +18,11 @@ Character::Character(SDL_Renderer* renderer, std::string imagePath, Vector2D sta
 
 Character::~Character()
 {
+	delete mRenderer;
 	mRenderer = nullptr;
+
+	delete mTexture;
+	mTexture = nullptr;
 }
 
 void Character::Render()
@@ -52,45 +56,6 @@ void Character::Update(float deltaTime, SDL_Event e)
 		MoveLeft(deltaTime);
 	else if (mMovingRight)
 		MoveRight(deltaTime);
-
-	// Handle events
-	switch (e.type)
-	{
-	// KeyDown
-	case SDL_KEYDOWN:
-		// Get Key Pressed
-		switch (e.key.keysym.sym)
-		{
-		// If user hits left arrow
-		case(SDLK_LEFT):
-			mMovingLeft = true;
-			break;
-		// If user hits left arrow
-		case(SDLK_RIGHT):
-			mMovingRight = true;
-			break;
-		// If the user hits the up arrow
-		case(SDLK_UP):
-			Jump();
-			break;
-		}
-	break;
-	// KeyUp
-	case SDL_KEYUP:
-		// get Key Pressed
-		switch (e.key.keysym.sym)
-		{
-			// If user hits left arrow
-		case(SDLK_LEFT):
-			mMovingLeft = false;
-			break;
-			// If user hits left arrow
-		case(SDLK_RIGHT):
-			mMovingRight = false;
-			break;
-		}
-		break;
-	}
 }
 
 void Character::Jump()
@@ -105,7 +70,7 @@ void Character::Jump()
 
 void Character::AddGravity(float deltaTime)
 {
-	if (mPosition.y < (SCREEN_HEIGHT - mTexture->GetHeight())) mPosition.y += gravityValue * deltaTime;
+	if (mPosition.y < (SCREEN_HEIGHT - mTexture->GetHeight())) mPosition.y += gravityForce * deltaTime;
 	// Else colided with ground, set jump to true
 	else if (mPosition.y > (SCREEN_HEIGHT - mTexture->GetHeight()) && !mJumping) mCanJump = true;
 }

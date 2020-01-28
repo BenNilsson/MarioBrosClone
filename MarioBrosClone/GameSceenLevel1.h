@@ -3,9 +3,11 @@
 #include "Commons.h"
 #include "GameScreen.h"
 #include "Character.h"
+#include "CharacterMario.h"
+#include "CharacterLuigi.h"
 
 class Texture2D;
-class Character;
+class CharacterMario;
 
 class GameScreenLevel1 : GameScreen
 {
@@ -17,7 +19,8 @@ public:
 	void Update(float deltaTime, SDL_Event e);
 private:
 	Texture2D* mBackgroundTexture;
-	Character* myCharacter;
+	CharacterMario* characterMario;
+	CharacterLuigi* characterLuigi;
 	bool SetUpLevel();
 };
 

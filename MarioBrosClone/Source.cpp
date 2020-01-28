@@ -61,7 +61,7 @@ bool InitSDL()
 	else
 	{
 		// Attempt to create window
-		gWindow = SDL_CreateWindow("Close Game Simulator",
+		gWindow = SDL_CreateWindow("Super Mario Bros 2 Clone",
 			SDL_WINDOWPOS_UNDEFINED,
 			SDL_WINDOWPOS_UNDEFINED,
 			SCREEN_WIDTH,

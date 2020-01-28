@@ -5,9 +5,6 @@
 
 class Texture2D;
 
-const float movementSpeed = 220.0f;
-const float gravityValue = 300.0f;
-
 class Character
 {
 public:
@@ -28,11 +25,14 @@ protected:
 
 	virtual void MoveLeft(float deltaTime);
 	virtual void MoveRight(float deltaTime);
-private:
+
 	FACING mfacingDirection;
 	bool mMovingLeft;
 	bool mMovingRight;
+
+private:
 	bool mJumping;
 	bool mCanJump;
 	float mJumpForce;
+	float movementSpeed = 220.0f;
 };
