@@ -80,6 +80,11 @@ void Character::SetPosition(Vector2D newPosition)
 	mPosition = newPosition;
 }
 
+void Character::SetMovementSpeed(float speed)
+{
+	movementSpeed = speed;
+}
+
 Vector2D Character::GetPosition()
 {
 	return mPosition;

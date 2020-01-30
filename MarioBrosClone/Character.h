@@ -17,6 +17,7 @@ public:
 	void Jump();
 	void AddGravity(float deltaTime);
 	void SetPosition(Vector2D newPosition);
+	void SetMovementSpeed(float speed);
 	Vector2D GetPosition();
 protected:
 	SDL_Renderer* mRenderer;
@@ -25,6 +26,7 @@ protected:
 
 	virtual void MoveLeft(float deltaTime);
 	virtual void MoveRight(float deltaTime);
+	
 
 	FACING mfacingDirection;
 	bool mMovingLeft;

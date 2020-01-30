@@ -1,10 +1,8 @@
-﻿  Character.cpp
-C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\Commons.h(16,7): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\Commons.h(17,7): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\Character.cpp(21,18): warning C4150: deletion of pointer to incomplete type 'SDL_Renderer'; no destructor called
-  Source.cpp
-C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\SDL\include\SDL_render.h(122): message : see declaration of 'SDL_Renderer'
-C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\Commons.h(16,7): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-  Generating Code...
-C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\Commons.h(17,7): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-  MarioBrosClone.vcxproj -> C:\Users\krota\Desktop\MarioBrosClone\Debug\MarioBrosClone.exe
+﻿  CharacterMario.cpp
+C:\Users\n020868i\Documents\GitHub\MarioBrosClone\MarioBrosClone\Commons.h(16): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\n020868i\Documents\GitHub\MarioBrosClone\MarioBrosClone\Commons.h(17): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\n020868i\Documents\GitHub\MarioBrosClone\MarioBrosClone\CharacterMario.cpp(13): warning C4150: deletion of pointer to incomplete type 'SDL_Renderer'; no destructor called
+  C:\Users\n020868i\Documents\GitHub\MarioBrosClone\MarioBrosClone\SDL\include\SDL_render.h(122): note: see declaration of 'SDL_Renderer'
+C:\Users\n020868i\Documents\GitHub\MarioBrosClone\MarioBrosClone\CharacterMario.cpp(16): warning C4150: deletion of pointer to incomplete type 'Texture2D'; no destructor called
+  C:\Users\n020868i\Documents\GitHub\MarioBrosClone\MarioBrosClone\Character.h(6): note: see declaration of 'Texture2D'
+  MarioBrosClone.vcxproj -> C:\Users\n020868i\Documents\GitHub\MarioBrosClone\Debug\MarioBrosClone.exe
