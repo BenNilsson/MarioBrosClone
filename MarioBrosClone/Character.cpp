@@ -14,6 +14,7 @@ Character::Character(SDL_Renderer* renderer, std::string imagePath, Vector2D sta
 	mMovingLeft = false;
 	mMovingRight = false;
 	mJumping = false;
+	mCollisionRadius = 15.0f;
 }
 
 Character::~Character()
@@ -88,6 +89,16 @@ void Character::SetMovementSpeed(float speed)
 Vector2D Character::GetPosition()
 {
 	return mPosition;
+}
+
+float Character::GetCollisionRadius()
+{
+	return mCollisionRadius;
+}
+
+Rect2D Character::GetCollisionBox()
+{
+	return Rect2D(mPosition.x, mPosition.y, mTexture->GetWidth(), mTexture->GetHeight());
 }
 
 void Character::MoveLeft(float deltaTime)

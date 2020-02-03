@@ -1,8 +1,24 @@
-﻿  CharacterMario.cpp
-C:\Users\n020868i\Documents\GitHub\MarioBrosClone\MarioBrosClone\Commons.h(16): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\n020868i\Documents\GitHub\MarioBrosClone\MarioBrosClone\Commons.h(17): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\n020868i\Documents\GitHub\MarioBrosClone\MarioBrosClone\CharacterMario.cpp(13): warning C4150: deletion of pointer to incomplete type 'SDL_Renderer'; no destructor called
+﻿  Character.cpp
+C:\Users\n020868i\Documents\GitHub\MarioBrosClone\MarioBrosClone\Character.cpp(22): warning C4150: deletion of pointer to incomplete type 'SDL_Renderer'; no destructor called
   C:\Users\n020868i\Documents\GitHub\MarioBrosClone\MarioBrosClone\SDL\include\SDL_render.h(122): note: see declaration of 'SDL_Renderer'
-C:\Users\n020868i\Documents\GitHub\MarioBrosClone\MarioBrosClone\CharacterMario.cpp(16): warning C4150: deletion of pointer to incomplete type 'Texture2D'; no destructor called
+C:\Users\n020868i\Documents\GitHub\MarioBrosClone\MarioBrosClone\Character.cpp(101): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  CharacterLuigi.cpp
+C:\Users\n020868i\Documents\GitHub\MarioBrosClone\MarioBrosClone\CharacterLuigi.cpp(12): warning C4150: deletion of pointer to incomplete type 'SDL_Renderer'; no destructor called
+  C:\Users\n020868i\Documents\GitHub\MarioBrosClone\MarioBrosClone\SDL\include\SDL_render.h(122): note: see declaration of 'SDL_Renderer'
+C:\Users\n020868i\Documents\GitHub\MarioBrosClone\MarioBrosClone\CharacterLuigi.cpp(15): warning C4150: deletion of pointer to incomplete type 'Texture2D'; no destructor called
   C:\Users\n020868i\Documents\GitHub\MarioBrosClone\MarioBrosClone\Character.h(6): note: see declaration of 'Texture2D'
+  CharacterMario.cpp
+C:\Users\n020868i\Documents\GitHub\MarioBrosClone\MarioBrosClone\CharacterMario.cpp(12): warning C4150: deletion of pointer to incomplete type 'SDL_Renderer'; no destructor called
+  C:\Users\n020868i\Documents\GitHub\MarioBrosClone\MarioBrosClone\SDL\include\SDL_render.h(122): note: see declaration of 'SDL_Renderer'
+C:\Users\n020868i\Documents\GitHub\MarioBrosClone\MarioBrosClone\CharacterMario.cpp(15): warning C4150: deletion of pointer to incomplete type 'Texture2D'; no destructor called
+  C:\Users\n020868i\Documents\GitHub\MarioBrosClone\MarioBrosClone\Character.h(6): note: see declaration of 'Texture2D'
+  Collisions.cpp
+  GameSceenLevel1.cpp
+  GameScreenIntro.cpp
+  GameScreenManager.cpp
+  Source.cpp
+  Texture2D.cpp
+C:\Users\n020868i\Documents\GitHub\MarioBrosClone\MarioBrosClone\Texture2D.cpp(60): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
+C:\Users\n020868i\Documents\GitHub\MarioBrosClone\MarioBrosClone\Texture2D.cpp(60): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+  Generating Code...
   MarioBrosClone.vcxproj -> C:\Users\n020868i\Documents\GitHub\MarioBrosClone\Debug\MarioBrosClone.exe

@@ -19,6 +19,8 @@ public:
 	void SetPosition(Vector2D newPosition);
 	void SetMovementSpeed(float speed);
 	Vector2D GetPosition();
+	float GetCollisionRadius();
+	Rect2D GetCollisionBox();
 protected:
 	SDL_Renderer* mRenderer;
 	Vector2D mPosition;
@@ -27,6 +29,7 @@ protected:
 	virtual void MoveLeft(float deltaTime);
 	virtual void MoveRight(float deltaTime);
 	
+	float mCollisionRadius;
 
 	FACING mfacingDirection;
 	bool mMovingLeft;
