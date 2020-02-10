@@ -2,13 +2,14 @@
 #include "SDL.h"
 #include <iostream>
 #include "Commons.h"
+#include "LevelMap.h"
 
 class Texture2D;
 
 class Character
 {
 public:
-	Character(SDL_Renderer* renderer, std::string imagePath, Vector2D startPosition);
+	Character(SDL_Renderer* renderer, std::string imagePath, Vector2D startPosition, LevelMap* map);
 	~Character();
 
 	virtual void Render();
@@ -40,4 +41,6 @@ private:
 	bool mCanJump;
 	float mJumpForce;
 	float movementSpeed = 220.0f;
+
+	LevelMap* mCurrentLevelMap;
 };

@@ -5,6 +5,7 @@
 
 GameScreenLevel1::GameScreenLevel1(SDL_Renderer* renderer) : GameScreen(renderer)
 {
+	mLevelMap = NULL;
 	SetUpLevel();
 }
 
@@ -44,6 +45,31 @@ void GameScreenLevel1::Update(float deltaTime, SDL_Event e)
 	}
 }
 
+void GameScreenLevel1::SetLevelMap()
+{
+	// Set up map array
+	int map[MAP_HEIGHT][MAP_WIDTH] = { { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
+										{ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
+										{ 1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1 },
+										{ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
+										{ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
+										{ 0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0 },
+										{ 1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1 },
+										{ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
+										{ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
+										{ 1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1 },
+										{ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
+										{ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
+										{ 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1 } };
+
+	// CClear any old map
+	if (mLevelMap != NULL)
+		delete mLevelMap;
+
+	// Set new map
+	mLevelMap = new LevelMap(map);
+}
+
 bool GameScreenLevel1::SetUpLevel()
 {
 	// Load the background texture
@@ -54,9 +80,12 @@ bool GameScreenLevel1::SetUpLevel()
 		return false;
 	}
 
+	SetLevelMap();
+
 	// Set up the player character
-	characterMario = new CharacterMario(mRenderer, "Textures/Mario.png", Vector2D(64, 330));
-	characterLuigi = new CharacterLuigi(mRenderer, "Textures/Luigi.png", Vector2D(364, 330));
+	characterMario = new CharacterMario(mRenderer, "Textures/Mario.png", Vector2D(64, 330), mLevelMap);
+	characterLuigi = new CharacterLuigi(mRenderer, "Textures/Luigi.png", Vector2D(364, 330), mLevelMap);
+
 
 	return true;
 }

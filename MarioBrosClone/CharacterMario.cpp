@@ -2,7 +2,7 @@
 #include "Character.h"
 #include "CharacterMario.h"
 
-CharacterMario::CharacterMario(SDL_Renderer* renderer, std::string imagePath, Vector2D startPos) : Character(renderer, imagePath, startPos)
+CharacterMario::CharacterMario(SDL_Renderer* renderer, std::string imagePath, Vector2D startPos, LevelMap* map) : Character(renderer, imagePath, startPos, map)
 {
 	mRenderer = renderer;
 }
