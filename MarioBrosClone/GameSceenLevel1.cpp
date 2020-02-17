@@ -19,16 +19,25 @@ GameScreenLevel1::~GameScreenLevel1()
 
 	delete characterLuigi;
 	characterLuigi = nullptr;
+
+	delete mPowBlock;
+	mPowBlock = nullptr;
+
+	delete screenShake;
+	screenShake = nullptr;
 }
 
 void GameScreenLevel1::Render()
 {
 	// Draw the background
-	mBackgroundTexture->Render(Vector2D(), SDL_FLIP_NONE);
+	mBackgroundTexture->Render(Vector2D(0, screenShake->GetBackgroundYPos()), SDL_FLIP_NONE);
 
 	// Draw the player
 	characterMario->Render();
 	characterLuigi->Render();
+
+	// Draw Powblock
+	mPowBlock->Render();
 }
 
 void GameScreenLevel1::Update(float deltaTime, SDL_Event e)
@@ -42,6 +51,45 @@ void GameScreenLevel1::Update(float deltaTime, SDL_Event e)
 		Circle2D(characterLuigi->GetCollisionRadius(), characterLuigi->GetPosition())))
 	{
 		std::cout << "Players collided with each other" << std::endl;
+	}
+
+	UpdatePowBlock();
+
+	screenShake->Update(deltaTime);
+}
+
+void GameScreenLevel1::UpdatePowBlock()
+{
+	// Check if the pow block collides with mario
+	if (Collisions::Instance()->Box(characterMario->GetCollisionBox(), mPowBlock->GetCollisionBox()))
+	{
+		// Check if the pow block is avialable
+		if (mPowBlock->IsAvailable())
+		{
+			// Check if they collided whilst jumping
+			if (characterMario->IsJumping())
+			{
+				screenShake->DoScreenShake();
+				mPowBlock->TakeAHit();
+				characterMario->CancelJump();
+			}
+		}
+	}
+
+	// Check if the pow block collides with luigi
+	if (Collisions::Instance()->Box(characterLuigi->GetCollisionBox(), mPowBlock->GetCollisionBox()))
+	{
+		// Check if the pow block is avialable
+		if (mPowBlock->IsAvailable())
+		{
+			// Check if they collided whilst jumping
+			if (characterLuigi->IsJumping())
+			{
+				screenShake->DoScreenShake();
+				mPowBlock->TakeAHit();
+				characterLuigi->CancelJump();
+			}
+		}
 	}
 }
 
@@ -62,12 +110,15 @@ void GameScreenLevel1::SetLevelMap()
 										{ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
 										{ 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1 } };
 
-	// CClear any old map
+	// Clear any old map
 	if (mLevelMap != NULL)
 		delete mLevelMap;
 
 	// Set new map
 	mLevelMap = new LevelMap(map);
+
+	// Create PowBlock
+	mPowBlock = new PowBlock(mRenderer, mLevelMap);
 }
 
 bool GameScreenLevel1::SetUpLevel()
@@ -81,6 +132,8 @@ bool GameScreenLevel1::SetUpLevel()
 	}
 
 	SetLevelMap();
+
+	screenShake = new ScreenShake();
 
 	// Set up the player character
 	characterMario = new CharacterMario(mRenderer, "Textures/Mario.png", Vector2D(64, 330), mLevelMap);

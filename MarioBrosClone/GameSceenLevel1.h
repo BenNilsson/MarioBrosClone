@@ -6,9 +6,12 @@
 #include "CharacterMario.h"
 #include "CharacterLuigi.h"
 #include "LevelMap.h"
+#include "PowBlock.h"
+#include "ScreenShake.h"
 
 class Texture2D;
 class CharacterMario;
+class PowBlock;
 
 class GameScreenLevel1 : GameScreen
 {
@@ -22,9 +25,14 @@ private:
 	Texture2D* mBackgroundTexture;
 	CharacterMario* characterMario;
 	CharacterLuigi* characterLuigi;
+
+	PowBlock* mPowBlock;
+	void UpdatePowBlock();
+
 	void SetLevelMap();
 	bool SetUpLevel();
 
+	ScreenShake* screenShake;
 	LevelMap* mLevelMap;
 };
 

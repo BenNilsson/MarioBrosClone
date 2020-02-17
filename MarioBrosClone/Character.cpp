@@ -111,6 +111,11 @@ Rect2D Character::GetCollisionBox()
 	return Rect2D(mPosition.x, mPosition.y, mTexture->GetWidth(), mTexture->GetHeight());
 }
 
+void Character::CancelJump()
+{
+	mJumpForce = 0;
+}
+
 void Character::MoveLeft(float deltaTime)
 {
 	mfacingDirection = FACING_LEFT;
