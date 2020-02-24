@@ -21,7 +21,7 @@ public:
 	void SetMovementSpeed(float speed);
 	Vector2D GetPosition();
 	float GetCollisionRadius();
-	Rect2D GetCollisionBox();
+	Rect2D GetCollisionBox() { return Rect2D(mPosition.x, mPosition.y, mSingleSpriteWidth, mSingleSpriteHeight); }
 	bool IsJumping() { return mJumping; }
 	void CancelJump();
 protected:
@@ -31,12 +31,19 @@ protected:
 
 	virtual void MoveLeft(float deltaTime);
 	virtual void MoveRight(float deltaTime);
+	virtual void UpdateFrame(float deltaTime);
 	
 	float mCollisionRadius;
 
 	FACING mfacingDirection;
 	bool mMovingLeft;
 	bool mMovingRight;
+
+	float mSingleSpriteWidth;
+	float mSingleSpriteHeight;
+
+	int frame;
+	float curFrameTime;
 
 private:
 	bool mJumping;

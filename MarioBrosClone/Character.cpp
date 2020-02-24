@@ -16,6 +16,10 @@ Character::Character(SDL_Renderer* renderer, std::string imagePath, Vector2D sta
 	mJumping = false;
 	mCollisionRadius = 15.0f;
 	mCurrentLevelMap = map;
+
+	mSingleSpriteWidth = mTexture->GetWidth() / 6;
+	mSingleSpriteHeight = mTexture->GetHeight();
+	frame = 1;
 }
 
 Character::~Character()
@@ -29,20 +33,30 @@ Character::~Character()
 
 void Character::Render()
 {
+	// Get the position of the spritesheet
+	int left = mSingleSpriteHeight * (frame - 1);
+
+	// Set Rect
+	SDL_Rect portionOfSpritesheet = { left, 0, mSingleSpriteWidth, mSingleSpriteHeight };
+
+	// Determine where to draw
+	SDL_Rect destRect = { (int)(mPosition.x), (int)(mPosition.y), mSingleSpriteWidth, mSingleSpriteHeight };
+
+	// Draw
 	if (mfacingDirection == FACING_RIGHT)
-		mTexture->Render(mPosition, SDL_FLIP_NONE);
+		mTexture->Render(portionOfSpritesheet, destRect, SDL_FLIP_NONE);
 	else
-		mTexture->Render(mPosition, SDL_FLIP_HORIZONTAL);
+		mTexture->Render(portionOfSpritesheet, destRect, SDL_FLIP_HORIZONTAL);
 }
 
 void Character::Update(float deltaTime, SDL_Event e)
 {
-	// Apply gravity
-	//AddGravity(deltaTime);
+	// Update Frame
+	UpdateFrame(deltaTime);
 
 	// Collision position variables
-	int centralXPosition = (int)(mPosition.x + (mTexture->GetWidth() * 0.5f)) / TILE_WIDTH;
-	int footPosition = (int)(mPosition.y + mTexture->GetHeight()) / TILE_HEIGHT;
+	int centralXPosition = (int)(mPosition.x + (mSingleSpriteWidth * 0.5f)) / TILE_WIDTH;
+	int footPosition = (int)(mPosition.y + mSingleSpriteHeight) / TILE_HEIGHT;
 
 	// Check for empty tile, if so apply gravity, if not empty so canJump to true
 	if (mCurrentLevelMap->GetTileAt(footPosition, centralXPosition) == 0)
@@ -61,6 +75,7 @@ void Character::Update(float deltaTime, SDL_Event e)
 
 		if (mJumpForce <= 0.0f)
 			mJumping = false;
+
 	}
 
 	// Control movement
@@ -106,14 +121,9 @@ float Character::GetCollisionRadius()
 	return mCollisionRadius;
 }
 
-Rect2D Character::GetCollisionBox()
-{
-	return Rect2D(mPosition.x, mPosition.y, mTexture->GetWidth(), mTexture->GetHeight());
-}
-
 void Character::CancelJump()
 {
-	mJumpForce = 0;
+	mJumpForce = 0.0f;
 }
 
 void Character::MoveLeft(float deltaTime)
@@ -126,4 +136,35 @@ void Character::MoveRight(float deltaTime)
 {
 	mfacingDirection = FACING_RIGHT;
 	mPosition.x += movementSpeed * deltaTime;
+}
+
+void Character::UpdateFrame(float deltaTime)
+{
+	// Update frame counter
+
+	// Jumping
+	if (IsJumping() || !mCanJump)
+	{
+		frame = 6;
+	}
+	// moving
+	else if (mMovingRight || mMovingLeft)
+	{
+		curFrameTime += deltaTime * 10;
+
+		if (curFrameTime > 1)
+		{
+			frame++;
+
+			if (frame > 4)
+				frame = 1;
+
+			curFrameTime = 0;
+		}
+	}
+	else
+	{
+		frame = 1;
+		curFrameTime = 0;
+	}
 }

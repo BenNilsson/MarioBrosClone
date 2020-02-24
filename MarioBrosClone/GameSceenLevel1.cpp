@@ -136,8 +136,8 @@ bool GameScreenLevel1::SetUpLevel()
 	screenShake = new ScreenShake();
 
 	// Set up the player character
-	characterMario = new CharacterMario(mRenderer, "Textures/Mario.png", Vector2D(64, 330), mLevelMap);
-	characterLuigi = new CharacterLuigi(mRenderer, "Textures/Luigi.png", Vector2D(364, 330), mLevelMap);
+	characterMario = new CharacterMario(mRenderer, "Textures/mario-run.png", Vector2D(64, 330), mLevelMap);
+	characterLuigi = new CharacterLuigi(mRenderer, "Textures/luigi-run.png", Vector2D(364, 330), mLevelMap);
 
 
 	return true;

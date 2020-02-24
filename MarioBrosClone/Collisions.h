@@ -1,4 +1,3 @@
-#include "Character.h"
 #include "Commons.h"
 #pragma once
 
