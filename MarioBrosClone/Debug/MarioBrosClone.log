@@ -1,16 +1,15 @@
-﻿  CharacterKoopa.cpp
-C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\CharacterKoopa.cpp(11,44): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\CharacterKoopa.cpp(12,43): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\CharacterKoopa.cpp(21,18): warning C4150: deletion of pointer to incomplete type 'SDL_Renderer'; no destructor called
+﻿  Coin.cpp
+C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\Coin.cpp(16,44): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\Coin.cpp(17,43): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\Coin.cpp(22,18): warning C4150: deletion of pointer to incomplete type 'SDL_Renderer'; no destructor called
 C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\SDL\include\SDL_render.h(122): message : see declaration of 'SDL_Renderer'
-C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\CharacterKoopa.cpp(86,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\CharacterKoopa.cpp(90,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\CharacterKoopa.cpp(93,45): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
-C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\CharacterKoopa.cpp(93,45): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\CharacterKoopa.cpp(93,65): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
-C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\CharacterKoopa.cpp(93,65): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\CharacterKoopa.cpp(96,64): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
-C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\CharacterKoopa.cpp(96,64): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\CharacterKoopa.cpp(96,84): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
-C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\CharacterKoopa.cpp(96,84): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\Coin.cpp(32,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\Coin.cpp(34,45): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
+C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\Coin.cpp(34,45): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\Coin.cpp(34,65): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
+C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\Coin.cpp(34,65): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\Coin.cpp(36,64): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
+C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\Coin.cpp(36,64): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\Coin.cpp(36,84): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
+C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\Coin.cpp(36,84): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
   MarioBrosClone.vcxproj -> C:\Users\krota\Desktop\MarioBrosClone\Debug\MarioBrosClone.exe

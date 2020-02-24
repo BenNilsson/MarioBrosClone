@@ -27,6 +27,7 @@ GameScreenLevel1::~GameScreenLevel1()
 	screenShake = nullptr;
 
 	mKoopas.clear();
+	mCoins.clear();
 }
 
 void GameScreenLevel1::Render()
@@ -45,6 +46,12 @@ void GameScreenLevel1::Render()
 	for (unsigned int i = 0; i < mKoopas.size(); i++)
 	{
 		mKoopas[i]->Render();
+	}
+
+	// Draw coins
+	for (unsigned int i = 0; i < mCoins.size(); i++)
+	{
+		mCoins[i]->Render();
 	}
 }
 
@@ -66,6 +73,8 @@ void GameScreenLevel1::Update(float deltaTime, SDL_Event e)
 
 	// Update enemies
 	UpdateEnemies(deltaTime, e);
+
+	UpdateCoins(deltaTime, e);
 
 	// Update screenshake, passing the koopa vector in order for the pow block to kill them
 	screenShake->Update(deltaTime, mKoopas);
@@ -174,6 +183,42 @@ void GameScreenLevel1::CreateKoopa(Vector2D position, FACING direction, float sp
 	mKoopas.push_back(new CharacterKoopa(mRenderer, "Textures/Koopa.png", position, mLevelMap, speed, direction));
 }
 
+void GameScreenLevel1::CreateCoin(Vector2D position)
+{
+	mCoins.push_back(new Coin(mRenderer, "Textures/Coin.png", position, mLevelMap));
+}
+
+void GameScreenLevel1::UpdateCoins(float deltaTime, SDL_Event e)
+{
+	if (!mCoins.empty())
+	{
+		coinIndexToDelete = -1;
+
+		// Updates
+		for (unsigned int i = 0; i < mCoins.size(); i++)
+		{
+			// Update coins
+			mCoins[i]->Update(deltaTime, e);
+
+			// Check if mario collides with coin
+			if (Collisions::Instance()->Circle(Circle2D(mCoins[i]->GetCollisionRadius(), mCoins[i]->GetPosition()), Circle2D(characterMario->GetCollisionRadius(), characterMario->GetPosition())))
+			{
+				// mario and coin collided
+				coinIndexToDelete = i;
+				std::cout << "COLLECTED THE COIN" << std::endl;
+			}
+		}
+
+		// Remove a dead enemy, 1 each update
+		if (coinIndexToDelete != -1)
+		{
+			mCoins.erase(mCoins.begin() + coinIndexToDelete);
+		}
+	}
+
+	
+}
+
 void GameScreenLevel1::SetLevelMap()
 {
 	// Set up map array
@@ -223,6 +268,8 @@ bool GameScreenLevel1::SetUpLevel()
 	// Create Koopas
 	CreateKoopa(Vector2D(150, 32), FACING::FACING_RIGHT, 75.0f);
 	CreateKoopa(Vector2D(325, 32), FACING::FACING_LEFT, 75.0f);
+
+	CreateCoin(Vector2D(200, 64));
 
 	return true;
 }

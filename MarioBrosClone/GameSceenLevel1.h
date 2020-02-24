@@ -9,6 +9,7 @@
 #include "LevelMap.h"
 #include "PowBlock.h"
 #include "ScreenShake.h"
+#include "Coin.h"
 #include <vector>
 
 class Texture2D;
@@ -34,8 +35,14 @@ private:
 	void UpdateEnemies(float deltaTime, SDL_Event e);
 	void CreateKoopa(Vector2D position, FACING direction, float speed);
 
+	void CreateCoin(Vector2D position);
+	void UpdateCoins(float deltaTime, SDL_Event e);
+
 	std::vector<CharacterKoopa*> mKoopas;
 	int enemyIndexToDelete;
+
+	std::vector<Coin*> mCoins;
+	int coinIndexToDelete;
 
 	void SetLevelMap();
 	bool SetUpLevel();
