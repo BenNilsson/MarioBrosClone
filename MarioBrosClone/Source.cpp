@@ -105,7 +105,7 @@ void Render()
 {
 	// Clear the screen - Black
 	SDL_RenderClear(gRenderer);
-	SDL_SetRenderDrawColor(gRenderer, 117, 218, 255, 0x00);
+	SDL_SetRenderDrawColor(gRenderer, 99, 160, 255, 0x00);
 
 	// Render gameScreenManager
 	gameScreenManager->Render();

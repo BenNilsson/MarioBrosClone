@@ -16,5 +16,6 @@
 
 const float JUMP_FORCE_DECREMENT = 1000.0f;
 const float INITIAL_JUMP_FORCE = 800.0f;
+const float INITIAL_JUMP_FORCE_SMALL = 400.f;
 
 const float gravityForce = 300.0f;

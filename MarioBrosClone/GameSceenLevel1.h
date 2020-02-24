@@ -5,9 +5,11 @@
 #include "Character.h"
 #include "CharacterMario.h"
 #include "CharacterLuigi.h"
+#include "CharacterKoopa.h"
 #include "LevelMap.h"
 #include "PowBlock.h"
 #include "ScreenShake.h"
+#include <vector>
 
 class Texture2D;
 class CharacterMario;
@@ -28,6 +30,12 @@ private:
 
 	PowBlock* mPowBlock;
 	void UpdatePowBlock();
+
+	void UpdateEnemies(float deltaTime, SDL_Event e);
+	void CreateKoopa(Vector2D position, FACING direction, float speed);
+
+	std::vector<CharacterKoopa*> mKoopas;
+	int enemyIndexToDelete;
 
 	void SetLevelMap();
 	bool SetUpLevel();

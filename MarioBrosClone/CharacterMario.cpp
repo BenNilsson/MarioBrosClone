@@ -1,10 +1,16 @@
 #include "SDL.h"
 #include "Character.h"
 #include "CharacterMario.h"
+#include "Texture2D.h"
 
 CharacterMario::CharacterMario(SDL_Renderer* renderer, std::string imagePath, Vector2D startPos, LevelMap* map) : Character(renderer, imagePath, startPos, map)
 {
 	mRenderer = renderer;
+
+	mSingleSpriteWidth = mTexture->GetWidth() / 6;
+	mSingleSpriteHeight = mTexture->GetHeight();
+	jumpFrame = 6;
+	frameCount = 4;
 }
 
 CharacterMario::~CharacterMario()

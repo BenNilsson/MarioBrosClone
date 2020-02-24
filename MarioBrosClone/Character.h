@@ -24,6 +24,8 @@ public:
 	Rect2D GetCollisionBox() { return Rect2D(mPosition.x, mPosition.y, mSingleSpriteWidth, mSingleSpriteHeight); }
 	bool IsJumping() { return mJumping; }
 	void CancelJump();
+	void SetAlive(bool boolean);
+	bool GetAlive() { return mAlive; }
 protected:
 	SDL_Renderer* mRenderer;
 	Vector2D mPosition;
@@ -39,17 +41,21 @@ protected:
 	bool mMovingLeft;
 	bool mMovingRight;
 
+	bool mAlive;
+
 	float mSingleSpriteWidth;
 	float mSingleSpriteHeight;
 
 	int frame;
 	float curFrameTime;
+	int frameCount;
+	int jumpFrame;
 
-private:
 	bool mJumping;
 	bool mCanJump;
 	float mJumpForce;
 	float movementSpeed = 220.0f;
 
 	LevelMap* mCurrentLevelMap;
+
 };

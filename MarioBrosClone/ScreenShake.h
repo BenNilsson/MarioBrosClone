@@ -1,4 +1,6 @@
 #include "Constants.h"
+#include "CharacterKoopa.h"
+#include <vector>
 #pragma once
 
 class ScreenShake
@@ -8,7 +10,7 @@ public:
 	~ScreenShake();
 
 	void DoScreenShake();
-	void Update(float deltaTime);
+	void Update(float deltaTime, std::vector<CharacterKoopa*> _koopas);
 
 	float GetBackgroundYPos() { return mBackgroundYPos; }
 

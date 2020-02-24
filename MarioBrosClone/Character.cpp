@@ -10,15 +10,12 @@ Character::Character(SDL_Renderer* renderer, std::string imagePath, Vector2D sta
 	if (!mTexture->LoadFromFile(imagePath))
 		std::cout << "Could not load character image file";
 	mPosition = startPosition;
-	mfacingDirection = FACING_RIGHT;
 	mMovingLeft = false;
 	mMovingRight = false;
 	mJumping = false;
 	mCollisionRadius = 15.0f;
 	mCurrentLevelMap = map;
 
-	mSingleSpriteWidth = mTexture->GetWidth() / 6;
-	mSingleSpriteHeight = mTexture->GetHeight();
 	frame = 1;
 }
 
@@ -43,7 +40,7 @@ void Character::Render()
 	SDL_Rect destRect = { (int)(mPosition.x), (int)(mPosition.y), mSingleSpriteWidth, mSingleSpriteHeight };
 
 	// Draw
-	if (mfacingDirection == FACING_RIGHT)
+	if (mfacingDirection == FACING::FACING_RIGHT)
 		mTexture->Render(portionOfSpritesheet, destRect, SDL_FLIP_NONE);
 	else
 		mTexture->Render(portionOfSpritesheet, destRect, SDL_FLIP_HORIZONTAL);
@@ -126,15 +123,20 @@ void Character::CancelJump()
 	mJumpForce = 0.0f;
 }
 
+void Character::SetAlive(bool boolean)
+{
+	mAlive = boolean;
+}
+
 void Character::MoveLeft(float deltaTime)
 {
-	mfacingDirection = FACING_LEFT;
+	mfacingDirection = FACING::FACING_LEFT;
 	mPosition.x -= movementSpeed * deltaTime;
 }
 
 void Character::MoveRight(float deltaTime)
 {
-	mfacingDirection = FACING_RIGHT;
+	mfacingDirection = FACING::FACING_RIGHT;
 	mPosition.x += movementSpeed * deltaTime;
 }
 
@@ -145,7 +147,7 @@ void Character::UpdateFrame(float deltaTime)
 	// Jumping
 	if (IsJumping() || !mCanJump)
 	{
-		frame = 6;
+		frame = jumpFrame;
 	}
 	// moving
 	else if (mMovingRight || mMovingLeft)
@@ -156,7 +158,7 @@ void Character::UpdateFrame(float deltaTime)
 		{
 			frame++;
 
-			if (frame > 4)
+			if (frame > frameCount)
 				frame = 1;
 
 			curFrameTime = 0;

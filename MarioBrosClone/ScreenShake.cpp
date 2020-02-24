@@ -1,6 +1,7 @@
 #include "ScreenShake.h"
 #include "SDL.h"
 #include <iostream>
+#include "CharacterKoopa.h"
 
 ScreenShake::ScreenShake()
 {
@@ -19,7 +20,7 @@ void ScreenShake::DoScreenShake()
 	mWobble = 0.0f;
 }
 
-void ScreenShake::Update(float deltaTime)
+void ScreenShake::Update(float deltaTime, std::vector<CharacterKoopa*> _koopas)
 {
 	// Shake screen if required
 	if (mScreenshake)
@@ -28,6 +29,13 @@ void ScreenShake::Update(float deltaTime)
 		mWobble++;
 		mBackgroundYPos = sin(mWobble);
 		mBackgroundYPos *= 3.0f;
+
+		// Damage all koopas
+		for (unsigned int i = 0; i < _koopas.size(); i++)
+		{
+			_koopas[i]->TakeDamage();
+		}
+
 		// End screen shake after duration
 		if (mScreenshakeTime <= 0.0f)
 		{

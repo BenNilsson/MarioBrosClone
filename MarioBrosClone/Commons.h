@@ -70,7 +70,7 @@ enum SCREENS
 	SCREEN_HIGHSCORES
 };
 
-enum FACING
+enum class FACING
 {
 	FACING_LEFT = 0,
 	FACING_RIGHT
