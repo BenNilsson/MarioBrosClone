@@ -45,8 +45,6 @@ void CharacterKoopa::Jump()
 
 void CharacterKoopa::Update(float deltaTime, SDL_Event e)
 {
-	
-	
 	if (!mInjured)
 	{
 		// Not injured, do movement

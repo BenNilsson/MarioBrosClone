@@ -1,15 +1,11 @@
 ﻿  Coin.cpp
-C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\Coin.cpp(16,44): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\Coin.cpp(17,43): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\Coin.cpp(22,18): warning C4150: deletion of pointer to incomplete type 'SDL_Renderer'; no destructor called
-C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\SDL\include\SDL_render.h(122): message : see declaration of 'SDL_Renderer'
-C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\Coin.cpp(32,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\Coin.cpp(34,45): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
-C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\Coin.cpp(34,45): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\Coin.cpp(34,65): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
-C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\Coin.cpp(34,65): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\Coin.cpp(36,64): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
-C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\Coin.cpp(36,64): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\Coin.cpp(36,84): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
-C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\Coin.cpp(36,84): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-  MarioBrosClone.vcxproj -> C:\Users\krota\Desktop\MarioBrosClone\Debug\MarioBrosClone.exe
+C:\Users\n020868i\Documents\GitHub\MarioBrosClone\MarioBrosClone\Coin.cpp(16): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\n020868i\Documents\GitHub\MarioBrosClone\MarioBrosClone\Coin.cpp(17): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\n020868i\Documents\GitHub\MarioBrosClone\MarioBrosClone\Coin.cpp(24): warning C4150: deletion of pointer to incomplete type 'SDL_Renderer'; no destructor called
+  C:\Users\n020868i\Documents\GitHub\MarioBrosClone\MarioBrosClone\SDL\include\SDL_render.h(122): note: see declaration of 'SDL_Renderer'
+C:\Users\n020868i\Documents\GitHub\MarioBrosClone\MarioBrosClone\Coin.cpp(34): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\n020868i\Documents\GitHub\MarioBrosClone\MarioBrosClone\Coin.cpp(36): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
+C:\Users\n020868i\Documents\GitHub\MarioBrosClone\MarioBrosClone\Coin.cpp(36): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\n020868i\Documents\GitHub\MarioBrosClone\MarioBrosClone\Coin.cpp(38): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
+C:\Users\n020868i\Documents\GitHub\MarioBrosClone\MarioBrosClone\Coin.cpp(38): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+  MarioBrosClone.vcxproj -> C:\Users\n020868i\Documents\GitHub\MarioBrosClone\Debug\MarioBrosClone.exe

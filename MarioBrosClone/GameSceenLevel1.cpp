@@ -120,16 +120,14 @@ void GameScreenLevel1::UpdateEnemies(float deltaTime, SDL_Event e)
 	// Only update enemies if we have any
 	if (!mKoopas.empty())
 	{
-		enemyIndexToDelete = -1; 
+		enemyIndexToDelete = -1;
 		for (unsigned int i = 0; i < mKoopas.size(); i++)
 		{
-			// Check if enemy is on the bottom row of tiles
 			if (mKoopas[i]->GetPosition().y > 0.0f)
 			{
 				// Is the enemy off screen to the left / right?
 				if (mKoopas[i]->GetPosition().x < (float(-mKoopas[i]->GetCollisionBox().width * 0.5f)))
 				{
-					//mKoopas[i]->SetAlive(false);
 					mKoopas[i]->SetPosition(Vector2D(mKoopas[i]->GetPosition().x + 15, mKoopas[i]->GetPosition().y));
 					mKoopas[i]->Flip();
 				}
@@ -269,7 +267,13 @@ bool GameScreenLevel1::SetUpLevel()
 	CreateKoopa(Vector2D(150, 32), FACING::FACING_RIGHT, 75.0f);
 	CreateKoopa(Vector2D(325, 32), FACING::FACING_LEFT, 75.0f);
 
-	CreateCoin(Vector2D(200, 64));
+	CreateCoin(Vector2D(210, 64));
+	CreateCoin(Vector2D(245, 64));
+	CreateCoin(Vector2D(275, 64));
+
+	CreateCoin(Vector2D(210, 210));
+	CreateCoin(Vector2D(245, 210));
+	CreateCoin(Vector2D(275, 210));
 
 	return true;
 }

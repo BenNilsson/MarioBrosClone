@@ -15,6 +15,8 @@ Coin::Coin(SDL_Renderer* renderer, std::string imagePath, Vector2D startPosition
 
 	mSingleSpriteWidth = mTexture->GetWidth() / 3;
 	mSingleSpriteHeight = mTexture->GetHeight();
+
+	mCollisionRadius = 20.0f;
 }
 
 Coin::~Coin()
