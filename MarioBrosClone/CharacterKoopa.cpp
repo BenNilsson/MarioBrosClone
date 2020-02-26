@@ -11,8 +11,7 @@ CharacterKoopa::CharacterKoopa(SDL_Renderer* renderer, std::string imagePath, Ve
 	mSingleSpriteWidth = mTexture->GetWidth() / 6;
 	mSingleSpriteHeight = mTexture->GetHeight();
 	mAlive = true;
-	hasCollided = false;
-	jumpFrame = 4;
+	jumpFrame = 5;
 	frameCount = 4;
 }
 
@@ -81,11 +80,11 @@ void CharacterKoopa::Update(float deltaTime, SDL_Event e)
 void CharacterKoopa::Render()
 {	
 	// Variable to hold the left position of the sprite we want to draw
-	int left = mSingleSpriteHeight * (frame - 1);
+	int left = mSingleSpriteWidth * (frame - 1);
 
 	// Inf ionjured, move the left position to the second image of the spirte sheet
 	if (mInjured)
-		left = mSingleSpriteHeight * (6 - 1);
+		left = mSingleSpriteWidth * jumpFrame;
 
 	// Get portion of spritesheet to draw
 	SDL_Rect portionOfSpritesheet = { left, 0, mSingleSpriteWidth, mSingleSpriteHeight };

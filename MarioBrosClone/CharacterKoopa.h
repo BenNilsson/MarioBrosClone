@@ -19,7 +19,6 @@ public:
 
 	void Flip();
 
-	int hasCollided;
 private:
 
 	bool mInjured;
