@@ -6,11 +6,11 @@
 #include "CharacterMario.h"
 #include "CharacterLuigi.h"
 #include "CharacterKoopa.h"
-#include "LevelMap.h"
 #include "PowBlock.h"
 #include "ScreenShake.h"
 #include "Coin.h"
 #include "TileMap.h"
+#include "Flag.h"
 #include <vector>
 
 class Sprite;
@@ -42,16 +42,17 @@ private:
 	void CreateCoin(Vector2D position);
 	void UpdateCoins(float deltaTime, SDL_Event e);
 
+	Flag* flag;
+
 	std::vector<CharacterKoopa*> mKoopas;
 	int enemyIndexToDelete;
 
 	std::vector<Coin*> mCoins;
 	int coinIndexToDelete;
 
-	void SetLevelMap();
+	void SetUpTileMap();
 	bool SetUpLevel();
 
 	ScreenShake* screenShake;
-	LevelMap* mLevelMap;
 };
 

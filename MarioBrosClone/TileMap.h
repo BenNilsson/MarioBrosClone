@@ -20,7 +20,7 @@ public:
 	~TileMap();
 
 	void GenerateTileMap(int map[MAP_HEIGHT][MAP_WIDTH]);
-	void DrawTimeMap();
+	void DrawTileMap();
 
 	Tile GetTileAt(unsigned int height, unsigned int width);
 	void ChangeTileAt(unsigned int row, unsigned int column, Tile tile);

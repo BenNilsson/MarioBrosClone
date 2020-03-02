@@ -2,10 +2,10 @@
 #include <iostream>
 #include "Sprite.h"
 #include "Collisions.h"
+#include "SoundManager.h"
 
 GameScreenLevel1::GameScreenLevel1(SDL_Renderer* renderer) : GameScreen(renderer)
 {
-	mLevelMap = NULL;
 	SetUpLevel();
 }
 
@@ -36,7 +36,7 @@ void GameScreenLevel1::Render()
 	mBackgroundTexture->Render(Vector2D(0, screenShake->GetBackgroundYPos()), SDL_FLIP_NONE);
 
 	// Render all tiles
-	tileMap->DrawTimeMap();
+	tileMap->DrawTileMap();
 
 	// Draw the player
 	characterMario->Render();
@@ -44,6 +44,8 @@ void GameScreenLevel1::Render()
 
 	// Draw Powblock
 	mPowBlock->Render();
+
+	flag->Render();
 
 	// Draw enemies
 	for (unsigned int i = 0; i < mKoopas.size(); i++)
@@ -83,6 +85,13 @@ void GameScreenLevel1::Update(float deltaTime, SDL_Event e)
 
 	UpdateCoins(deltaTime, e);
 
+	// Check to see if the character and flag collide
+	if (Collisions::Instance()->Box(flag->GetCollisionBox(), characterMario->GetCollisionBox()))
+	{
+		std::cout << "Character collided with flag" << std::endl;
+		
+	}
+
 	// Update screenshake, passing the koopa vector in order for the pow block to kill them
 	screenShake->Update(deltaTime, mKoopas);
 }
@@ -101,6 +110,7 @@ void GameScreenLevel1::UpdatePowBlock()
 				screenShake->DoScreenShake();
 				mPowBlock->TakeAHit();
 				characterMario->CancelJump();
+				soundmanager::SoundManager::GetInstance()->PlaySFX("SFX/bump.wav");
 			}
 		}
 	}
@@ -185,12 +195,12 @@ void GameScreenLevel1::UpdateEnemies(float deltaTime, SDL_Event e)
 
 void GameScreenLevel1::CreateKoopa(Vector2D position, FACING direction, float speed)
 {
-	mKoopas.push_back(new CharacterKoopa(mRenderer, "Textures/Koopa.png", position, mLevelMap, speed, direction));
+	mKoopas.push_back(new CharacterKoopa(mRenderer, "Textures/Koopa.png", position, tileMap, speed, direction));
 }
 
 void GameScreenLevel1::CreateCoin(Vector2D position)
 {
-	mCoins.push_back(new Coin(mRenderer, "Textures/Coin.png", position, mLevelMap));
+	mCoins.push_back(new Coin(mRenderer, "Textures/Coin.png", position));
 }
 
 void GameScreenLevel1::UpdateCoins(float deltaTime, SDL_Event e)
@@ -210,6 +220,7 @@ void GameScreenLevel1::UpdateCoins(float deltaTime, SDL_Event e)
 			{
 				// mario and coin collided
 				coinIndexToDelete = i;
+				soundmanager::SoundManager::GetInstance()->PlaySFX("SFX/coin.wav");
 				std::cout << "COLLECTED THE COIN" << std::endl;
 			}
 		}
@@ -224,7 +235,7 @@ void GameScreenLevel1::UpdateCoins(float deltaTime, SDL_Event e)
 	
 }
 
-void GameScreenLevel1::SetLevelMap()
+void GameScreenLevel1::SetUpTileMap()
 {
 	// Set up map array
 	int map[MAP_HEIGHT][MAP_WIDTH] = { { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
@@ -240,13 +251,6 @@ void GameScreenLevel1::SetLevelMap()
 										{ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
 										{ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
 										{ 2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2 } };
-
-	// Clear any old map
-	if (mLevelMap != NULL)
-		delete mLevelMap;
-
-	// Set new map
-	mLevelMap = new LevelMap(map);
 
 	// Create new TileMap
 	tileMap = new TileMap(mRenderer);
@@ -265,16 +269,18 @@ bool GameScreenLevel1::SetUpLevel()
 		return false;
 	}
 
-	SetLevelMap();
+	
+
+	SetUpTileMap();
 
 	screenShake = new ScreenShake();
 
 	// Set up the player character
-	characterMario = new CharacterMario(mRenderer, "Textures/mario-run.png", Vector2D(64, 330), mLevelMap);
-	characterLuigi = new CharacterLuigi(mRenderer, "Textures/luigi-run.png", Vector2D(364, 330), mLevelMap);
+	characterMario = new CharacterMario(mRenderer, "Textures/mario-run.png", Vector2D(64, 330), tileMap);
+	characterLuigi = new CharacterLuigi(mRenderer, "Textures/luigi-run.png", Vector2D(364, 330), tileMap);
 
 	// Create PowBlock
-	mPowBlock = new PowBlock(mRenderer, mLevelMap);
+	mPowBlock = new PowBlock(mRenderer);
 
 	// Create Koopas
 	CreateKoopa(Vector2D(150, 32), FACING::FACING_RIGHT, 75.0f);
@@ -287,6 +293,10 @@ bool GameScreenLevel1::SetUpLevel()
 	CreateCoin(Vector2D(210, 210));
 	CreateCoin(Vector2D(245, 210));
 	CreateCoin(Vector2D(275, 210));
+
+	// Create flag
+	flag = new Flag(mRenderer, Vector2D(400, 247), characterMario, NULL);
+
 
 	return true;
 }

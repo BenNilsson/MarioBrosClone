@@ -26,16 +26,18 @@ int main(int argc, char* args[])
 	// Check if SDL was set up correctly
 	if (InitSDL())
 	{
+		
 		// Play background music
+		soundmanager::SoundManager::GetInstance()->StopMusic();
 		soundmanager::SoundManager::GetInstance()->PlayMusic("Music/Mario.wav");
 
 		// Adjust volume
 		Mix_Volume(-1, SDL_MIX_MAXVOLUME / 4);
-
-		Mix_VolumeMusic(SDL_MIX_MAXVOLUME / 6);
+		Mix_VolumeMusic(SDL_MIX_MAXVOLUME / 5);
 		
 		// Set up GameScreenManager
 		gameScreenManager = new GameScreenManager(gRenderer, SCREEN_INTRO);
+		gameScreenManager->ChangeScreen(SCREEN_INTRO);
 
 		// Set start time
 		gOldTime = SDL_GetTicks();
@@ -43,6 +45,8 @@ int main(int argc, char* args[])
 
 		// Flag to check if the user wishes to exit
 		bool quit = false;
+
+		
 
 		// Game Loop
 		while(!quit)
@@ -99,6 +103,8 @@ bool InitSDL()
 					return false;
 				}
 
+				
+
 			}
 			else
 			{
@@ -107,6 +113,8 @@ bool InitSDL()
 			}
 		}
 	}
+
+	
 
 	return true;
 }

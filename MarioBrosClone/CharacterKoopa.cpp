@@ -2,8 +2,9 @@
 #include "Character.h"
 #include "CharacterKoopa.h"
 #include "Sprite.h"
+#include "Constants.h"
 
-CharacterKoopa::CharacterKoopa(SDL_Renderer* renderer, std::string imagePath, Vector2D startPos, LevelMap* map, float speed, FACING direction) : Character(renderer, imagePath, startPos, map)
+CharacterKoopa::CharacterKoopa(SDL_Renderer* renderer, std::string imagePath, Vector2D startPos, TileMap* map, float speed, FACING direction) : Character(renderer, imagePath, startPos, map)
 {
 	mInjured = false;
 	movementSpeed = speed;

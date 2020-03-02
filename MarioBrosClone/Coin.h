@@ -2,13 +2,12 @@
 #include "SDL.h"
 #include <iostream>
 #include "Commons.h"
-#include "LevelMap.h"
 #include "Sprite.h"
 
 class Coin
 {
 public:
-	Coin(SDL_Renderer* renderer, std::string imagePath, Vector2D startPosition, LevelMap* map);
+	Coin(SDL_Renderer* renderer, std::string imagePath, Vector2D startPosition);
 	~Coin();
 
 	void Render();
@@ -23,7 +22,6 @@ private:
 	SDL_Renderer* mRenderer;
 	Vector2D mPosition;
 	Sprite* mSprite;
-	LevelMap* mCurrentLevelMap;
 
 	float mCollisionRadius;
 

@@ -6,7 +6,7 @@
 class CharacterKoopa : public Character
 {
 public:
-	CharacterKoopa(SDL_Renderer* renderer, std::string imagePath, Vector2D startPos, LevelMap* map, float speed, FACING direction);
+	CharacterKoopa(SDL_Renderer* renderer, std::string imagePath, Vector2D startPos, TileMap* map, float speed, FACING direction);
 	~CharacterKoopa();
 
 	void TakeDamage();

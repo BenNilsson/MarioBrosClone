@@ -3,7 +3,7 @@
 #include "CharacterMario.h"
 #include "Sprite.h"
 
-CharacterMario::CharacterMario(SDL_Renderer* renderer, std::string imagePath, Vector2D startPos, LevelMap* map) : Character(renderer, imagePath, startPos, map)
+CharacterMario::CharacterMario(SDL_Renderer* renderer, std::string imagePath, Vector2D startPos, TileMap* map) : Character(renderer, imagePath, startPos, map)
 {
 	mRenderer = renderer;
 

@@ -1,6 +1,6 @@
 #include "Coin.h"
 
-Coin::Coin(SDL_Renderer* renderer, std::string imagePath, Vector2D startPosition, LevelMap* map)
+Coin::Coin(SDL_Renderer* renderer, std::string imagePath, Vector2D startPosition)
 {
 	mRenderer = renderer;
 	mSprite = new Sprite(mRenderer);
@@ -8,7 +8,6 @@ Coin::Coin(SDL_Renderer* renderer, std::string imagePath, Vector2D startPosition
 		std::cout << "Could not load character image file";
 
 	mPosition = startPosition;
-	mCurrentLevelMap = map;
 
 	mFrame = 1;
 	mFrameCount = 3;

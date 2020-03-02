@@ -1,7 +1,8 @@
 #include "PowBlock.h"
 #include <iostream>
+#include "Constants.h"
 
-PowBlock::PowBlock(SDL_Renderer* renderer, LevelMap* map)
+PowBlock::PowBlock(SDL_Renderer* renderer)
 {
 	mRenderer = renderer;
 
@@ -13,7 +14,6 @@ PowBlock::PowBlock(SDL_Renderer* renderer, LevelMap* map)
 		return;
 	}
 
-	mLevelMap = map;
 
 	mSingleSpriteWidth = mTexture->GetWidth() / 3;
 	mSingleSpriteHeight = mTexture->GetHeight();
@@ -27,8 +27,6 @@ PowBlock::~PowBlock()
 
 	delete mTexture;
 	mTexture = NULL;
-
-	mLevelMap = NULL;
 }
 
 void PowBlock::Render()
@@ -56,7 +54,5 @@ void PowBlock::TakeAHit()
 	if (mNumberOfHitsLeft <= 0)
 	{
 		mNumberOfHitsLeft = 0;
-		mLevelMap->ChangeTileAt(8, 7, 0);
-		mLevelMap->ChangeTileAt(8, 8, 0);
 	}
 }

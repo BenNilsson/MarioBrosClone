@@ -60,7 +60,7 @@ void TileMap::GenerateTileMap(int map[MAP_HEIGHT][MAP_WIDTH])
 	}
 }
 
-void TileMap::DrawTimeMap()
+void TileMap::DrawTileMap()
 {
 	for (const Tile* tile : mTileMap)
 	{

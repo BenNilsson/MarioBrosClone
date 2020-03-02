@@ -3,11 +3,12 @@
 #include "Constants.h"
 #include <iostream>
 #include "SoundManager.h"
+#include "Collisions.h"
 
-Character::Character(SDL_Renderer* renderer, std::string imagePath, Vector2D startPosition, LevelMap* map)
+Character::Character(SDL_Renderer* renderer, std::string imagePath, Vector2D startPosition, TileMap* map)
 {
 	mRenderer = renderer;
-
+	mCurrentTileMap = map;
 	mSprite = new Sprite(mRenderer);
 	if (!mSprite->LoadFromFile(imagePath))
 		std::cout << "Could not load character image file";
@@ -18,7 +19,6 @@ Character::Character(SDL_Renderer* renderer, std::string imagePath, Vector2D sta
 	mJumping = false;
 	mCanMove = true;
 	mCollisionRadius = 15.0f;
-	mCurrentLevelMap = map;
 
 	frame = 1;
 }
@@ -52,20 +52,57 @@ void Character::Render()
 
 void Character::Update(float deltaTime, SDL_Event e)
 {
+	Vector2D old_pos = GetPosition();
+	Vector2D new_pos = old_pos;
+	bool gravity = true;
+
+	if(mMovingLeft)
+		new_pos.x -= movementSpeed * deltaTime;
+	else if (mMovingRight)
+		new_pos.x += movementSpeed * deltaTime;
+
+	new_pos.y += gravityForce * deltaTime;
+
+	// Check through the tilemap and ensure collision happens
+	for (unsigned int i = 0; i < mCurrentTileMap->mTileMap.size(); i++)
+	{
+		if (mCurrentTileMap->mTileMap[i]->GetCollisionType() == CollisionType::TILE_NONWALKABLE)
+		{
+			// Check if the new position is colliding with the player
+			if (Collisions::Instance()->Box(Rect2D(mCurrentTileMap->mTileMap[i]->GetPosition().x, mCurrentTileMap->mTileMap[i]->GetPosition().y, mCurrentTileMap->mTileMap[i]->width, 1),
+				Rect2D(new_pos.x, new_pos.y + GetHeight() - 2, GetWidth(), 1)))
+			{
+				// Collision!
+				mPosition = old_pos;
+				gravity = false;
+				mCanJump = true;
+				break;
+			}
+			else
+			{
+				gravity = true;
+			}
+		}
+		else
+		{
+			gravity = true;
+		}
+	}
+
 	// Update Frame
 	UpdateFrame(deltaTime);
-	
-	// Collision position variables
-	int centralXPosition = (int)(mPosition.x + (mSingleSpriteWidth * 0.5f)) / TILE_WIDTH;
-	int footPosition = (int)(mPosition.y + mSingleSpriteHeight) / TILE_HEIGHT;
 
-	// Check for empty tile, if so apply gravity, if not empty so canJump to true
-	
-	if (mCurrentLevelMap->GetTileAt(footPosition, centralXPosition) == 0)
+	if(gravity)
 		AddGravity(deltaTime);
-	else
-		mCanJump = true;
-	
+
+	// Control movement
+	if (mCanMove)
+	{
+		if (mMovingLeft)
+			MoveLeft(deltaTime);
+		else if (mMovingRight)
+			MoveRight(deltaTime);
+	}
 
 	// Jumping
 	if (mJumping)
@@ -81,14 +118,6 @@ void Character::Update(float deltaTime, SDL_Event e)
 
 	}
 
-	// Control movement
-	if (mCanMove)
-	{
-		if (mMovingLeft)
-			MoveLeft(deltaTime);
-		else if (mMovingRight)
-			MoveRight(deltaTime);
-	}
 }
 
 void Character::Jump()

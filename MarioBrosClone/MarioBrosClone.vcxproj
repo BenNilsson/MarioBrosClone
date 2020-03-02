@@ -132,11 +132,12 @@
     <ClCompile Include="CharacterMario.cpp" />
     <ClCompile Include="Coin.cpp" />
     <ClCompile Include="Collisions.cpp" />
+    <ClCompile Include="Flag.cpp" />
     <ClCompile Include="GameSceenLevel1.cpp" />
     <ClCompile Include="GameScreen.cpp" />
     <ClCompile Include="GameScreenIntro.cpp" />
+    <ClCompile Include="GameScreenLevel2.cpp" />
     <ClCompile Include="GameScreenManager.cpp" />
-    <ClCompile Include="LevelMap.cpp" />
     <ClCompile Include="PowBlock.cpp" />
     <ClCompile Include="ScreenShake.cpp" />
     <ClCompile Include="SoundManager.cpp" />
@@ -160,11 +161,12 @@
     <ClInclude Include="Collisions.h" />
     <ClInclude Include="Commons.h" />
     <ClInclude Include="Constants.h" />
+    <ClInclude Include="Flag.h" />
     <ClInclude Include="GameSceenLevel1.h" />
     <ClInclude Include="GameScreen.h" />
     <ClInclude Include="GameScreenIntro.h" />
+    <ClInclude Include="GameScreenLevel2.h" />
     <ClInclude Include="GameScreenManager.h" />
-    <ClInclude Include="LevelMap.h" />
     <ClInclude Include="PowBlock.h" />
     <ClInclude Include="ScreenShake.h" />
     <ClInclude Include="SoundManager.h" />

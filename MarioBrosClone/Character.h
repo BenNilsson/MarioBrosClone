@@ -2,14 +2,14 @@
 #include "SDL.h"
 #include <iostream>
 #include "Commons.h"
-#include "LevelMap.h"
+#include "TileMap.h"
 
 class Sprite;
 
 class Character
 {
 public:
-	Character(SDL_Renderer* renderer, std::string imagePath, Vector2D startPosition, LevelMap* map);
+	Character(SDL_Renderer* renderer, std::string imagePath, Vector2D startPosition, TileMap* map);
 	~Character();
 
 	virtual void Render();
@@ -37,6 +37,8 @@ protected:
 	Vector2D mPosition;
 	Sprite* mSprite;
 
+	TileMap* mCurrentTileMap;
+
 	virtual void MoveLeft(float deltaTime);
 	virtual void MoveRight(float deltaTime);
 	virtual void UpdateFrame(float deltaTime);
@@ -62,7 +64,5 @@ protected:
 	float mJumpForce;
 	float movementSpeed = 220.0f;
 	bool mCanMove;
-
-	LevelMap* mCurrentLevelMap;
 
 };

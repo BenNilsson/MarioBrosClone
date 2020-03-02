@@ -2,12 +2,11 @@
 #include "SDL.h"
 #include "Commons.h"
 #include "Sprite.h"
-#include "LevelMap.h"
 
 class PowBlock
 {
 public:
-	PowBlock(SDL_Renderer* renderer, LevelMap* map);
+	PowBlock(SDL_Renderer* renderer);
 	~PowBlock();
 	void Render();
 	Rect2D GetCollisionBox() { return Rect2D(mPosition.x, mPosition.y, mSingleSpriteWidth, mSingleSpriteHeight); }
@@ -18,7 +17,6 @@ private:
 	SDL_Renderer* mRenderer;
 	Vector2D mPosition;
 	Sprite* mTexture;
-	LevelMap* mLevelMap;
 
 	float mSingleSpriteWidth;
 	float mSingleSpriteHeight;
