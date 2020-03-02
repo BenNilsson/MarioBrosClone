@@ -6,6 +6,7 @@
 #include "Sprite.h"
 #include "Commons.h"
 #include "GameScreenManager.h"
+#include "SoundManager.h"
 
 // Globals
 SDL_Window* gWindow = NULL;
@@ -25,11 +26,15 @@ int main(int argc, char* args[])
 	// Check if SDL was set up correctly
 	if (InitSDL())
 	{
+		// Play background music
+		soundmanager::SoundManager::GetInstance()->PlayMusic("Music/Mario.wav");
+		
 		// Set up GameScreenManager
 		gameScreenManager = new GameScreenManager(gRenderer, SCREEN_INTRO);
 
 		// Set start time
 		gOldTime = SDL_GetTicks();
+
 
 		// Flag to check if the user wishes to exit
 		bool quit = false;
@@ -128,6 +133,7 @@ void CloseSDL()
 	gameScreenManager = NULL;
 
 	// Quit SDL subsystems
+	Mix_Quit();
 	IMG_Quit();
 	SDL_Quit();
 }

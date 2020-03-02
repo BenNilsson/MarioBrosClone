@@ -2,6 +2,7 @@
 #include "Sprite.h"
 #include "Constants.h"
 #include <iostream>
+#include "SoundManager.h"
 
 Character::Character(SDL_Renderer* renderer, std::string imagePath, Vector2D startPosition, LevelMap* map)
 {
@@ -94,6 +95,7 @@ void Character::Jump()
 {
 	if (!mJumping && mCanJump)
 	{
+		soundmanager::SoundManager::GetInstance()->PlaySFX("SFX/mario-jump.wav");
 		mJumpForce = INITIAL_JUMP_FORCE;
 		mJumping = true;
 		mCanJump = false;
