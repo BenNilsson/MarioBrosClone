@@ -28,6 +28,11 @@ int main(int argc, char* args[])
 	{
 		// Play background music
 		soundmanager::SoundManager::GetInstance()->PlayMusic("Music/Mario.wav");
+
+		// Adjust volume
+		Mix_Volume(-1, SDL_MIX_MAXVOLUME / 4);
+
+		Mix_VolumeMusic(SDL_MIX_MAXVOLUME / 6);
 		
 		// Set up GameScreenManager
 		gameScreenManager = new GameScreenManager(gRenderer, SCREEN_INTRO);
