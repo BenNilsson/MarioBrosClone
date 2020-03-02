@@ -1,6 +1,6 @@
 #include "GameScreenIntro.h"
 #include <iostream>
-#include "Texture2D.h"
+#include "Sprite.h"
 
 GameScreenIntro::GameScreenIntro(SDL_Renderer* renderer) : GameScreen(renderer)
 {
@@ -26,7 +26,7 @@ void GameScreenIntro::Update(float deltaTime, SDL_Event e)
 bool GameScreenIntro::SetUpLevel()
 {
 	// Load the background texture
-	mBackgroundTexture = new Texture2D(mRenderer);
+	mBackgroundTexture = new Sprite(mRenderer);
 	if (!mBackgroundTexture->LoadFromFile("Textures/startMenu.png"))
 	{
 		std::cout << "Failed to load background texture!";

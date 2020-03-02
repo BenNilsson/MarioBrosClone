@@ -1,18 +1,21 @@
 #include "Character.h"
-#include "Texture2D.h"
+#include "Sprite.h"
 #include "Constants.h"
 #include <iostream>
 
 Character::Character(SDL_Renderer* renderer, std::string imagePath, Vector2D startPosition, LevelMap* map)
 {
 	mRenderer = renderer;
-	mTexture = new Texture2D(mRenderer);
-	if (!mTexture->LoadFromFile(imagePath))
+
+	mSprite = new Sprite(mRenderer);
+	if (!mSprite->LoadFromFile(imagePath))
 		std::cout << "Could not load character image file";
+
 	mPosition = startPosition;
 	mMovingLeft = false;
 	mMovingRight = false;
 	mJumping = false;
+	mCanMove = true;
 	mCollisionRadius = 15.0f;
 	mCurrentLevelMap = map;
 
@@ -24,8 +27,8 @@ Character::~Character()
 	delete mRenderer;
 	mRenderer = nullptr;
 
-	delete mTexture;
-	mTexture = nullptr;
+	delete mSprite;
+	mSprite = nullptr;
 }
 
 void Character::Render()
@@ -41,25 +44,27 @@ void Character::Render()
 
 	// Draw
 	if (mfacingDirection == FACING::FACING_RIGHT)
-		mTexture->Render(portionOfSpritesheet, destRect, SDL_FLIP_NONE);
+		mSprite->Render(portionOfSpritesheet, destRect, SDL_FLIP_NONE);
 	else
-		mTexture->Render(portionOfSpritesheet, destRect, SDL_FLIP_HORIZONTAL);
+		mSprite->Render(portionOfSpritesheet, destRect, SDL_FLIP_HORIZONTAL);
 }
 
 void Character::Update(float deltaTime, SDL_Event e)
 {
 	// Update Frame
 	UpdateFrame(deltaTime);
-
+	
 	// Collision position variables
 	int centralXPosition = (int)(mPosition.x + (mSingleSpriteWidth * 0.5f)) / TILE_WIDTH;
 	int footPosition = (int)(mPosition.y + mSingleSpriteHeight) / TILE_HEIGHT;
 
 	// Check for empty tile, if so apply gravity, if not empty so canJump to true
+	
 	if (mCurrentLevelMap->GetTileAt(footPosition, centralXPosition) == 0)
 		AddGravity(deltaTime);
 	else
 		mCanJump = true;
+	
 
 	// Jumping
 	if (mJumping)
@@ -76,10 +81,13 @@ void Character::Update(float deltaTime, SDL_Event e)
 	}
 
 	// Control movement
-	if (mMovingLeft)
-		MoveLeft(deltaTime);
-	else if (mMovingRight)
-		MoveRight(deltaTime);
+	if (mCanMove)
+	{
+		if (mMovingLeft)
+			MoveLeft(deltaTime);
+		else if (mMovingRight)
+			MoveRight(deltaTime);
+	}
 }
 
 void Character::Jump()
@@ -123,9 +131,19 @@ void Character::CancelJump()
 	mJumpForce = 0.0f;
 }
 
+void Character::SetCanJump(bool jump)
+{
+	mCanJump = jump;
+}
+
 void Character::SetAlive(bool boolean)
 {
 	mAlive = boolean;
+}
+
+void Character::SetCanMove(bool move)
+{
+	mCanMove = move;
 }
 
 void Character::MoveLeft(float deltaTime)

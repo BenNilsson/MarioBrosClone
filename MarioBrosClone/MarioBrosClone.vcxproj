@@ -140,7 +140,9 @@
     <ClCompile Include="PowBlock.cpp" />
     <ClCompile Include="ScreenShake.cpp" />
     <ClCompile Include="Source.cpp" />
-    <ClCompile Include="Texture2D.cpp" />
+    <ClCompile Include="Sprite.cpp" />
+    <ClCompile Include="Tile.cpp" />
+    <ClCompile Include="TileMap.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="SDL\SDL2.lib" />
@@ -164,7 +166,9 @@
     <ClInclude Include="LevelMap.h" />
     <ClInclude Include="PowBlock.h" />
     <ClInclude Include="ScreenShake.h" />
-    <ClInclude Include="Texture2D.h" />
+    <ClInclude Include="Sprite.h" />
+    <ClInclude Include="Tile.h" />
+    <ClInclude Include="TileMap.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

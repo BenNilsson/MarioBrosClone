@@ -10,9 +10,10 @@
 #include "PowBlock.h"
 #include "ScreenShake.h"
 #include "Coin.h"
+#include "TileMap.h"
 #include <vector>
 
-class Texture2D;
+class Sprite;
 class CharacterMario;
 class PowBlock;
 
@@ -25,7 +26,10 @@ public:
 	void Render();
 	void Update(float deltaTime, SDL_Event e);
 private:
-	Texture2D* mBackgroundTexture;
+
+	TileMap* tileMap;
+
+	Sprite* mBackgroundTexture;
 	CharacterMario* characterMario;
 	CharacterLuigi* characterLuigi;
 

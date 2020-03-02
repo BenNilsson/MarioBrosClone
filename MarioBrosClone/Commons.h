@@ -75,3 +75,9 @@ enum class FACING
 	FACING_LEFT = 0,
 	FACING_RIGHT
 };
+
+enum class CollisionType
+{
+	TILE_WALKABLE,
+	TILE_NONWALKABLE
+};

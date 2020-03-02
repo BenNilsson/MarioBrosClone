@@ -1,15 +1,15 @@
 #include "SDL.h"
 #include "Character.h"
 #include "CharacterKoopa.h"
-#include "Texture2D.h"
+#include "Sprite.h"
 
 CharacterKoopa::CharacterKoopa(SDL_Renderer* renderer, std::string imagePath, Vector2D startPos, LevelMap* map, float speed, FACING direction) : Character(renderer, imagePath, startPos, map)
 {
 	mInjured = false;
 	movementSpeed = speed;
 	mfacingDirection = direction;
-	mSingleSpriteWidth = mTexture->GetWidth() / 6;
-	mSingleSpriteHeight = mTexture->GetHeight();
+	mSingleSpriteWidth = mSprite->GetWidth() / 6;
+	mSingleSpriteHeight = mSprite->GetHeight();
 	mAlive = true;
 	jumpFrame = 5;
 	frameCount = 4;
@@ -20,8 +20,8 @@ CharacterKoopa::~CharacterKoopa()
 	delete mRenderer;
 	mRenderer = nullptr;
 
-	delete mTexture;
-	mTexture = nullptr;
+	delete mSprite;
+	mSprite = nullptr;
 }
 
 void CharacterKoopa::TakeDamage()
@@ -94,11 +94,11 @@ void CharacterKoopa::Render()
 
 	if (mfacingDirection == FACING::FACING_RIGHT)
 	{
-		mTexture->Render(portionOfSpritesheet, destRect, SDL_FLIP_NONE);
+		mSprite->Render(portionOfSpritesheet, destRect, SDL_FLIP_NONE);
 	}
 	else
 	{
-		mTexture->Render(portionOfSpritesheet, destRect, SDL_FLIP_HORIZONTAL);
+		mSprite->Render(portionOfSpritesheet, destRect, SDL_FLIP_HORIZONTAL);
 	}
 	
 	

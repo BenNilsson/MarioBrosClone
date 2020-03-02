@@ -4,7 +4,7 @@
 #include "Commons.h"
 #include "LevelMap.h"
 
-class Texture2D;
+class Sprite;
 
 class Character
 {
@@ -24,12 +24,18 @@ public:
 	Rect2D GetCollisionBox() { return Rect2D(mPosition.x, mPosition.y, mSingleSpriteWidth, mSingleSpriteHeight); }
 	bool IsJumping() { return mJumping; }
 	void CancelJump();
+	void SetCanJump(bool jump);
 	void SetAlive(bool boolean);
 	bool GetAlive() { return mAlive; }
+	void SetCanMove(bool move);
+	bool GetCanMove() { return mCanMove; }
+
+	float GetWidth() { return mSingleSpriteWidth; }
+	float GetHeight() { return mSingleSpriteHeight; }
 protected:
 	SDL_Renderer* mRenderer;
 	Vector2D mPosition;
-	Texture2D* mTexture;
+	Sprite* mSprite;
 
 	virtual void MoveLeft(float deltaTime);
 	virtual void MoveRight(float deltaTime);
@@ -55,6 +61,7 @@ protected:
 	bool mCanJump;
 	float mJumpForce;
 	float movementSpeed = 220.0f;
+	bool mCanMove;
 
 	LevelMap* mCurrentLevelMap;
 

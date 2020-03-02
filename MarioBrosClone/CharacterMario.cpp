@@ -1,14 +1,14 @@
 #include "SDL.h"
 #include "Character.h"
 #include "CharacterMario.h"
-#include "Texture2D.h"
+#include "Sprite.h"
 
 CharacterMario::CharacterMario(SDL_Renderer* renderer, std::string imagePath, Vector2D startPos, LevelMap* map) : Character(renderer, imagePath, startPos, map)
 {
 	mRenderer = renderer;
 
-	mSingleSpriteWidth = mTexture->GetWidth() / 6;
-	mSingleSpriteHeight = mTexture->GetHeight();
+	mSingleSpriteWidth = mSprite->GetWidth() / 6;
+	mSingleSpriteHeight = mSprite->GetHeight();
 	jumpFrame = 6;
 	frameCount = 4;
 }
@@ -18,8 +18,8 @@ CharacterMario::~CharacterMario()
 	delete mRenderer;
 	mRenderer = nullptr;
 
-	delete mTexture;
-	mTexture = nullptr;
+	delete mSprite;
+	mSprite = nullptr;
 }
 
 void CharacterMario::Update(float deltaTime, SDL_Event e)

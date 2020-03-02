@@ -1,6 +1,6 @@
 #include "GameSceenLevel1.h"
 #include <iostream>
-#include "Texture2D.h"
+#include "Sprite.h"
 #include "Collisions.h"
 
 GameScreenLevel1::GameScreenLevel1(SDL_Renderer* renderer) : GameScreen(renderer)
@@ -35,6 +35,9 @@ void GameScreenLevel1::Render()
 	// Draw the background
 	mBackgroundTexture->Render(Vector2D(0, screenShake->GetBackgroundYPos()), SDL_FLIP_NONE);
 
+	// Render all tiles
+	tileMap->DrawTimeMap();
+
 	// Draw the player
 	characterMario->Render();
 	characterLuigi->Render();
@@ -53,6 +56,10 @@ void GameScreenLevel1::Render()
 	{
 		mCoins[i]->Render();
 	}
+
+	
+	
+	
 }
 
 void GameScreenLevel1::Update(float deltaTime, SDL_Event e)
@@ -232,7 +239,7 @@ void GameScreenLevel1::SetLevelMap()
 										{ 1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1 },
 										{ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
 										{ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
-										{ 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1 } };
+										{ 2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2 } };
 
 	// Clear any old map
 	if (mLevelMap != NULL)
@@ -241,14 +248,17 @@ void GameScreenLevel1::SetLevelMap()
 	// Set new map
 	mLevelMap = new LevelMap(map);
 
-	// Create PowBlock
-	mPowBlock = new PowBlock(mRenderer, mLevelMap);
+	// Create new TileMap
+	tileMap = new TileMap(mRenderer);
+	//tileMap->GenerateTileMap(map);
+	tileMap->GenerateTileMap(map);
+
 }
 
 bool GameScreenLevel1::SetUpLevel()
 {
 	// Load the background texture
-	mBackgroundTexture = new Texture2D(mRenderer);
+	mBackgroundTexture = new Sprite(mRenderer);
 	if (!mBackgroundTexture->LoadFromFile("Textures/BackgroundMB.png"))
 	{
 		std::cout << "Failed to load background texture!";
@@ -262,6 +272,9 @@ bool GameScreenLevel1::SetUpLevel()
 	// Set up the player character
 	characterMario = new CharacterMario(mRenderer, "Textures/mario-run.png", Vector2D(64, 330), mLevelMap);
 	characterLuigi = new CharacterLuigi(mRenderer, "Textures/luigi-run.png", Vector2D(364, 330), mLevelMap);
+
+	// Create PowBlock
+	mPowBlock = new PowBlock(mRenderer, mLevelMap);
 
 	// Create Koopas
 	CreateKoopa(Vector2D(150, 32), FACING::FACING_RIGHT, 75.0f);

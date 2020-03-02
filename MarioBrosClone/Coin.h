@@ -3,7 +3,7 @@
 #include <iostream>
 #include "Commons.h"
 #include "LevelMap.h"
-#include "Texture2D.h"
+#include "Sprite.h"
 
 class Coin
 {
@@ -22,7 +22,7 @@ public:
 private:
 	SDL_Renderer* mRenderer;
 	Vector2D mPosition;
-	Texture2D* mTexture;
+	Sprite* mSprite;
 	LevelMap* mCurrentLevelMap;
 
 	float mCollisionRadius;

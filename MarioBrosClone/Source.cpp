@@ -3,7 +3,7 @@
 #include <SDL_mixer.h>
 #include "Constants.h"
 #include <iostream>
-#include "Texture2D.h"
+#include "Sprite.h"
 #include "Commons.h"
 #include "GameScreenManager.h"
 

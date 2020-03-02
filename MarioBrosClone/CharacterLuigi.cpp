@@ -1,14 +1,14 @@
 #include "SDL.h"
 #include "Character.h"
 #include "CharacterLuigi.h"
-#include "Texture2D.h"
+#include "Sprite.h"
 
 CharacterLuigi::CharacterLuigi(SDL_Renderer* renderer, std::string imagePath, Vector2D startPos, LevelMap* map) : Character(renderer, imagePath, startPos, map)
 {
 	mRenderer = renderer;
 
-	mSingleSpriteWidth = mTexture->GetWidth() / 6;
-	mSingleSpriteHeight = mTexture->GetHeight();
+	mSingleSpriteWidth = mSprite->GetWidth() / 6;
+	mSingleSpriteHeight = mSprite->GetHeight();
 	jumpFrame = 6;
 	frameCount = 4;
 }
@@ -18,8 +18,8 @@ CharacterLuigi::~CharacterLuigi()
 	delete mRenderer;
 	mRenderer = nullptr;
 
-	delete mTexture;
-	mTexture = nullptr;
+	delete mSprite;
+	mSprite = nullptr;
 }
 
 void CharacterLuigi::Update(float deltaTime, SDL_Event e)

@@ -6,7 +6,7 @@ PowBlock::PowBlock(SDL_Renderer* renderer, LevelMap* map)
 	mRenderer = renderer;
 
 	std::string imagePath = "Textures/PowBlock.png";
-	mTexture = new Texture2D(renderer);
+	mTexture = new Sprite(renderer);
 	if (!mTexture->LoadFromFile(imagePath.c_str()))
 	{
 		std::cout << "Failed to load texture: " << imagePath << std::endl;

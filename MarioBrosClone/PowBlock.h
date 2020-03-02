@@ -1,7 +1,7 @@
 #pragma once
 #include "SDL.h"
 #include "Commons.h"
-#include "Texture2D.h"
+#include "Sprite.h"
 #include "LevelMap.h"
 
 class PowBlock
@@ -17,7 +17,7 @@ public:
 private:
 	SDL_Renderer* mRenderer;
 	Vector2D mPosition;
-	Texture2D* mTexture;
+	Sprite* mTexture;
 	LevelMap* mLevelMap;
 
 	float mSingleSpriteWidth;

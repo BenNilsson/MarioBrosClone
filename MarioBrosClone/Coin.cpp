@@ -3,8 +3,8 @@
 Coin::Coin(SDL_Renderer* renderer, std::string imagePath, Vector2D startPosition, LevelMap* map)
 {
 	mRenderer = renderer;
-	mTexture = new Texture2D(mRenderer);
-	if (!mTexture->LoadFromFile(imagePath))
+	mSprite = new Sprite(mRenderer);
+	if (!mSprite->LoadFromFile(imagePath))
 		std::cout << "Could not load character image file";
 
 	mPosition = startPosition;
@@ -13,8 +13,8 @@ Coin::Coin(SDL_Renderer* renderer, std::string imagePath, Vector2D startPosition
 	mFrame = 1;
 	mFrameCount = 3;
 
-	mSingleSpriteWidth = mTexture->GetWidth() / 3;
-	mSingleSpriteHeight = mTexture->GetHeight();
+	mSingleSpriteWidth = mSprite->GetWidth() / 3;
+	mSingleSpriteHeight = mSprite->GetHeight();
 
 	mCollisionRadius = 20.0f;
 }
@@ -24,8 +24,8 @@ Coin::~Coin()
 	delete mRenderer;
 	mRenderer = nullptr;
 
-	delete mTexture;
-	mTexture = nullptr;
+	delete mSprite;
+	mSprite = nullptr;
 }
 
 void Coin::Render()
@@ -37,7 +37,7 @@ void Coin::Render()
 
 	SDL_Rect destRect = { (int)(mPosition.x), (int)(mPosition.y), mSingleSpriteWidth, mSingleSpriteHeight };
 
-	mTexture->Render(portionOfSpritesheet, destRect, SDL_FLIP_NONE);
+	mSprite->Render(portionOfSpritesheet, destRect, SDL_FLIP_NONE);
 }
 
 void Coin::Update(float deltaTime, SDL_Event e)
