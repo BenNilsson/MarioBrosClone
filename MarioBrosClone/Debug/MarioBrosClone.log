@@ -1,8 +1,2 @@
-﻿  Flag.cpp
-C:\Users\n020868i\Documents\GitHub\MarioBrosClone\MarioBrosClone\Flag.cpp(29): warning C4150: deletion of pointer to incomplete type 'SDL_Renderer'; no destructor called
-  C:\Users\n020868i\Documents\GitHub\MarioBrosClone\MarioBrosClone\SDL\include\SDL_render.h(122): note: see declaration of 'SDL_Renderer'
-  GameSceenLevel1.cpp
-  GameScreenManager.cpp
-  Source.cpp
-  Generating Code...
-  MarioBrosClone.vcxproj -> C:\Users\n020868i\Documents\GitHub\MarioBrosClone\Debug\MarioBrosClone.exe
+﻿  GameSceenLevel1.cpp
+  MarioBrosClone.vcxproj -> C:\Users\krota\Desktop\MarioBrosClone\Debug\MarioBrosClone.exe

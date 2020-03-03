@@ -18,6 +18,7 @@ Character::Character(SDL_Renderer* renderer, std::string imagePath, Vector2D sta
 	mMovingRight = false;
 	mJumping = false;
 	mCanMove = true;
+	mCanJump = true;
 	mCollisionRadius = 15.0f;
 
 	frame = 1;
@@ -69,31 +70,26 @@ void Character::Update(float deltaTime, SDL_Event e)
 		if (mCurrentTileMap->mTileMap[i]->GetCollisionType() == CollisionType::TILE_NONWALKABLE)
 		{
 			// Check if the new position is colliding with the player
-			if (Collisions::Instance()->Box(Rect2D(mCurrentTileMap->mTileMap[i]->GetPosition().x, mCurrentTileMap->mTileMap[i]->GetPosition().y, mCurrentTileMap->mTileMap[i]->width, 1),
+			if (Collisions::Instance()->Box(Rect2D(mCurrentTileMap->mTileMap[i]->GetPosition().x, mCurrentTileMap->mTileMap[i]->GetPosition().y, mCurrentTileMap->mTileMap[i]->width, 2),
 				Rect2D(new_pos.x, new_pos.y + GetHeight() - 2, GetWidth(), 1)))
 			{
 				// Collision!
 				mPosition = old_pos;
 				gravity = false;
-				mCanJump = true;
+				if(!mJumping)
+					mCanJump = true;
 				break;
 			}
-			else
-			{
-				gravity = true;
-			}
-		}
-		else
-		{
-			gravity = true;
 		}
 	}
 
 	// Update Frame
 	UpdateFrame(deltaTime);
-
+	
 	if(gravity)
 		AddGravity(deltaTime);
+
+
 
 	// Control movement
 	if (mCanMove)
@@ -134,7 +130,7 @@ void Character::Jump()
 void Character::AddGravity(float deltaTime)
 {
 	mPosition.y += gravityForce * deltaTime;
-	mCanJump = false;
+	//mCanJump = false;
 }
 
 void Character::SetPosition(Vector2D newPosition)
@@ -194,7 +190,7 @@ void Character::UpdateFrame(float deltaTime)
 	// Update frame counter
 
 	// Jumping
-	if (IsJumping() || !mCanJump)
+	if (IsJumping())
 	{
 		frame = jumpFrame;
 	}

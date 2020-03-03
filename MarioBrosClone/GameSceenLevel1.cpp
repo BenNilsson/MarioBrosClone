@@ -6,7 +6,14 @@
 
 GameScreenLevel1::GameScreenLevel1(SDL_Renderer* renderer) : GameScreen(renderer)
 {
-	SetUpLevel();
+	if (SetUpLevel())
+	{
+		if (soundmanager::SoundManager::GetInstance()->IsPlaying())
+		{
+			soundmanager::SoundManager::GetInstance()->StopMusic();
+		}
+		soundmanager::SoundManager::GetInstance()->PlayMusic("Music/Mario.wav");
+	}
 }
 
 GameScreenLevel1::~GameScreenLevel1()
@@ -127,6 +134,7 @@ void GameScreenLevel1::UpdatePowBlock()
 				screenShake->DoScreenShake();
 				mPowBlock->TakeAHit();
 				characterLuigi->CancelJump();
+				soundmanager::SoundManager::GetInstance()->PlaySFX("SFX/bump.wav");
 			}
 		}
 	}
@@ -165,8 +173,20 @@ void GameScreenLevel1::UpdateEnemies(float deltaTime, SDL_Event e)
 			}
 			else
 			{
+				bool collided = false;
 				// Check if koopas collided with mario
 				if (Collisions::Instance()->Circle(Circle2D(mKoopas[i]->GetCollisionRadius(), mKoopas[i]->GetPosition()), Circle2D(characterMario->GetCollisionRadius(), characterMario->GetPosition())))
+				{
+					collided = true;
+				}
+
+				// Check if koopas collided with mario
+				if (Collisions::Instance()->Circle(Circle2D(mKoopas[i]->GetCollisionRadius(), mKoopas[i]->GetPosition()), Circle2D(characterLuigi->GetCollisionRadius(), characterLuigi->GetPosition())))
+				{
+					collided = true;
+				}
+
+				if (collided)
 				{
 					// Check to see if injured
 					if (mKoopas[i]->IsInjured())
@@ -215,13 +235,26 @@ void GameScreenLevel1::UpdateCoins(float deltaTime, SDL_Event e)
 			// Update coins
 			mCoins[i]->Update(deltaTime, e);
 
+			bool collided = false;
+
 			// Check if mario collides with coin
 			if (Collisions::Instance()->Circle(Circle2D(mCoins[i]->GetCollisionRadius(), mCoins[i]->GetPosition()), Circle2D(characterMario->GetCollisionRadius(), characterMario->GetPosition())))
 			{
-				// mario and coin collided
+				collided = true;
+			}
+
+			// Check if luigi collides with coin
+			if (Collisions::Instance()->Circle(Circle2D(mCoins[i]->GetCollisionRadius(), mCoins[i]->GetPosition()), Circle2D(characterLuigi->GetCollisionRadius(), characterLuigi->GetPosition())))
+			{
+				collided = true;
+			}
+
+			if (collided)
+			{
+				// coin collected
 				coinIndexToDelete = i;
 				soundmanager::SoundManager::GetInstance()->PlaySFX("SFX/coin.wav");
-				std::cout << "COLLECTED THE COIN" << std::endl;
+				std::cout << "A Coin Has Been Collected" << std::endl;
 			}
 		}
 

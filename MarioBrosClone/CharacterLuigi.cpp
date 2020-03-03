@@ -24,8 +24,6 @@ CharacterLuigi::~CharacterLuigi()
 
 void CharacterLuigi::Update(float deltaTime, SDL_Event e)
 {
-	Character::Update(deltaTime, e);
-
 	// Handle events
 	switch (e.type)
 	{
@@ -64,6 +62,9 @@ void CharacterLuigi::Update(float deltaTime, SDL_Event e)
 		}
 		break;
 	}
+
+	Character::Update(deltaTime, e);
+
 }
 
 void CharacterLuigi::Render()
