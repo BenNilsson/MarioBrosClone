@@ -3,6 +3,7 @@
 #include "Sprite.h"
 #include "Collisions.h"
 #include "SoundManager.h"
+#include "GameManager.h"
 
 GameScreenLevel1::GameScreenLevel1(SDL_Renderer* renderer) : GameScreen(renderer)
 {
@@ -77,13 +78,6 @@ void GameScreenLevel1::Update(float deltaTime, SDL_Event e)
 	characterMario->Update(deltaTime, e);
 	characterLuigi->Update(deltaTime, e);
 
-	// Check collisions on players
-	if (Collisions::Instance()->Circle(Circle2D(characterMario->GetCollisionRadius(), characterMario->GetPosition()),
-		Circle2D(characterLuigi->GetCollisionRadius(), characterLuigi->GetPosition())))
-	{
-		std::cout << "Players collided with each other" << std::endl;
-	}
-
 	// Update pow block
 	UpdatePowBlock();
 
@@ -92,15 +86,15 @@ void GameScreenLevel1::Update(float deltaTime, SDL_Event e)
 
 	UpdateCoins(deltaTime, e);
 
+	// Update screenshake, passing the koopa vector in order for the pow block to kill them
+	screenShake->Update(deltaTime, mKoopas);
+
 	// Check to see if the character and flag collide
 	if (Collisions::Instance()->Box(flag->GetCollisionBox(), characterMario->GetCollisionBox()))
 	{
 		std::cout << "Character collided with flag" << std::endl;
-		
+		GameManager::GetInstance()->gameScreenManager->ChangeScreen(SCREEN_LEVEL2);
 	}
-
-	// Update screenshake, passing the koopa vector in order for the pow block to kill them
-	screenShake->Update(deltaTime, mKoopas);
 }
 
 void GameScreenLevel1::UpdatePowBlock()

@@ -5,14 +5,13 @@
 #include <iostream>
 #include "Sprite.h"
 #include "Commons.h"
-#include "GameScreenManager.h"
 #include "SoundManager.h"
+#include "GameManager.h"
 
 // Globals
 SDL_Window* gWindow = NULL;
 SDL_Renderer* gRenderer = NULL;
 
-GameScreenManager* gameScreenManager;
 Uint32 gOldTime;
 
 // Function Prototypes
@@ -30,9 +29,13 @@ int main(int argc, char* args[])
 		Mix_Volume(-1, SDL_MIX_MAXVOLUME / 4);
 		Mix_VolumeMusic(SDL_MIX_MAXVOLUME / 5);
 		
-		// Set up GameScreenManager
-		gameScreenManager = new GameScreenManager(gRenderer, SCREEN_INTRO);
-		gameScreenManager->ChangeScreen(SCREEN_INTRO);
+		// Set up GameManager
+		GameManager::GetInstance();
+
+		// Set up gamescreen manager
+		GameManager::GetInstance()->gameScreenManager = new GameScreenManager(gRenderer, SCREEN_INTRO);
+		GameManager::GetInstance()->gameScreenManager->SetRenderer(gRenderer);
+		GameManager::GetInstance()->gameScreenManager->ChangeScreen(SCREEN_INTRO);
 
 		// Set start time
 		gOldTime = SDL_GetTicks();
@@ -122,7 +125,8 @@ void Render()
 	SDL_SetRenderDrawColor(gRenderer, 99, 160, 255, 0x00);
 
 	// Render gameScreenManager
-	gameScreenManager->Render();
+	if (GameManager::GetInstance()->gameScreenManager->mCurrentScreen != nullptr)
+		GameManager::GetInstance()->gameScreenManager->Render();
 
 	// Update screen
 	SDL_RenderPresent(gRenderer);
@@ -138,8 +142,8 @@ void CloseSDL()
 	gWindow = NULL;
 
 	// Destroy game screen manager
-	delete gameScreenManager;
-	gameScreenManager = NULL;
+	delete GameManager::GetInstance()->gameScreenManager;
+	GameManager::GetInstance()->gameScreenManager = NULL;
 
 	// Quit SDL subsystems
 	Mix_Quit();
@@ -177,7 +181,11 @@ bool Update()
 					break;
 				// If the user hits space
 				case(SDLK_SPACE):
-					gameScreenManager->ChangeScreen(SCREEN_LEVEL1);
+					if (GameManager::GetInstance()->GetState() == GameManager::GameState::INTRO)
+					{
+						GameManager::GetInstance()->ChangeState(GameManager::GameState::INGAME);
+						GameManager::GetInstance()->gameScreenManager->ChangeScreen(SCREEN_LEVEL1);
+					}
 					break;
 			}
 			break;
@@ -185,7 +193,8 @@ bool Update()
 	}
 
 	// Update gameScreenmanager
-	gameScreenManager->Update((float)(newTime - gOldTime) / 1000.f, e);
+	if(GameManager::GetInstance()->gameScreenManager->mCurrentScreen != nullptr)
+		GameManager::GetInstance()->gameScreenManager->Update((float)(newTime - gOldTime) / 1000.f, e);
 
 	// set the current time to be the old time
 	gOldTime = newTime;

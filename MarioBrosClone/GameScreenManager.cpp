@@ -59,3 +59,8 @@ void GameScreenManager::ChangeScreen(SCREENS newScreen)
 		break;
 	}
 }
+
+void GameScreenManager::SetRenderer(SDL_Renderer* renderer)
+{
+	mRenderer = renderer;
+}

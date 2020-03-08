@@ -32,12 +32,13 @@ public:
 
 	float GetWidth() { return mSingleSpriteWidth; }
 	float GetHeight() { return mSingleSpriteHeight; }
+
+	TileMap* mCurrentTileMap;
 protected:
 	SDL_Renderer* mRenderer;
 	Vector2D mPosition;
 	Sprite* mSprite;
 
-	TileMap* mCurrentTileMap;
 
 	virtual void MoveLeft(float deltaTime);
 	virtual void MoveRight(float deltaTime);

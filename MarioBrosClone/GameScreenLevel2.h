@@ -28,4 +28,6 @@ private:
 	void SetUpTileMap();
 
 	ScreenShake* screenShake;
+
+	bool levelIsSetup;
 };
