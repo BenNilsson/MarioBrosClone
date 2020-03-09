@@ -20,6 +20,8 @@ bool InitSDL();
 void Render();
 bool Update();
 
+bool hasFocus;
+
 int main(int argc, char* args[])
 {
 	// Check if SDL was set up correctly
@@ -44,7 +46,7 @@ int main(int argc, char* args[])
 		// Flag to check if the user wishes to exit
 		bool quit = false;
 
-		
+		hasFocus = false;
 
 		// Game Loop
 		while(!quit)
@@ -166,35 +168,52 @@ bool Update()
 	switch (e.type)
 	{
 		// Click 'X' to exit
-		case SDL_QUIT:
-			return true;
-			break;
+	case SDL_QUIT:
+		return true;
+		break;
 
 		// KeyUP
-		case SDL_KEYUP:
-			// Get Key Pressed
-			switch(e.key.keysym.sym)
+	case SDL_KEYUP:
+		// Get Key Pressed
+		switch (e.key.keysym.sym)
+		{
+			// If user hits escape
+		case(SDLK_ESCAPE):
+			return true;
+			break;
+			// If the user hits space
+		case(SDLK_SPACE):
+			if (GameManager::GetInstance()->GetState() == GameManager::GameState::INTRO)
 			{
-				// If user hits escape
-				case(SDLK_ESCAPE):
-					return true;
-					break;
-				// If the user hits space
-				case(SDLK_SPACE):
-					if (GameManager::GetInstance()->GetState() == GameManager::GameState::INTRO)
-					{
-						GameManager::GetInstance()->ChangeState(GameManager::GameState::INGAME);
-						GameManager::GetInstance()->gameScreenManager->ChangeScreen(SCREEN_LEVEL1);
-					}
-					break;
+				GameManager::GetInstance()->ChangeState(GameManager::GameState::INGAME);
+				GameManager::GetInstance()->gameScreenManager->ChangeScreen(SCREEN_LEVEL1);
 			}
 			break;
-
+		}
+		break;
+	}
+		
+	// Window event
+	if (e.type == SDL_WINDOWEVENT)
+	{
+		if (e.window.event == SDL_WINDOWEVENT_FOCUS_GAINED)
+		{
+			hasFocus = true;
+		}
+		else if (e.window.event == SDL_WINDOWEVENT_FOCUS_LOST)
+		{
+			hasFocus = false;
+		}
 	}
 
-	// Update gameScreenmanager
-	if(GameManager::GetInstance()->gameScreenManager->mCurrentScreen != nullptr)
-		GameManager::GetInstance()->gameScreenManager->Update((float)(newTime - gOldTime) / 1000.f, e);
+
+	// Only run update if the game is in focus
+	if (hasFocus)
+	{
+		// Update gameScreenmanager
+		if (GameManager::GetInstance()->gameScreenManager->mCurrentScreen != nullptr)
+			GameManager::GetInstance()->gameScreenManager->Update((float)(newTime - gOldTime) / 1000.0f, e);
+	}
 
 	// set the current time to be the old time
 	gOldTime = newTime;

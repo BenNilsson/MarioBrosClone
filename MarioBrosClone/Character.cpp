@@ -70,7 +70,7 @@ void Character::Update(float deltaTime, SDL_Event e)
 		if (mCurrentTileMap->mTileMap[i]->GetCollisionType() == CollisionType::TILE_NONWALKABLE)
 		{
 			// Check if the new position is colliding with the player
-			if (Collisions::Instance()->Box(Rect2D(mCurrentTileMap->mTileMap[i]->GetPosition().x, mCurrentTileMap->mTileMap[i]->GetPosition().y, mCurrentTileMap->mTileMap[i]->width, 3),
+			if (Collisions::Instance()->Box(Rect2D(mCurrentTileMap->mTileMap[i]->GetPosition().x, mCurrentTileMap->mTileMap[i]->GetPosition().y, mCurrentTileMap->mTileMap[i]->width, mCurrentTileMap->mTileMap[i]->height),
 				Rect2D(new_pos.x, new_pos.y + GetHeight() - 2, GetWidth(), 1)))
 			{
 				// Collision!
