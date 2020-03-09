@@ -1,4 +1,6 @@
 #include "GameScreenLevel2.h"
+#include "SoundManager.h"
+#include <fstream>
 
 
 GameScreenLevel2::GameScreenLevel2(SDL_Renderer* renderer) : GameScreen(mRenderer)
@@ -6,7 +8,14 @@ GameScreenLevel2::GameScreenLevel2(SDL_Renderer* renderer) : GameScreen(mRendere
 	levelIsSetup = false;
 	mRenderer = renderer;
 
-	SetUpLevel();
+	if (SetUpLevel())
+	{
+		if (soundmanager::SoundManager::GetInstance()->IsPlaying())
+		{
+			soundmanager::SoundManager::GetInstance()->StopMusic();
+		}
+		soundmanager::SoundManager::GetInstance()->PlayMusic("Music/Mariov2.wav");
+	}
 }
 
 GameScreenLevel2::~GameScreenLevel2()
@@ -65,25 +74,57 @@ bool GameScreenLevel2::SetUpLevel()
 
 void GameScreenLevel2::SetUpTileMap()
 {
-	// Set up map array
-	int map[MAP_HEIGHT][MAP_WIDTH] = { { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
-										{ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
-										{ 1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1 },
-										{ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
-										{ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
-										{ 0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0 },
-										{ 1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1 },
-										{ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
-										{ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
-										{ 0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1 },
-										{ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
-										{ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
-										{ 2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2 } };
+	// Read file
+	std::ifstream file("level2.txt");
+
+	// Get column length
+	int rows = 0;
+	int columns = 0;
+	std::string line;
+	if (file.is_open())
+	{
+		while (std::getline(file, line))
+		{
+			rows++;
+
+			// Extract value into map
+			
+		}
+	}
+
+	// Assuming the width is fixed, get column count
+	for (int x = 0; x < line.length(); x++)
+	{
+		if (line[x] != ' ')
+			columns++;
+	}
+
+	int** map;
+	map = new int*[rows];
+
+	// Predefine map
+	for (unsigned int i = 0; i < rows; i++)
+	{
+		map[i] = new int[columns];
+	}
+
+	// Hop back to the beginning of the file
+	file.clear();
+	file.seekg(0, std::ios::beg);
+
+	for (int row = 0; row < rows; row++)
+	{
+		for (int column = 0; column < columns; column++)
+		{
+			file >> map[row][column];
+		}
+	}
+
+	file.close();
 
 	// Create new TileMap
 	tileMap = new TileMap(mRenderer);
-	//tileMap->GenerateTileMap(map);
-	tileMap->GenerateTileMap(map);
+	tileMap->GenerateTileMap(map, rows, columns);
 
 	// Let mario and luigi know what map they're on
 	characterMario->mCurrentTileMap = tileMap;

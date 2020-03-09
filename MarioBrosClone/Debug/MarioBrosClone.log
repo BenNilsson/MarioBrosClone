@@ -1,2 +1,10 @@
-﻿  Source.cpp
-  MarioBrosClone.vcxproj -> C:\Users\krota\Desktop\MarioBrosClone\Debug\MarioBrosClone.exe
+﻿  Character.cpp
+C:\Users\n020868i\Documents\GitHub\MarioBrosClone\MarioBrosClone\Character.cpp(29): warning C4150: deletion of pointer to incomplete type 'SDL_Renderer'; no destructor called
+  C:\Users\n020868i\Documents\GitHub\MarioBrosClone\MarioBrosClone\SDL\include\SDL_render.h(122): note: see declaration of 'SDL_Renderer'
+C:\Users\n020868i\Documents\GitHub\MarioBrosClone\MarioBrosClone\Character.cpp(39): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\n020868i\Documents\GitHub\MarioBrosClone\MarioBrosClone\Character.cpp(42): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
+C:\Users\n020868i\Documents\GitHub\MarioBrosClone\MarioBrosClone\Character.cpp(42): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\n020868i\Documents\GitHub\MarioBrosClone\MarioBrosClone\Character.cpp(45): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
+C:\Users\n020868i\Documents\GitHub\MarioBrosClone\MarioBrosClone\Character.cpp(45): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\n020868i\Documents\GitHub\MarioBrosClone\MarioBrosClone\Character.cpp(73): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
+  MarioBrosClone.vcxproj -> C:\Users\n020868i\Documents\GitHub\MarioBrosClone\Debug\MarioBrosClone.exe

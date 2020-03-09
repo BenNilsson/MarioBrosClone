@@ -4,6 +4,7 @@
 #include "Collisions.h"
 #include "SoundManager.h"
 #include "GameManager.h"
+#include <fstream>
 
 GameScreenLevel1::GameScreenLevel1(SDL_Renderer* renderer) : GameScreen(renderer)
 {
@@ -264,25 +265,54 @@ void GameScreenLevel1::UpdateCoins(float deltaTime, SDL_Event e)
 
 void GameScreenLevel1::SetUpTileMap()
 {
-	// Set up map array
-	int map[MAP_HEIGHT][MAP_WIDTH] = { { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
-										{ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
-										{ 1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1 },
-										{ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
-										{ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
-										{ 0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0 },
-										{ 1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1 },
-										{ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
-										{ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
-										{ 1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1 },
-										{ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
-										{ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
-										{ 2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2 } };
+	// Read file
+	std::ifstream file("level1.txt");
+
+	// Get column length
+	int rows = 0;
+	int columns = 0;
+	std::string line;
+	if (file.is_open())
+	{
+		while (std::getline(file, line))
+			rows++;
+	}
+
+	// Assuming the width is fixed, get column count
+	for (int x = 0; x < line.length(); x++)
+	{
+		if (line[x] != ' ')
+			columns++;
+	}
+
+	int** map;
+	map = new int* [rows];
+
+	// Predefine map
+	for (unsigned int i = 0; i < rows; i++)
+		map[i] = new int[columns];
+
+	// Hop back to the beginning of the file
+	file.clear();
+	file.seekg(0, std::ios::beg);
+
+	for (int row = 0; row < rows; row++)
+	{
+		for (int column = 0; column < columns; column++)
+		{
+			file >> map[row][column];
+		}
+	}
+
+	file.close();
 
 	// Create new TileMap
 	tileMap = new TileMap(mRenderer);
-	//tileMap->GenerateTileMap(map);
-	tileMap->GenerateTileMap(map);
+	tileMap->GenerateTileMap(map, rows, columns);
+
+	// Let mario and luigi know what map they're on
+	characterMario->mCurrentTileMap = tileMap;
+	characterLuigi->mCurrentTileMap = tileMap;
 
 }
 
@@ -298,13 +328,14 @@ bool GameScreenLevel1::SetUpLevel()
 
 	
 
-	SetUpTileMap();
 
 	screenShake = new ScreenShake();
 
 	// Set up the player character
 	characterMario = new CharacterMario(mRenderer, "Textures/mario-run.png", Vector2D(64, 330), tileMap);
 	characterLuigi = new CharacterLuigi(mRenderer, "Textures/luigi-run.png", Vector2D(364, 330), tileMap);
+
+	SetUpTileMap();
 
 	// Create PowBlock
 	mPowBlock = new PowBlock(mRenderer);

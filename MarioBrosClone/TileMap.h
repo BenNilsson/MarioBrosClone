@@ -19,6 +19,7 @@ public:
 	TileMap(SDL_Renderer* renderer);
 	~TileMap();
 
+	void GenerateTileMap(int** map, int rows, int columns);
 	void GenerateTileMap(int map[MAP_HEIGHT][MAP_WIDTH]);
 	void DrawTileMap();
 

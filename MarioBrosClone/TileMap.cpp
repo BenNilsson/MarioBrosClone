@@ -25,6 +25,39 @@ TileMap::~TileMap()
 	floor = nullptr;
 }
 
+void TileMap::GenerateTileMap(int** map, int rows, int columns)
+{
+	mMap = new int* [rows];
+	for (unsigned int i = 0; i < rows; i++)
+	{
+		mMap[i] = new int[columns];
+	}
+
+	for (unsigned int row = 0; row < rows; row++)
+	{
+		for (unsigned int column = 0; column < columns; column++)
+		{
+			mMap[row][column] = map[row][column];
+
+			int type = mMap[row][column];
+
+			switch (type)
+			{
+			case 0:
+				mTileMap.push_back(new Tile(Vector2D(column * 32, row * 32), nullptr, CollisionType::TILE_WALKABLE));
+				break;
+
+			case 1:
+				mTileMap.push_back(new Tile(Vector2D(column * 32, row * 32), block, CollisionType::TILE_NONWALKABLE));
+				break;
+
+			case 2:
+				mTileMap.push_back(new Tile(Vector2D(column * 32, row * 32), floor, CollisionType::TILE_NONWALKABLE));
+			}
+		}
+	}
+}
+
 void TileMap::GenerateTileMap(int map[MAP_HEIGHT][MAP_WIDTH])
 {
 	// Allocate memory for the map
@@ -59,6 +92,7 @@ void TileMap::GenerateTileMap(int map[MAP_HEIGHT][MAP_WIDTH])
 		}
 	}
 }
+
 
 void TileMap::DrawTileMap()
 {
