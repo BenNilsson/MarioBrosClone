@@ -12,6 +12,7 @@
 #include "TileMap.h"
 #include "Flag.h"
 #include <vector>
+#include "UIText.h"
 
 class Sprite;
 class CharacterMario;
@@ -43,6 +44,8 @@ private:
 	void UpdateCoins(float deltaTime, SDL_Event e);
 
 	Flag* flag;
+
+	UIText* score;
 
 	std::vector<CharacterKoopa*> mKoopas;
 	int enemyIndexToDelete;

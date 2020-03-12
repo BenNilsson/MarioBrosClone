@@ -68,7 +68,8 @@ void GameScreenLevel1::Render()
 		mCoins[i]->Render();
 	}
 
-	
+	// Draw score
+	score->Draw(Vector2D(25, 25));
 	
 	
 }
@@ -336,6 +337,9 @@ bool GameScreenLevel1::SetUpLevel()
 	characterLuigi = new CharacterLuigi(mRenderer, "Textures/luigi-run.png", Vector2D(364, 330), tileMap);
 
 	SetUpTileMap();
+
+	// Setup score
+	score = new UIText(mRenderer, "Score: ", { 255, 255, 255 });
 
 	// Create PowBlock
 	mPowBlock = new PowBlock(mRenderer);
