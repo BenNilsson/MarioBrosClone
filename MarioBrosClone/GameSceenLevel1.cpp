@@ -69,7 +69,7 @@ void GameScreenLevel1::Render()
 	}
 
 	// Draw score
-	score->Draw(Vector2D(25, 25));
+	GameManager::GetInstance()->mScoreText->Draw();
 	
 	
 }
@@ -87,6 +87,11 @@ void GameScreenLevel1::Update(float deltaTime, SDL_Event e)
 	UpdateEnemies(deltaTime, e);
 
 	UpdateCoins(deltaTime, e);
+
+	// Update score
+	//std::string str = "Score: " + std::to_string(GameManager::GetInstance()->GetScore());
+	//const char* score = str.c_str();
+	//mScoreText->Text = score;
 
 	// Update screenshake, passing the koopa vector in order for the pow block to kill them
 	screenShake->Update(deltaTime, mKoopas);
@@ -186,7 +191,11 @@ void GameScreenLevel1::UpdateEnemies(float deltaTime, SDL_Event e)
 				{
 					// Check to see if injured
 					if (mKoopas[i]->IsInjured())
+					{
 						mKoopas[i]->SetAlive(false);
+						// Add score
+						GameManager::GetInstance()->AddScore(100);
+					}
 
 					// Kill mario
 					// TODO, IMPLEMENT CHARACTER STATE MACHINE
@@ -339,7 +348,11 @@ bool GameScreenLevel1::SetUpLevel()
 	SetUpTileMap();
 
 	// Setup score
-	score = new UIText(mRenderer, "Score: ", { 255, 255, 255 });
+	std::string str = "Score: " + std::to_string(GameManager::GetInstance()->GetScore());
+	const char* score = str.c_str();
+
+	GameManager::GetInstance()->mScoreText = new UIText(mRenderer, str.c_str(), { 255, 255, 255, 0 });
+	GameManager::GetInstance()->mScoreText->Position = new Vector2D(15, 15);
 
 	// Create PowBlock
 	mPowBlock = new PowBlock(mRenderer);

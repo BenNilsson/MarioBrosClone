@@ -12,15 +12,17 @@ public:
 	UIText(SDL_Renderer* renderer, const char*, SDL_Color color);
 	~UIText();
 
-	void Draw(Vector2D position);
+	void Draw();
 	const char* Text;
+	Vector2D* Position;
 
-
-private:
 	TTF_Font* default_font;
 	SDL_Surface* mSurface;
-	SDL_Rect mRect;
 	SDL_Texture* mTexture;
+	SDL_Color mColor;
 	SDL_Renderer* mRenderer;
+
+private:
+	SDL_Rect mRect;
 };
 

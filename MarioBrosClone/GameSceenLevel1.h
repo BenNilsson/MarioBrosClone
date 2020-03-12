@@ -45,7 +45,7 @@ private:
 
 	Flag* flag;
 
-	UIText* score;
+	
 
 	std::vector<CharacterKoopa*> mKoopas;
 	int enemyIndexToDelete;

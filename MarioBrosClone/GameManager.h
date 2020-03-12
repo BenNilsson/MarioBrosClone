@@ -30,18 +30,23 @@ public:
 	};
 
 	void ChangeState(GameManager::GameState state);
+	int GetScore() { return mScore; }
+	void SetScore(int score);
+	void AddScore(int add);
 
 	GameState GetState() { return mCurGameState; }
 	GameScreenManager* gameScreenManager;
+	UIText* mScoreText;
 
 private:
 	static GameManager* instance;
 	static GameState mCurGameState;
 
+	int mScore;
 
 	void Init()
 	{
-		//gameScreenManager = new GameScreenManager();
+		mScore = 0;
 	}
 };
 

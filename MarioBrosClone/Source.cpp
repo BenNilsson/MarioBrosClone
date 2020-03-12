@@ -1,6 +1,7 @@
 #include <SDL.h>
 #include <SDL_image.h>
 #include <SDL_mixer.h>
+#include "SDL_ttf.h"
 #include "Constants.h"
 #include <iostream>
 #include "Sprite.h"
@@ -102,6 +103,9 @@ bool InitSDL()
 					std::cout << "SDL_Image could not initialise. Error: " << IMG_GetError();
 					return false;
 				}
+
+				// Initialise TTF
+				TTF_Init();
 
 				// Initialise audio
 				soundmanager::SoundManager::GetInstance();

@@ -5,13 +5,17 @@
 UIText::UIText(SDL_Renderer* renderer)
 {
 	mRenderer = renderer;
+	default_font = TTF_OpenFont("Fonts/04B_30__.ttf", 24);
 }
 
 UIText::UIText(SDL_Renderer* renderer, const char* text, SDL_Color color)
 {
 	mRenderer = renderer;
+	default_font = TTF_OpenFont("Fonts/04B_30__.ttf", 24);
 	Text = text;
-	mSurface = TTF_RenderText_Solid(default_font, text, color);
+	mColor = color;
+
+	mSurface = TTF_RenderText_Solid(default_font, Text, mColor);
 	mTexture = SDL_CreateTextureFromSurface(mRenderer, mSurface);
 }
 
@@ -24,6 +28,7 @@ UIText::~UIText()
 	delete default_font;
 	default_font = nullptr;
 
+	SDL_FreeSurface(mSurface);
 	delete mSurface;
 	mSurface = nullptr;
 
@@ -34,12 +39,15 @@ UIText::~UIText()
 	mRenderer = nullptr;
 }
 
-void UIText::Draw(Vector2D position)
+void UIText::Draw()
 {
-	mRect.x = position.x;
-	mRect.y = position.y;
-	mRect.w = mSurface->w;
-	mRect.h = mSurface->h;
+	//mSurface = TTF_RenderText_Solid(default_font, Text, mColor);
+	//mTexture = SDL_CreateTextureFromSurface(mRenderer, mSurface);
+
+	mRect.x = Position->x;
+	mRect.y = Position->y;
+	mRect.w = 100;
+	mRect.h = 25;
 
 	SDL_RenderCopy(mRenderer, mTexture, NULL, &mRect);
 }
