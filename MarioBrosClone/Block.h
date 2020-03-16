@@ -12,7 +12,8 @@ public:
 		BLOCK_AIR,
 		BLOCK_PLATFORM,
 		BLOCK_FLOOR,
-		BLOCK_QUESTION_MARK
+		BLOCK_QUESTION_MARK,
+		BLOCK_STEP
 	};
 
 	Block(SDL_Renderer* renderer, std::string imagePath, BlockType type, Vector2D pos);

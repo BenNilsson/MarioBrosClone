@@ -11,13 +11,13 @@ GameScreenLevel2::GameScreenLevel2(SDL_Renderer* renderer) : GameScreen(mRendere
 
 	if (SetUpLevel())
 	{
-		/*
+		
 		if (soundmanager::SoundManager::GetInstance()->IsPlaying())
 		{
 			soundmanager::SoundManager::GetInstance()->StopMusic();
 		}
-		soundmanager::SoundManager::GetInstance()->PlayMusic("Music/Mario.wav");
-		*/
+		soundmanager::SoundManager::GetInstance()->PlayMusic("Music/Mariov2.wav");
+		
 	}
 }
 

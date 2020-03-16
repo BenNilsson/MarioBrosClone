@@ -24,9 +24,6 @@ public:
 	void GenerateTileMap(int** map, int rows, int columns);
 	void DrawTileMap();
 
-	Tile GetTileAt(unsigned int height, unsigned int width);
-	void ChangeTileAt(unsigned int row, unsigned int column, Tile tile);
-
 	std::vector<Tile*> mTileMap;
 private:
 	int** mMap;

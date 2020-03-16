@@ -59,7 +59,9 @@ void TileMap::GenerateTileMap(int** map, int rows, int columns)
 				break;
 			case 3:
 				mTileMap.push_back(new Tile(new BlockQuestionMark(mRenderer, "Textures/QuestionMarkBlock.png", Block::BlockType::BLOCK_QUESTION_MARK, Vector2D(column * 32, row * 32)), CollisionType::TILE_NONWALKABLE));
-				
+				break;
+			case 4:
+				mTileMap.push_back(new Tile(new Block(mRenderer, "Textures/Step.png", Block::BlockType::BLOCK_STEP, Vector2D(column * 32, row * 32)), CollisionType::TILE_NONWALKABLE));
 			}
 
 		}

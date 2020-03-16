@@ -2,20 +2,22 @@
 
 Coin::Coin(SDL_Renderer* renderer, std::string imagePath, Vector2D startPosition)
 {
+	mPosition = startPosition;
+
 	mRenderer = renderer;
 	mSprite = new Sprite(mRenderer);
 	if (!mSprite->LoadFromFile(imagePath))
 		std::cout << "Could not load character image file";
 
-	mPosition = startPosition;
+	mSingleSpriteWidth = mSprite->GetWidth() / 3;
+	mSingleSpriteHeight = mSprite->GetHeight();
 
 	mFrame = 1;
 	mFrameCount = 3;
 
-	mSingleSpriteWidth = mSprite->GetWidth() / 3;
-	mSingleSpriteHeight = mSprite->GetHeight();
 
 	mCollisionRadius = 20.0f;
+
 }
 
 Coin::~Coin()
@@ -29,7 +31,6 @@ Coin::~Coin()
 
 void Coin::Render(int camX, int camY)
 {
-
 	int left = mSingleSpriteHeight * (mFrame - 1);
 
 	SDL_Rect portionOfSpritesheet = { left, 0, mSingleSpriteWidth, mSingleSpriteHeight };

@@ -32,5 +32,7 @@ private:
 	float mSingleSpriteWidth;
 	float mSingleSpriteHeight;
 
+	bool mCreated;
+
 };
 

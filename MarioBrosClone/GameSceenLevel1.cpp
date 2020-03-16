@@ -96,7 +96,7 @@ void GameScreenLevel1::Update(float deltaTime, SDL_Event e)
 	screenShake->Update(deltaTime, mKoopas);
 
 	// Update Camera Position
-	Camera::GetInstance()->SetPosition(Vector2D((characterMario->GetPosition().x + 32 / 2) - CAMERA_WIDTH / 2, 0));
+	Camera::GetInstance()->SetPosition(Vector2D((characterMario->GetPosition().x + 32 / 2) - CAMERA_WIDTH / 2, screenShake->GetBackgroundYPos()));
 
 	// Check to see if the character and flag collide
 	if (Collisions::Instance()->Box(flag->GetCollisionBox(), characterMario->GetCollisionBox()))
@@ -262,7 +262,7 @@ void GameScreenLevel1::UpdateCoins(float deltaTime, SDL_Event e)
 				// coin collected
 				coinIndexToDelete = i;
 				soundmanager::SoundManager::GetInstance()->PlaySFX("SFX/coin.wav");
-				std::cout << "A Coin Has Been Collected" << std::endl;
+				GameManager::GetInstance()->AddScore(50);
 			}
 		}
 
@@ -299,7 +299,12 @@ void GameScreenLevel1::UpdateQuestionMarkBlocks(float deltaTime, SDL_Event e)
 
 				if (collided)
 				{
-					tileMap->mTileMap[i]->GetBlock()->SetAvailable(false);
+					if (tileMap->mTileMap[i]->GetBlock()->IsAvailable())
+					{
+						tileMap->mTileMap[i]->GetBlock()->SetAvailable(false);
+						CreateCoin(Vector2D(tileMap->mTileMap[i]->GetBlock()->GetPosition().x + 3, tileMap->mTileMap[i]->GetBlock()->GetPosition().y - 32));
+						break;
+					}
 					break;
 				}
 			}
@@ -392,16 +397,8 @@ bool GameScreenLevel1::SetUpLevel()
 	CreateKoopa(Vector2D(150, 32), FACING::FACING_RIGHT, 75.0f);
 	CreateKoopa(Vector2D(325, 32), FACING::FACING_LEFT, 75.0f);
 
-	CreateCoin(Vector2D(210, 64));
-	CreateCoin(Vector2D(245, 64));
-	CreateCoin(Vector2D(275, 64));
-
-	CreateCoin(Vector2D(210, 210));
-	CreateCoin(Vector2D(245, 210));
-	CreateCoin(Vector2D(275, 210));
-
 	// Create flag
-	flag = new Flag(mRenderer, Vector2D(1200, 247), characterMario, NULL);
+	flag = new Flag(mRenderer, Vector2D(6124, 122), characterMario, NULL);
 
 
 	return true;
