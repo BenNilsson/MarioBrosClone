@@ -12,7 +12,7 @@ public:
 	const Vector2D& GetPosition() { return mPosition; }
 
 	void Update();
-	void Render();
+	void Render(int camX, int camY);
 
 private:
 	SDL_Renderer* mRenderer;

@@ -8,6 +8,7 @@
 #include "Commons.h"
 #include "SoundManager.h"
 #include "GameManager.h"
+#include "Camera.h"
 
 // Globals
 SDL_Window* gWindow = NULL;
@@ -39,6 +40,9 @@ int main(int argc, char* args[])
 		GameManager::GetInstance()->gameScreenManager = new GameScreenManager(gRenderer, SCREEN_INTRO);
 		GameManager::GetInstance()->gameScreenManager->SetRenderer(gRenderer);
 		GameManager::GetInstance()->gameScreenManager->ChangeScreen(SCREEN_INTRO);
+
+		// Initialise Camera
+		Camera::GetInstance();
 
 		// Set start time
 		gOldTime = SDL_GetTicks();

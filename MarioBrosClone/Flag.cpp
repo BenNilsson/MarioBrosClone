@@ -17,7 +17,7 @@ Flag::Flag(SDL_Renderer* renderer, Vector2D position, Character* character, SCRE
 	if (!mSprite->LoadFromFile("Textures/flag.png"))
 		std::cout << "Could not load flag image file";
 
-	mCollisionBox = Rect2D(mPosition.x + (mSprite->GetWidth() * 0.50f), mPosition.y + (mSprite->GetHeight() - 20), 5, 20);
+	mCollisionBox = Rect2D(mPosition.x + (mSprite->GetWidth() * 0.50f), mPosition.y, 5, mSprite->GetHeight());
 }
 
 
@@ -38,7 +38,7 @@ void Flag::Update()
 	
 }
 
-void Flag::Render()
+void Flag::Render(int camX, int camY)
 {
-	mSprite->Render(mPosition, SDL_FLIP_NONE);
+	mSprite->Render(mPosition.x - camX, mPosition.y - camY, nullptr, 0.0, nullptr, SDL_FLIP_NONE);
 }

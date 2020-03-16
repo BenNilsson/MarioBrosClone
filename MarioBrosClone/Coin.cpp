@@ -27,16 +27,14 @@ Coin::~Coin()
 	mSprite = nullptr;
 }
 
-void Coin::Render()
+void Coin::Render(int camX, int camY)
 {
 
 	int left = mSingleSpriteHeight * (mFrame - 1);
 
 	SDL_Rect portionOfSpritesheet = { left, 0, mSingleSpriteWidth, mSingleSpriteHeight };
 
-	SDL_Rect destRect = { (int)(mPosition.x), (int)(mPosition.y), mSingleSpriteWidth, mSingleSpriteHeight };
-
-	mSprite->Render(portionOfSpritesheet, destRect, SDL_FLIP_NONE);
+	mSprite->Render(mPosition.x - camX, mPosition.y - camY, &portionOfSpritesheet, 0.0, nullptr, SDL_FLIP_NONE);
 }
 
 void Coin::Update(float deltaTime, SDL_Event e)

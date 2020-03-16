@@ -2,6 +2,7 @@
 #include "Character.h"
 #include "CharacterMario.h"
 #include "Sprite.h"
+#include "Camera.h"
 
 CharacterMario::CharacterMario(SDL_Renderer* renderer, std::string imagePath, Vector2D startPos, TileMap* map) : Character(renderer, imagePath, startPos, map)
 {
@@ -69,7 +70,7 @@ void CharacterMario::Update(float deltaTime, SDL_Event e)
 
 void CharacterMario::Render()
 {
-	Character::Render();
+	Character::Render(Camera::GetInstance()->GetPosition().x, Camera::GetInstance()->GetPosition().y);
 }
 
 

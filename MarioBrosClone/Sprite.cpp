@@ -47,7 +47,7 @@ bool Sprite::LoadFromFile(std::string path)
 void Sprite::Free()
 {
 	// Check if the texture exists before removing it
-	if (mSprite != NULL)
+	if (mSprite != nullptr)
 	{
 		SDL_DestroyTexture(mSprite);
 		mSprite = NULL;
@@ -67,4 +67,17 @@ void Sprite::Render(SDL_Rect srcRect, SDL_Rect destRect, SDL_RendererFlip flip, 
 {
 	// Render to screen
 	SDL_RenderCopyEx(mRenderer, mSprite, &srcRect, &destRect, angle, NULL, flip);
+}
+
+void Sprite::Render(int x, int y, SDL_Rect* clip, double angle, SDL_Point* center, SDL_RendererFlip flip)
+{
+	SDL_Rect renderLocation = { x, y, mWidth, mHeight };
+
+	if (clip != NULL)
+	{
+		mWidth = clip->w;
+		mHeight = clip->h;
+	}
+
+	SDL_RenderCopyEx(mRenderer, mSprite, clip, &renderLocation, angle, center, flip);
 }

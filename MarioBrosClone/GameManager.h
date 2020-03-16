@@ -5,8 +5,6 @@
 
 class GameManager
 {
-	// include gamescreenmanager in game manager which is static
-	// there I can change screens everywhere
 
 public:
 

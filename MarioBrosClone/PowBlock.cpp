@@ -7,16 +7,16 @@ PowBlock::PowBlock(SDL_Renderer* renderer)
 	mRenderer = renderer;
 
 	std::string imagePath = "Textures/PowBlock.png";
-	mTexture = new Sprite(renderer);
-	if (!mTexture->LoadFromFile(imagePath.c_str()))
+	mSprite = new Sprite(renderer);
+	if (!mSprite->LoadFromFile(imagePath.c_str()))
 	{
 		std::cout << "Failed to load texture: " << imagePath << std::endl;
 		return;
 	}
 
 
-	mSingleSpriteWidth = mTexture->GetWidth() / 3;
-	mSingleSpriteHeight = mTexture->GetHeight();
+	mSingleSpriteWidth = mSprite->GetWidth() / 3;
+	mSingleSpriteHeight = mSprite->GetHeight();
 	mNumberOfHitsLeft = 3;
 	mPosition = Vector2D((SCREEN_WIDTH * 0.5) - mSingleSpriteWidth * 0.5f, 260);
 }
@@ -25,11 +25,11 @@ PowBlock::~PowBlock()
 {
 	mRenderer = NULL;
 
-	delete mTexture;
-	mTexture = NULL;
+	delete mSprite;
+	mSprite = NULL;
 }
 
-void PowBlock::Render()
+void PowBlock::Render(int camX, int camY)
 {
 	if (mNumberOfHitsLeft > 0)
 	{
@@ -39,11 +39,8 @@ void PowBlock::Render()
 		// Set Rect
 		SDL_Rect portionOfSpritesheet = { left, 0, mSingleSpriteWidth, mSingleSpriteHeight };
 
-		// Determine where to draw
-		SDL_Rect destRect = { (int)(mPosition.x), (int)(mPosition.y), mSingleSpriteWidth, mSingleSpriteHeight };
-
 		// Draw
-		mTexture->Render(portionOfSpritesheet, destRect, SDL_FLIP_NONE);
+		mSprite->Render(mPosition.x - camX, mPosition.y - camY, &portionOfSpritesheet, 0.0, nullptr, SDL_FLIP_NONE);
 	}
 }
 

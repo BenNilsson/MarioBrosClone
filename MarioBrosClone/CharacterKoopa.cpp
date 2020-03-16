@@ -78,7 +78,7 @@ void CharacterKoopa::Update(float deltaTime, SDL_Event e)
 	
 }
 
-void CharacterKoopa::Render()
+void CharacterKoopa::Render(int camX, int camY)
 {	
 	// Variable to hold the left position of the sprite we want to draw
 	int left = mSingleSpriteWidth * (frame - 1);
@@ -95,11 +95,11 @@ void CharacterKoopa::Render()
 
 	if (mfacingDirection == FACING::FACING_RIGHT)
 	{
-		mSprite->Render(portionOfSpritesheet, destRect, SDL_FLIP_NONE);
+		mSprite->Render(mPosition.x - camX, mPosition.y - camY, &portionOfSpritesheet, 0.0, nullptr, SDL_FLIP_NONE);
 	}
 	else
 	{
-		mSprite->Render(portionOfSpritesheet, destRect, SDL_FLIP_HORIZONTAL);
+		mSprite->Render(mPosition.x - camX, mPosition.y - camY, &portionOfSpritesheet, 0.0, nullptr, SDL_FLIP_HORIZONTAL);
 	}
 	
 	

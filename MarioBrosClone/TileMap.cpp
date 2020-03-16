@@ -1,6 +1,9 @@
 #include "TileMap.h"
+#include "Camera.h"
+#include "Block.h"
+#include "BlockQuestionMark.h"
 
-TileMap::TileMap(SDL_Renderer* renderer)
+TileMap::TileMap(SDL_Renderer* renderer, GameScreen* level)
 {
 	mRenderer = renderer;
 
@@ -44,61 +47,30 @@ void TileMap::GenerateTileMap(int** map, int rows, int columns)
 			switch (type)
 			{
 			case 0:
-				mTileMap.push_back(new Tile(Vector2D(column * 32, row * 32), nullptr, CollisionType::TILE_WALKABLE));
+				mTileMap.push_back(new Tile(nullptr, CollisionType::TILE_WALKABLE));
 				break;
 
 			case 1:
-				mTileMap.push_back(new Tile(Vector2D(column * 32, row * 32), block, CollisionType::TILE_NONWALKABLE));
+				mTileMap.push_back(new Tile(new Block(mRenderer, "Textures/block.png", Block::BlockType::BLOCK_PLATFORM, Vector2D(column * 32, row * 32)), CollisionType::TILE_NONWALKABLE));
 				break;
 
 			case 2:
-				mTileMap.push_back(new Tile(Vector2D(column * 32, row * 32), floor, CollisionType::TILE_NONWALKABLE));
+				mTileMap.push_back(new Tile(new Block(mRenderer, "Textures/floor.png", Block::BlockType::BLOCK_FLOOR, Vector2D(column * 32, row * 32)), CollisionType::TILE_NONWALKABLE));
+				break;
+			case 3:
+				mTileMap.push_back(new Tile(new BlockQuestionMark(mRenderer, "Textures/QuestionMarkBlock.png", Block::BlockType::BLOCK_QUESTION_MARK, Vector2D(column * 32, row * 32)), CollisionType::TILE_NONWALKABLE));
+				
 			}
+
 		}
 	}
 }
-
-void TileMap::GenerateTileMap(int map[MAP_HEIGHT][MAP_WIDTH])
-{
-	// Allocate memory for the map
-	mMap = new int* [MAP_HEIGHT];
-	for (unsigned int i = 0; i < MAP_HEIGHT; i++)
-	{
-		mMap[i] = new int[MAP_WIDTH];
-	}
-
-	// Populate the array
-	for (unsigned int row = 0; row < MAP_HEIGHT; row++)
-	{
-		for (unsigned int column = 0; column < MAP_WIDTH; column++)
-		{
-			mMap[row][column] = map[row][column];
-
-			int type = mMap[row][column];
-
-			switch (type)
-			{
-			case 0:
-				mTileMap.push_back(new Tile(Vector2D(column * 32, row * 32), nullptr, CollisionType::TILE_WALKABLE));
-				break;
-
-			case 1:
-				mTileMap.push_back(new Tile(Vector2D(column * 32, row * 32), block, CollisionType::TILE_NONWALKABLE));
-				break;
-
-			case 2:
-				mTileMap.push_back(new Tile(Vector2D(column * 32, row * 32), floor, CollisionType::TILE_NONWALKABLE));
-			}
-		}
-	}
-}
-
 
 void TileMap::DrawTileMap()
 {
 	for (const Tile* tile : mTileMap)
 	{
-		tile->Render();
+		tile->Render(Camera::GetInstance()->GetPosition().x, Camera::GetInstance()->GetPosition().y);
 	}
 }
 

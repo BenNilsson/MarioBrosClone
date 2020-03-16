@@ -13,6 +13,7 @@
 #include "Flag.h"
 #include <vector>
 #include "UIText.h"
+#include "BlockQuestionMark.h"
 
 class Sprite;
 class CharacterMario;
@@ -26,6 +27,7 @@ public:
 
 	void Render();
 	void Update(float deltaTime, SDL_Event e);
+
 private:
 
 	TileMap* tileMap;
@@ -43,9 +45,9 @@ private:
 	void CreateCoin(Vector2D position);
 	void UpdateCoins(float deltaTime, SDL_Event e);
 
-	Flag* flag;
+	void UpdateQuestionMarkBlocks(float deltaTime, SDL_Event e);
 
-	
+	Flag* flag;
 
 	std::vector<CharacterKoopa*> mKoopas;
 	int enemyIndexToDelete;

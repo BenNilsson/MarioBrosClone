@@ -20,6 +20,7 @@ Character::Character(SDL_Renderer* renderer, std::string imagePath, Vector2D sta
 	mCanMove = true;
 	mCanJump = true;
 	mCollisionRadius = 15.0f;
+	mfacingDirection = FACING::FACING_RIGHT;
 
 	frame = 1;
 }
@@ -33,10 +34,10 @@ Character::~Character()
 	mSprite = nullptr;
 }
 
-void Character::Render()
+void Character::Render(int camX, int camY)
 {
 	// Get the position of the spritesheet
-	int left = mSingleSpriteHeight * (frame - 1);
+	int left = mSingleSpriteWidth * (frame - 1);
 
 	// Set Rect
 	SDL_Rect portionOfSpritesheet = { left, 0, mSingleSpriteWidth, mSingleSpriteHeight };
@@ -46,9 +47,14 @@ void Character::Render()
 
 	// Draw
 	if (mfacingDirection == FACING::FACING_RIGHT)
-		mSprite->Render(portionOfSpritesheet, destRect, SDL_FLIP_NONE);
+	{
+		mSprite->Render(mPosition.x - camX, mPosition.y - camY, &portionOfSpritesheet, 0.0, nullptr, SDL_FLIP_NONE);
+		
+	}
 	else
-		mSprite->Render(portionOfSpritesheet, destRect, SDL_FLIP_HORIZONTAL);
+	{
+		mSprite->Render(mPosition.x - camX, mPosition.y - camY, &portionOfSpritesheet, 0.0, nullptr, SDL_FLIP_HORIZONTAL);
+	}
 }
 
 void Character::Update(float deltaTime, SDL_Event e)
@@ -70,15 +76,23 @@ void Character::Update(float deltaTime, SDL_Event e)
 		if (mCurrentTileMap->mTileMap[i]->GetCollisionType() == CollisionType::TILE_NONWALKABLE)
 		{
 			// Check if the new position is colliding with the player
-			if (Collisions::Instance()->Box(Rect2D(mCurrentTileMap->mTileMap[i]->GetPosition().x, mCurrentTileMap->mTileMap[i]->GetPosition().y, mCurrentTileMap->mTileMap[i]->width, mCurrentTileMap->mTileMap[i]->height),
-				Rect2D(new_pos.x, new_pos.y + GetHeight() - 2, GetWidth(), 1)))
+			if (Collisions::Instance()->Box(mCurrentTileMap->mTileMap[i]->GetBlock()->GetCollisionBox(), Rect2D(new_pos.x, new_pos.y + GetHeight() - 2, GetWidth(), 1)))
 			{
 				// Collision!
 				mPosition = old_pos;
 				gravity = false;
 				if(!mJumping)
 					mCanJump = true;
-				break;
+				
+			}
+
+			// Detect if head bumbs into a tile
+			if (Collisions::Instance()->Box(mCurrentTileMap->mTileMap[i]->GetBlock()->GetCollisionBox(), Rect2D(new_pos.x, new_pos.y, GetWidth(), 1)))
+			{
+				if (mJumping)
+					mJumping = false;
+				mPosition = Vector2D(old_pos.x, old_pos.y + 1);
+				gravity = false;
 			}
 		}
 	}
@@ -130,7 +144,6 @@ void Character::Jump()
 void Character::AddGravity(float deltaTime)
 {
 	mPosition.y += gravityForce * deltaTime;
-	//mCanJump = false;
 }
 
 void Character::SetPosition(Vector2D newPosition)

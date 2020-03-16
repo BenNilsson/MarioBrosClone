@@ -8,7 +8,7 @@ class PowBlock
 public:
 	PowBlock(SDL_Renderer* renderer);
 	~PowBlock();
-	void Render();
+	void Render(int camX, int camY);
 	Rect2D GetCollisionBox() { return Rect2D(mPosition.x, mPosition.y, mSingleSpriteWidth, mSingleSpriteHeight); }
 	void TakeAHit();
 	bool IsAvailable() { return mNumberOfHitsLeft > 0; }
@@ -16,7 +16,7 @@ public:
 private:
 	SDL_Renderer* mRenderer;
 	Vector2D mPosition;
-	Sprite* mTexture;
+	Sprite* mSprite;
 
 	float mSingleSpriteWidth;
 	float mSingleSpriteHeight;

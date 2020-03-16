@@ -5,6 +5,7 @@
 #include "SoundManager.h"
 #include "GameManager.h"
 #include <fstream>
+#include "Camera.h"
 
 GameScreenLevel1::GameScreenLevel1(SDL_Renderer* renderer) : GameScreen(renderer)
 {
@@ -42,7 +43,7 @@ GameScreenLevel1::~GameScreenLevel1()
 void GameScreenLevel1::Render()
 {
 	// Draw the background
-	mBackgroundTexture->Render(Vector2D(0, screenShake->GetBackgroundYPos()), SDL_FLIP_NONE);
+	//mBackgroundTexture->Render(Vector2D(0, screenShake->GetBackgroundYPos()), SDL_FLIP_NONE);
 
 	// Render all tiles
 	tileMap->DrawTileMap();
@@ -52,20 +53,20 @@ void GameScreenLevel1::Render()
 	characterLuigi->Render();
 
 	// Draw Powblock
-	mPowBlock->Render();
+	mPowBlock->Render(Camera::GetInstance()->GetPosition().x, Camera::GetInstance()->GetPosition().y);
 
-	flag->Render();
+	flag->Render(Camera::GetInstance()->GetPosition().x, Camera::GetInstance()->GetPosition().y);
 
 	// Draw enemies
 	for (unsigned int i = 0; i < mKoopas.size(); i++)
 	{
-		mKoopas[i]->Render();
+		mKoopas[i]->Render(Camera::GetInstance()->GetPosition().x, Camera::GetInstance()->GetPosition().y);
 	}
 
 	// Draw coins
 	for (unsigned int i = 0; i < mCoins.size(); i++)
 	{
-		mCoins[i]->Render();
+		mCoins[i]->Render(Camera::GetInstance()->GetPosition().x, Camera::GetInstance()->GetPosition().y);
 	}
 
 	// Draw score
@@ -79,6 +80,9 @@ void GameScreenLevel1::Update(float deltaTime, SDL_Event e)
 	// Update the player
 	characterMario->Update(deltaTime, e);
 	characterLuigi->Update(deltaTime, e);
+	
+	// Update question mark blocks
+	UpdateQuestionMarkBlocks(deltaTime, e);
 
 	// Update pow block
 	UpdatePowBlock();
@@ -88,20 +92,19 @@ void GameScreenLevel1::Update(float deltaTime, SDL_Event e)
 
 	UpdateCoins(deltaTime, e);
 
-	// Update score
-	//std::string str = "Score: " + std::to_string(GameManager::GetInstance()->GetScore());
-	//const char* score = str.c_str();
-	//mScoreText->Text = score;
-
 	// Update screenshake, passing the koopa vector in order for the pow block to kill them
 	screenShake->Update(deltaTime, mKoopas);
+
+	// Update Camera Position
+	Camera::GetInstance()->SetPosition(Vector2D((characterMario->GetPosition().x + 32 / 2) - CAMERA_WIDTH / 2, 0));
 
 	// Check to see if the character and flag collide
 	if (Collisions::Instance()->Box(flag->GetCollisionBox(), characterMario->GetCollisionBox()))
 	{
-		std::cout << "Character collided with flag" << std::endl;
 		GameManager::GetInstance()->gameScreenManager->ChangeScreen(SCREEN_LEVEL2);
+		return;
 	}
+
 }
 
 void GameScreenLevel1::UpdatePowBlock()
@@ -273,6 +276,37 @@ void GameScreenLevel1::UpdateCoins(float deltaTime, SDL_Event e)
 	
 }
 
+void GameScreenLevel1::UpdateQuestionMarkBlocks(float deltaTime, SDL_Event e)
+{
+	for (int i = 0; i < tileMap->mTileMap.size(); i++)
+	{
+		if (tileMap->mTileMap[i]->GetBlock() != nullptr) {
+
+			if (tileMap->mTileMap[i]->GetBlock()->GetBlockType() == Block::BlockType::BLOCK_QUESTION_MARK)
+			{
+				// Check if block collides with mario & luigi
+				bool collided = false;
+
+				if (Collisions::Instance()->Box(characterMario->GetCollisionBox(), Rect2D(tileMap->mTileMap[i]->GetBlock()->GetPosition().x, tileMap->mTileMap[i]->GetBlock()->GetPosition().y + (tileMap->mTileMap[i]->GetBlock()->GetHeight() - 2), tileMap->mTileMap[i]->GetBlock()->GetWidth(), 2)))
+				{
+					collided = true;
+				}
+
+				if (Collisions::Instance()->Box(characterLuigi->GetCollisionBox(), Rect2D(tileMap->mTileMap[i]->GetBlock()->GetPosition().x, tileMap->mTileMap[i]->GetBlock()->GetPosition().y + (tileMap->mTileMap[i]->GetBlock()->GetHeight() - 2), tileMap->mTileMap[i]->GetBlock()->GetWidth(), 2)))
+				{
+					collided = true;
+				}
+
+				if (collided)
+				{
+					tileMap->mTileMap[i]->GetBlock()->SetAvailable(false);
+					break;
+				}
+			}
+		}
+	}
+}
+
 void GameScreenLevel1::SetUpTileMap()
 {
 	// Read file
@@ -317,7 +351,7 @@ void GameScreenLevel1::SetUpTileMap()
 	file.close();
 
 	// Create new TileMap
-	tileMap = new TileMap(mRenderer);
+	tileMap = new TileMap(mRenderer, this);
 	tileMap->GenerateTileMap(map, rows, columns);
 
 	// Let mario and luigi know what map they're on
@@ -335,9 +369,6 @@ bool GameScreenLevel1::SetUpLevel()
 		std::cout << "Failed to load background texture!";
 		return false;
 	}
-
-	
-
 
 	screenShake = new ScreenShake();
 
@@ -370,7 +401,7 @@ bool GameScreenLevel1::SetUpLevel()
 	CreateCoin(Vector2D(275, 210));
 
 	// Create flag
-	flag = new Flag(mRenderer, Vector2D(400, 247), characterMario, NULL);
+	flag = new Flag(mRenderer, Vector2D(1200, 247), characterMario, NULL);
 
 
 	return true;

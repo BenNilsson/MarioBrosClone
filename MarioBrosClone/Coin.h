@@ -10,7 +10,7 @@ public:
 	Coin(SDL_Renderer* renderer, std::string imagePath, Vector2D startPosition);
 	~Coin();
 
-	void Render();
+	void Render(int camX, int camY);
 	void Update(float deltaTime, SDL_Event e);
 
 	Vector2D GetPosition() { return mPosition; }

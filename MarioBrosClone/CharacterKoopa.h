@@ -15,7 +15,7 @@ public:
 	bool IsInjured() { return mInjured; }
 
 	void Update(float deltaTime, SDL_Event e);
-	void Render();
+	void Render(int camX, int camY);
 
 	void Flip();
 

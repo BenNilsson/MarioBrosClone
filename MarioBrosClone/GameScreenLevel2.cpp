@@ -1,6 +1,7 @@
 #include "GameScreenLevel2.h"
 #include "SoundManager.h"
 #include <fstream>
+#include "Camera.h"
 
 
 GameScreenLevel2::GameScreenLevel2(SDL_Renderer* renderer) : GameScreen(mRenderer)
@@ -10,11 +11,13 @@ GameScreenLevel2::GameScreenLevel2(SDL_Renderer* renderer) : GameScreen(mRendere
 
 	if (SetUpLevel())
 	{
+		/*
 		if (soundmanager::SoundManager::GetInstance()->IsPlaying())
 		{
 			soundmanager::SoundManager::GetInstance()->StopMusic();
 		}
-		soundmanager::SoundManager::GetInstance()->PlayMusic("Music/Mariov2.wav");
+		soundmanager::SoundManager::GetInstance()->PlayMusic("Music/Mario.wav");
+		*/
 	}
 }
 
@@ -29,7 +32,7 @@ void GameScreenLevel2::Render()
 	if (!levelIsSetup) return;
 
 	// Draw the background
-	mBackgroundTexture->Render(Vector2D(0, screenShake->GetBackgroundYPos()), SDL_FLIP_NONE);
+	//mBackgroundTexture->Render(Vector2D(0, screenShake->GetBackgroundYPos()), SDL_FLIP_NONE);
 
 	// Render all tiles
 	tileMap->DrawTileMap();
@@ -49,6 +52,9 @@ void GameScreenLevel2::Update(float deltaTime, SDL_Event e)
 
 	// Update screenshake, passing the koopa vector in order for the pow block to kill them
 	//screenShake->Update(deltaTime, mKoopas);
+
+	// Update Camera Position
+	Camera::GetInstance()->SetPosition(Vector2D((characterMario->GetPosition().x + 32 / 2) - CAMERA_WIDTH / 2, 0));
 }
 
 bool GameScreenLevel2::SetUpLevel()
@@ -123,7 +129,7 @@ void GameScreenLevel2::SetUpTileMap()
 	file.close();
 
 	// Create new TileMap
-	tileMap = new TileMap(mRenderer);
+	tileMap = new TileMap(mRenderer, this);
 	tileMap->GenerateTileMap(map, rows, columns);
 
 	// Let mario and luigi know what map they're on

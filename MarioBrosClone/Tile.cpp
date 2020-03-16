@@ -1,26 +1,16 @@
 #include "Tile.h"
 
-Tile::Tile(Vector2D pos, Sprite* sprite, CollisionType type)
+Tile::Tile(Block* block, CollisionType type)
 {
-	mPosition = pos;
-	mSprite = sprite;
+	if (block != nullptr) mBlock = block;
+	else block = nullptr;
 	mCollisionType = type;
 }
 
 Tile::~Tile()
 {
-	delete mSprite;
-	mSprite = nullptr;
-}
-
-const Vector2D& Tile::GetPosition() const
-{
-	return mPosition;
-}
-
-const Sprite* Tile::GetSprite() const
-{
-	return mSprite;
+	delete mBlock;
+	mBlock = nullptr;
 }
 
 const CollisionType& Tile::GetCollisionType() const
@@ -28,8 +18,8 @@ const CollisionType& Tile::GetCollisionType() const
 	return mCollisionType;
 }
 
-const void Tile::Render() const
+const void Tile::Render(int camX, int camY) const
 {
-	if(mSprite != nullptr)
-		mSprite->Render(GetPosition(), SDL_FLIP_NONE);
+	if(mBlock != nullptr)
+		mBlock->Render(camX, camY);
 }

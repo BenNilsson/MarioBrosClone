@@ -1,4 +1,32 @@
-﻿  GameSceenLevel1.cpp
-C:\Users\n020868i\Documents\GitHub\MarioBrosClone\MarioBrosClone\GameSceenLevel1.cpp(292): warning C4018: '<': signed/unsigned mismatch
-C:\Users\n020868i\Documents\GitHub\MarioBrosClone\MarioBrosClone\GameSceenLevel1.cpp(302): warning C4018: '<': signed/unsigned mismatch
-  MarioBrosClone.vcxproj -> C:\Users\n020868i\Documents\GitHub\MarioBrosClone\Debug\MarioBrosClone.exe
+﻿  Character.cpp
+C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\Character.cpp(30,18): warning C4150: deletion of pointer to incomplete type 'SDL_Renderer'; no destructor called
+C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\SDL\include\SDL_render.h(132): message : see declaration of 'SDL_Renderer'
+C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\Character.cpp(40,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\Character.cpp(43,45): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
+C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\Character.cpp(43,45): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\Character.cpp(43,65): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
+C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\Character.cpp(43,65): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\Character.cpp(46,64): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
+C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\Character.cpp(46,64): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\Character.cpp(46,84): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
+C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\Character.cpp(46,84): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\Character.cpp(51,51): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\Character.cpp(51,31): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\Character.cpp(56,51): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  GameSceenLevel1.cpp
+C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\Character.cpp(56,31): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\Camera.h(28,61): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\Camera.h(28,50): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\GameSceenLevel1.cpp(57,96): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\GameSceenLevel1.cpp(57,56): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\GameSceenLevel1.cpp(59,91): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\GameSceenLevel1.cpp(59,51): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\GameSceenLevel1.cpp(64,98): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\GameSceenLevel1.cpp(64,58): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\GameSceenLevel1.cpp(70,97): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\GameSceenLevel1.cpp(70,57): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\GameSceenLevel1.cpp(282,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\GameSceenLevel1.cpp(327,20): warning C4018: '<': signed/unsigned mismatch
+  Generating Code...
+C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\GameSceenLevel1.cpp(337,29): warning C4018: '<': signed/unsigned mismatch
+  MarioBrosClone.vcxproj -> C:\Users\krota\Desktop\MarioBrosClone\Debug\MarioBrosClone.exe
