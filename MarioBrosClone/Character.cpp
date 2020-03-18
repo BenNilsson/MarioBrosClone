@@ -4,6 +4,7 @@
 #include <iostream>
 #include "SoundManager.h"
 #include "Collisions.h"
+#include "Camera.h"
 
 Character::Character(SDL_Renderer* renderer, std::string imagePath, Vector2D startPosition, TileMap* map)
 {
@@ -23,6 +24,7 @@ Character::Character(SDL_Renderer* renderer, std::string imagePath, Vector2D sta
 	mfacingDirection = FACING::FACING_RIGHT;
 
 	frame = 1;
+
 }
 
 Character::~Character()
@@ -62,6 +64,7 @@ void Character::Update(float deltaTime, SDL_Event e)
 	Vector2D old_pos = GetPosition();
 	Vector2D new_pos = old_pos;
 	bool gravity = true;
+	mCanMove = true;
 
 	if(mMovingLeft)
 		new_pos.x -= movementSpeed * deltaTime;
@@ -70,6 +73,39 @@ void Character::Update(float deltaTime, SDL_Event e)
 
 	new_pos.y += gravityForce * deltaTime;
 
+	for (int y = 0; y < mCurrentTileMap->GetHeight(); y++)
+	{
+		for (int x = 0; x < mCurrentTileMap->GetWidth(); x++)
+		{
+			if (mCurrentTileMap->GetTileAt(x, y) == nullptr) continue;
+
+			if (mCurrentTileMap->GetTileAt(x, y)->GetCollisionType() == CollisionType::TILE_SOLID)
+			{
+				
+				if (Collisions::Instance()->Box(mCurrentTileMap->GetTileAt(x, y)->GetBlock()->GetCollisionBox(), Rect2D(new_pos.x, new_pos.y + GetHeight() - 3, GetWidth(), 2)))
+				{
+					// Collision!
+					//mPosition = old_pos;
+					gravity = false;
+					if (!mJumping)
+						mCanJump = true;
+				}
+				
+
+				// Detect if head bumbs into a tile
+				else if (Collisions::Instance()->Box(mCurrentTileMap->GetTileAt(x, y)->GetBlock()->GetCollisionBox(), Rect2D(new_pos.x, new_pos.y, GetWidth(), 1)))
+				{
+					if (mJumping)
+						mJumping = false;
+					mPosition = Vector2D(old_pos.x, old_pos.y + 1);
+					gravity = false;
+				}
+
+			}
+		}
+	}
+
+	/*
 	// Check through the tilemap and ensure collision happens
 	for (unsigned int i = 0; i < mCurrentTileMap->mTileMap.size(); i++)
 	{
@@ -96,6 +132,7 @@ void Character::Update(float deltaTime, SDL_Event e)
 			}
 		}
 	}
+	*/
 
 	// Update Frame
 	UpdateFrame(deltaTime);

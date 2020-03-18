@@ -7,8 +7,6 @@ class Tile
 {
 public:
 
-	
-
 	Tile(Block* block, CollisionType type);
 	~Tile();
 

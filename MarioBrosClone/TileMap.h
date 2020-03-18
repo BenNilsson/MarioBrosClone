@@ -3,6 +3,7 @@
 #include <vector>
 #include "Sprite.h"
 #include "Constants.h"
+#include "Commons.h"
 #include "GameScreen.h"
 
 /*
@@ -18,18 +19,27 @@ class TileMap
 
 public:
 
-	TileMap(SDL_Renderer* renderer, GameScreen* level);
+	TileMap(SDL_Renderer* renderer);
 	~TileMap();
 
 	void GenerateTileMap(int** map, int rows, int columns);
 	void DrawTileMap();
 
-	std::vector<Tile*> mTileMap;
+	Tile* GetTileAt(int x, int y);
+
+	int GetWidth() { return mWidth; }
+	int GetHeight() { return mHeight; }
+
+	CollisionType GetCollision(int x, int y);
+
 private:
 	int** mMap;
 	SDL_Renderer* mRenderer;
 
-	GameScreen* mGameScreen;
+	std::vector<std::vector<Tile*>>* mTiles;
+
+	int mWidth;
+	int mHeight;
 
 	Sprite* block;
 	Sprite* floor;

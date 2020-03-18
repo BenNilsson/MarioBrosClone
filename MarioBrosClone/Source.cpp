@@ -207,6 +207,7 @@ bool Update()
 		if (e.window.event == SDL_WINDOWEVENT_FOCUS_GAINED)
 		{
 			hasFocus = true;
+			newTime = SDL_GetTicks();
 		}
 		else if (e.window.event == SDL_WINDOWEVENT_FOCUS_LOST)
 		{
@@ -220,7 +221,9 @@ bool Update()
 	{
 		// Update gameScreenmanager
 		if (GameManager::GetInstance()->gameScreenManager->mCurrentScreen != nullptr)
+		{
 			GameManager::GetInstance()->gameScreenManager->Update((float)(newTime - gOldTime) / 1000.0f, e);
+		}
 	}
 
 	// set the current time to be the old time

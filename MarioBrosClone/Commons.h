@@ -16,6 +16,11 @@ struct Vector2D
 		x = _x;
 		y = _y;
 	}
+
+	Vector2D operator-(const Vector2D& rhs)
+	{
+		return Vector2D(x - rhs.x, y - rhs.y);
+	}
 };
 
 struct Rect2D
@@ -40,6 +45,11 @@ struct Rect2D
 	float y;
 	float width;
 	float height;
+
+	float Left() { return x; }
+	float Right() { return x + width; }
+	float Top() { return y; }
+	float Bottom() { return y + height; }
 };
 
 struct Circle2D
@@ -79,5 +89,8 @@ enum class FACING
 enum class CollisionType
 {
 	TILE_WALKABLE,
-	TILE_NONWALKABLE
+	TILE_NONWALKABLE,
+	TILE_AIR,
+	TILE_SOLID,
+	TILE_PLATFORM
 };

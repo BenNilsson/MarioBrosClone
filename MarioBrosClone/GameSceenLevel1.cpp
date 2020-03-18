@@ -15,7 +15,7 @@ GameScreenLevel1::GameScreenLevel1(SDL_Renderer* renderer) : GameScreen(renderer
 		{
 			soundmanager::SoundManager::GetInstance()->StopMusic();
 		}
-		soundmanager::SoundManager::GetInstance()->PlayMusic("Music/Mario.wav");
+		//soundmanager::SoundManager::GetInstance()->PlayMusic("Music/Mario.wav");
 	}
 }
 
@@ -77,15 +77,15 @@ void GameScreenLevel1::Render()
 
 void GameScreenLevel1::Update(float deltaTime, SDL_Event e)
 {
-	// Update the player
-	characterMario->Update(deltaTime, e);
-	characterLuigi->Update(deltaTime, e);
-	
 	// Update question mark blocks
 	UpdateQuestionMarkBlocks(deltaTime, e);
 
 	// Update pow block
 	UpdatePowBlock();
+
+	// Update the player
+	characterMario->Update(deltaTime, e);
+	characterLuigi->Update(deltaTime, e);
 
 	// Update enemies
 	UpdateEnemies(deltaTime, e);
@@ -278,34 +278,36 @@ void GameScreenLevel1::UpdateCoins(float deltaTime, SDL_Event e)
 
 void GameScreenLevel1::UpdateQuestionMarkBlocks(float deltaTime, SDL_Event e)
 {
-	for (int i = 0; i < tileMap->mTileMap.size(); i++)
+	for (int x = 0; x < tileMap->GetWidth(); x++)
 	{
-		if (tileMap->mTileMap[i]->GetBlock() != nullptr) {
-
-			if (tileMap->mTileMap[i]->GetBlock()->GetBlockType() == Block::BlockType::BLOCK_QUESTION_MARK)
+		for (int y = 0; y < tileMap->GetHeight(); y++)
+		{
+			if (tileMap->GetTileAt(x, y) != nullptr)
 			{
-				// Check if block collides with mario & luigi
-				bool collided = false;
-
-				if (Collisions::Instance()->Box(characterMario->GetCollisionBox(), Rect2D(tileMap->mTileMap[i]->GetBlock()->GetPosition().x, tileMap->mTileMap[i]->GetBlock()->GetPosition().y + (tileMap->mTileMap[i]->GetBlock()->GetHeight() - 2), tileMap->mTileMap[i]->GetBlock()->GetWidth(), 2)))
+				if (tileMap->GetTileAt(x, y)->GetBlock()->GetBlockType() == Block::BlockType::BLOCK_QUESTION_MARK)
 				{
-					collided = true;
-				}
+					bool collided = false;
 
-				if (Collisions::Instance()->Box(characterLuigi->GetCollisionBox(), Rect2D(tileMap->mTileMap[i]->GetBlock()->GetPosition().x, tileMap->mTileMap[i]->GetBlock()->GetPosition().y + (tileMap->mTileMap[i]->GetBlock()->GetHeight() - 2), tileMap->mTileMap[i]->GetBlock()->GetWidth(), 2)))
-				{
-					collided = true;
-				}
-
-				if (collided)
-				{
-					if (tileMap->mTileMap[i]->GetBlock()->IsAvailable())
+					if (Collisions::Instance()->Box(characterMario->GetCollisionBox(), Rect2D(tileMap->GetTileAt(x, y)->GetBlock()->GetPosition().x, tileMap->GetTileAt(x, y)->GetBlock()->GetPosition().y + (tileMap->GetTileAt(x, y)->GetBlock()->GetHeight() - 2), tileMap->GetTileAt(x, y)->GetBlock()->GetWidth(), 2)))
 					{
-						tileMap->mTileMap[i]->GetBlock()->SetAvailable(false);
-						CreateCoin(Vector2D(tileMap->mTileMap[i]->GetBlock()->GetPosition().x + 3, tileMap->mTileMap[i]->GetBlock()->GetPosition().y - 32));
+						collided = true;
+					}
+
+					if (Collisions::Instance()->Box(characterLuigi->GetCollisionBox(), Rect2D(tileMap->GetTileAt(x, y)->GetBlock()->GetPosition().x, tileMap->GetTileAt(x, y)->GetBlock()->GetPosition().y + (tileMap->GetTileAt(x, y)->GetBlock()->GetHeight() - 2), tileMap->GetTileAt(x, y)->GetBlock()->GetWidth(), 2)))
+					{
+						collided = true;
+					}
+
+					if (collided)
+					{
+						if (tileMap->GetTileAt(x, y)->GetBlock()->IsAvailable())
+						{
+							tileMap->GetTileAt(x, y)->GetBlock()->SetAvailable(false);
+							CreateCoin(Vector2D(tileMap->GetTileAt(x, y)->GetBlock()->GetPosition().x + 3, tileMap->GetTileAt(x, y)->GetBlock()->GetPosition().y - 32));
+							break;
+						}
 						break;
 					}
-					break;
 				}
 			}
 		}
@@ -356,7 +358,7 @@ void GameScreenLevel1::SetUpTileMap()
 	file.close();
 
 	// Create new TileMap
-	tileMap = new TileMap(mRenderer, this);
+	tileMap = new TileMap(mRenderer);
 	tileMap->GenerateTileMap(map, rows, columns);
 
 	// Let mario and luigi know what map they're on
@@ -378,8 +380,8 @@ bool GameScreenLevel1::SetUpLevel()
 	screenShake = new ScreenShake();
 
 	// Set up the player character
-	characterMario = new CharacterMario(mRenderer, "Textures/mario-run.png", Vector2D(64, 330), tileMap);
-	characterLuigi = new CharacterLuigi(mRenderer, "Textures/luigi-run.png", Vector2D(364, 330), tileMap);
+	characterMario = new CharacterMario(mRenderer, "Textures/mario-run.png", Vector2D(64, 335), tileMap);
+	characterLuigi = new CharacterLuigi(mRenderer, "Textures/luigi-run.png", Vector2D(364, 335), tileMap);
 
 	SetUpTileMap();
 

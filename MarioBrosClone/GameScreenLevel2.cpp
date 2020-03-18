@@ -16,7 +16,7 @@ GameScreenLevel2::GameScreenLevel2(SDL_Renderer* renderer) : GameScreen(mRendere
 		{
 			soundmanager::SoundManager::GetInstance()->StopMusic();
 		}
-		soundmanager::SoundManager::GetInstance()->PlayMusic("Music/Mariov2.wav");
+		//soundmanager::SoundManager::GetInstance()->PlayMusic("Music/Mariov2.wav");
 		
 	}
 }
@@ -129,7 +129,7 @@ void GameScreenLevel2::SetUpTileMap()
 	file.close();
 
 	// Create new TileMap
-	tileMap = new TileMap(mRenderer, this);
+	tileMap = new TileMap(mRenderer);
 	tileMap->GenerateTileMap(map, rows, columns);
 
 	// Let mario and luigi know what map they're on

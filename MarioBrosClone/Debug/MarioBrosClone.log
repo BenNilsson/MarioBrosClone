@@ -1,15 +1,39 @@
 ﻿  GameSceenLevel1.cpp
-C:\Users\n020868i\Documents\GitHub\MarioBrosClone\MarioBrosClone\Camera.h(28): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\n020868i\Documents\GitHub\MarioBrosClone\MarioBrosClone\GameSceenLevel1.cpp(56): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\n020868i\Documents\GitHub\MarioBrosClone\MarioBrosClone\GameSceenLevel1.cpp(58): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\n020868i\Documents\GitHub\MarioBrosClone\MarioBrosClone\GameSceenLevel1.cpp(63): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\n020868i\Documents\GitHub\MarioBrosClone\MarioBrosClone\GameSceenLevel1.cpp(69): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\n020868i\Documents\GitHub\MarioBrosClone\MarioBrosClone\GameSceenLevel1.cpp(281): warning C4018: '<': signed/unsigned mismatch
-C:\Users\n020868i\Documents\GitHub\MarioBrosClone\MarioBrosClone\GameSceenLevel1.cpp(331): warning C4018: '<': signed/unsigned mismatch
-C:\Users\n020868i\Documents\GitHub\MarioBrosClone\MarioBrosClone\GameSceenLevel1.cpp(341): warning C4018: '<': signed/unsigned mismatch
+C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\Camera.h(28,61): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\Camera.h(28,50): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\GameSceenLevel1.cpp(56,96): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\GameSceenLevel1.cpp(56,56): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\GameSceenLevel1.cpp(58,91): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\GameSceenLevel1.cpp(58,51): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\GameSceenLevel1.cpp(63,98): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\GameSceenLevel1.cpp(63,58): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\GameSceenLevel1.cpp(69,97): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\GameSceenLevel1.cpp(69,57): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\GameSceenLevel1.cpp(333,20): warning C4018: '<': signed/unsigned mismatch
   GameScreenLevel2.cpp
-C:\Users\n020868i\Documents\GitHub\MarioBrosClone\MarioBrosClone\Camera.h(28): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\n020868i\Documents\GitHub\MarioBrosClone\MarioBrosClone\GameScreenLevel2.cpp(102): warning C4018: '<': signed/unsigned mismatch
-C:\Users\n020868i\Documents\GitHub\MarioBrosClone\MarioBrosClone\GameScreenLevel2.cpp(112): warning C4018: '<': signed/unsigned mismatch
+C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\GameSceenLevel1.cpp(343,29): warning C4018: '<': signed/unsigned mismatch
+C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\Camera.h(28,61): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\Camera.h(28,50): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\GameScreenLevel2.cpp(102,20): warning C4018: '<': signed/unsigned mismatch
+  GameScreenManager.cpp
+  TileMap.cpp
+C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\GameScreenLevel2.cpp(112,29): warning C4018: '<': signed/unsigned mismatch
+C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\Camera.h(28,61): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\Camera.h(28,50): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\TileMap.cpp(21,18): warning C4150: deletion of pointer to incomplete type 'SDL_Renderer'; no destructor called
+C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\SDL\include\SDL_render.h(132): message : see declaration of 'SDL_Renderer'
+C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\TileMap.cpp(34,29): warning C4018: '<': signed/unsigned mismatch
+C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\TileMap.cpp(44,33): warning C4018: '<': signed/unsigned mismatch
+C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\TileMap.cpp(46,40): warning C4018: '<': signed/unsigned mismatch
+C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\TileMap.cpp(55,142): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\TileMap.cpp(55,132): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\TileMap.cpp(59,139): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\TileMap.cpp(59,129): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\TileMap.cpp(62,171): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\TileMap.cpp(62,161): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\TileMap.cpp(65,137): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\TileMap.cpp(65,127): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\TileMap.cpp(80,91): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
   Generating Code...
-  MarioBrosClone.vcxproj -> C:\Users\n020868i\Documents\GitHub\MarioBrosClone\Debug\MarioBrosClone.exe
+C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\TileMap.cpp(80,51): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  MarioBrosClone.vcxproj -> C:\Users\krota\Desktop\MarioBrosClone\Debug\MarioBrosClone.exe

@@ -29,6 +29,7 @@ public:
 	bool GetAlive() { return mAlive; }
 	void SetCanMove(bool move);
 	bool GetCanMove() { return mCanMove; }
+	bool IsGrounded() { return mGrounded; }
 
 	float GetWidth() { return mSingleSpriteWidth; }
 	float GetHeight() { return mSingleSpriteHeight; }
@@ -65,5 +66,8 @@ protected:
 	float mJumpForce;
 	float movementSpeed = 220.0f;
 	bool mCanMove;
+	bool mGrounded;
+
+	float mPreviousBottom;
 
 };
