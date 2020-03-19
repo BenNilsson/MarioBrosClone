@@ -58,6 +58,8 @@ private:
 	void SetUpTileMap();
 	bool SetUpLevel();
 
+	float mLastCamXPos;
+
 	ScreenShake* screenShake;
 };
 

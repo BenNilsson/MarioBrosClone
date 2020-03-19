@@ -39,6 +39,8 @@ void TileMap::GenerateTileMap(int** map, int rows, int columns)
 	mWidth = columns;
 	mHeight = rows;
 
+	
+
 	mTiles = new std::vector<std::vector<Tile*>>(columns, std::vector<Tile*>(rows));
 
 	for (unsigned int row = 0; row < rows; row++)
@@ -54,7 +56,6 @@ void TileMap::GenerateTileMap(int** map, int rows, int columns)
 			case 1:
 				(*mTiles)[column][row] = new Tile(new Block(mRenderer, "Textures/block.png", Block::BlockType::BLOCK_PLATFORM, Vector2D(column * 32, row * 32)), CollisionType::TILE_SOLID);
 				break;
-
 			case 2:
 				(*mTiles)[column][row] = new Tile(new Block(mRenderer, "Textures/floor.png", Block::BlockType::BLOCK_FLOOR, Vector2D(column * 32, row * 32)), CollisionType::TILE_SOLID);
 				break;
@@ -63,6 +64,19 @@ void TileMap::GenerateTileMap(int** map, int rows, int columns)
 				break;
 			case 4:
 				(*mTiles)[column][row] = new Tile(new Block(mRenderer, "Textures/Step.png", Block::BlockType::BLOCK_STEP, Vector2D(column * 32, row * 32)), CollisionType::TILE_SOLID);
+				break;
+			case 5:
+				(*mTiles)[column][row] = new Tile(new Block(mRenderer, "Textures/PipeTopLeft.png", Block::BlockType::BLOCK_PIPE, Vector2D(column * 32, row * 32)), CollisionType::TILE_SOLID);
+				break;
+			case 6:
+				(*mTiles)[column][row] = new Tile(new Block(mRenderer, "Textures/PipeTopRight.png", Block::BlockType::BLOCK_PIPE, Vector2D(column * 32, row * 32)), CollisionType::TILE_SOLID);
+				break;
+			case 7:
+				(*mTiles)[column][row] = new Tile(new Block(mRenderer, "Textures/PipeBottomLeft.png", Block::BlockType::BLOCK_PIPE, Vector2D(column * 32, row * 32)), CollisionType::TILE_SOLID);
+				break;
+			case 8:
+				(*mTiles)[column][row] = new Tile(new Block(mRenderer, "Textures/PipeBottomRight.png", Block::BlockType::BLOCK_PIPE, Vector2D(column * 32, row * 32)), CollisionType::TILE_SOLID);
+				break;
 			}
 
 		}

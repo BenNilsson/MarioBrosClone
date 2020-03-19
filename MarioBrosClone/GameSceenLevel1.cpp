@@ -43,7 +43,7 @@ GameScreenLevel1::~GameScreenLevel1()
 void GameScreenLevel1::Render()
 {
 	// Draw the background
-	//mBackgroundTexture->Render(Vector2D(0, screenShake->GetBackgroundYPos()), SDL_FLIP_NONE);
+	mBackgroundTexture->Render(Vector2D(-100 - Camera::GetInstance()->GetPosition().x, screenShake->GetBackgroundYPos()), SDL_FLIP_NONE);
 
 	// Render all tiles
 	tileMap->DrawTileMap();
@@ -85,6 +85,12 @@ void GameScreenLevel1::Update(float deltaTime, SDL_Event e)
 
 	// Update the player
 	characterMario->Update(deltaTime, e);
+
+	if (characterMario->GetPosition().x <= Camera::GetInstance()->GetCameraBounds().x)
+	{
+		characterMario->SetPosition(Vector2D(characterMario->GetPosition().x + 1, characterMario->GetPosition().y));
+	}
+
 	characterLuigi->Update(deltaTime, e);
 
 	// Update enemies
@@ -96,7 +102,11 @@ void GameScreenLevel1::Update(float deltaTime, SDL_Event e)
 	screenShake->Update(deltaTime, mKoopas);
 
 	// Update Camera Position
-	Camera::GetInstance()->SetPosition(Vector2D((characterMario->GetPosition().x + 32 / 2) - CAMERA_WIDTH / 2, screenShake->GetBackgroundYPos()));
+	if ((characterMario->GetPosition().x + 32 / 2) - CAMERA_WIDTH / 2 > mLastCamXPos)
+	{
+		Camera::GetInstance()->SetPosition(Vector2D((characterMario->GetPosition().x + 32 / 2) - CAMERA_WIDTH / 2, screenShake->GetBackgroundYPos()));
+		mLastCamXPos = (characterMario->GetPosition().x + 32 / 2) - CAMERA_WIDTH / 2;
+	}
 
 	// Check to see if the character and flag collide
 	if (Collisions::Instance()->Box(flag->GetCollisionBox(), characterMario->GetCollisionBox()))
@@ -278,36 +288,38 @@ void GameScreenLevel1::UpdateCoins(float deltaTime, SDL_Event e)
 
 void GameScreenLevel1::UpdateQuestionMarkBlocks(float deltaTime, SDL_Event e)
 {
-	for (int x = 0; x < tileMap->GetWidth(); x++)
+	int marioCentralXPositionInGrid = (int)(characterMario->GetPosition().x + (characterMario->GetWidth()* 0.50f)) / 32;
+	int luigiCentralXPositionInGrid = (int)(characterLuigi->GetPosition().x + (characterLuigi->GetWidth() * 0.50f)) / 32;
+
+	int marioHeadPositionInGrid = (int)(characterMario->GetPosition().y) / 32;
+	int luigiHeadPositionInGrid = (int)(characterLuigi->GetPosition().y) / 32;
+
+	// Check if mario's head collides with the centre of the queston mark block
+	if (tileMap->GetTileAt(marioCentralXPositionInGrid, marioHeadPositionInGrid) != nullptr)
 	{
-		for (int y = 0; y < tileMap->GetHeight(); y++)
+		if (tileMap->GetTileAt(marioCentralXPositionInGrid, marioHeadPositionInGrid)->GetBlock() != nullptr)
 		{
-			if (tileMap->GetTileAt(x, y) != nullptr)
+			if (tileMap->GetTileAt(marioCentralXPositionInGrid, marioHeadPositionInGrid)->GetBlock()->GetBlockType() == Block::BlockType::BLOCK_QUESTION_MARK)
 			{
-				if (tileMap->GetTileAt(x, y)->GetBlock()->GetBlockType() == Block::BlockType::BLOCK_QUESTION_MARK)
+				if (tileMap->GetTileAt(marioCentralXPositionInGrid, marioHeadPositionInGrid)->GetBlock()->IsAvailable())
 				{
-					bool collided = false;
-
-					if (Collisions::Instance()->Box(characterMario->GetCollisionBox(), Rect2D(tileMap->GetTileAt(x, y)->GetBlock()->GetPosition().x, tileMap->GetTileAt(x, y)->GetBlock()->GetPosition().y + (tileMap->GetTileAt(x, y)->GetBlock()->GetHeight() - 2), tileMap->GetTileAt(x, y)->GetBlock()->GetWidth(), 2)))
-					{
-						collided = true;
-					}
-
-					if (Collisions::Instance()->Box(characterLuigi->GetCollisionBox(), Rect2D(tileMap->GetTileAt(x, y)->GetBlock()->GetPosition().x, tileMap->GetTileAt(x, y)->GetBlock()->GetPosition().y + (tileMap->GetTileAt(x, y)->GetBlock()->GetHeight() - 2), tileMap->GetTileAt(x, y)->GetBlock()->GetWidth(), 2)))
-					{
-						collided = true;
-					}
-
-					if (collided)
-					{
-						if (tileMap->GetTileAt(x, y)->GetBlock()->IsAvailable())
-						{
-							tileMap->GetTileAt(x, y)->GetBlock()->SetAvailable(false);
-							CreateCoin(Vector2D(tileMap->GetTileAt(x, y)->GetBlock()->GetPosition().x + 3, tileMap->GetTileAt(x, y)->GetBlock()->GetPosition().y - 32));
-							break;
-						}
-						break;
-					}
+					// Collision, spawn coin and set question mark block to unavailable
+					tileMap->GetTileAt(marioCentralXPositionInGrid, marioHeadPositionInGrid)->GetBlock()->SetAvailable(false);
+					CreateCoin(Vector2D(tileMap->GetTileAt(marioCentralXPositionInGrid, marioHeadPositionInGrid)->GetBlock()->GetPosition().x + 3, tileMap->GetTileAt(marioCentralXPositionInGrid, marioHeadPositionInGrid)->GetBlock()->GetPosition().y - 32));
+				}
+			}
+		}
+	// Luigi
+	}else if (tileMap->GetTileAt(luigiCentralXPositionInGrid, luigiHeadPositionInGrid) != nullptr)
+	{
+		if (tileMap->GetTileAt(luigiCentralXPositionInGrid, luigiHeadPositionInGrid)->GetBlock() != nullptr)
+		{
+			if (tileMap->GetTileAt(luigiCentralXPositionInGrid, luigiHeadPositionInGrid)->GetBlock()->GetBlockType() == Block::BlockType::BLOCK_QUESTION_MARK)
+			{
+				if (tileMap->GetTileAt(luigiCentralXPositionInGrid, luigiHeadPositionInGrid)->GetBlock()->IsAvailable())
+				{
+					tileMap->GetTileAt(luigiCentralXPositionInGrid, luigiHeadPositionInGrid)->GetBlock()->SetAvailable(false);
+					CreateCoin(Vector2D(tileMap->GetTileAt(luigiCentralXPositionInGrid, luigiHeadPositionInGrid)->GetBlock()->GetPosition().x + 3, tileMap->GetTileAt(luigiCentralXPositionInGrid, luigiHeadPositionInGrid)->GetBlock()->GetPosition().y - 32));
 				}
 			}
 		}
@@ -371,7 +383,7 @@ bool GameScreenLevel1::SetUpLevel()
 {
 	// Load the background texture
 	mBackgroundTexture = new Sprite(mRenderer);
-	if (!mBackgroundTexture->LoadFromFile("Textures/BackgroundMB.png"))
+	if (!mBackgroundTexture->LoadFromFile("Textures/background.png"))
 	{
 		std::cout << "Failed to load background texture!";
 		return false;
@@ -380,8 +392,8 @@ bool GameScreenLevel1::SetUpLevel()
 	screenShake = new ScreenShake();
 
 	// Set up the player character
-	characterMario = new CharacterMario(mRenderer, "Textures/mario-run.png", Vector2D(64, 335), tileMap);
-	characterLuigi = new CharacterLuigi(mRenderer, "Textures/luigi-run.png", Vector2D(364, 335), tileMap);
+	characterMario = new CharacterMario(mRenderer, "Textures/mario-run.png", Vector2D(256, 200), tileMap);
+	characterLuigi = new CharacterLuigi(mRenderer, "Textures/luigi-run.png", Vector2D(364, 200), tileMap);
 
 	SetUpTileMap();
 

@@ -44,9 +44,6 @@ void Character::Render(int camX, int camY)
 	// Set Rect
 	SDL_Rect portionOfSpritesheet = { left, 0, mSingleSpriteWidth, mSingleSpriteHeight };
 
-	// Determine where to draw
-	SDL_Rect destRect = { (int)(mPosition.x), (int)(mPosition.y), mSingleSpriteWidth, mSingleSpriteHeight };
-
 	// Draw
 	if (mfacingDirection == FACING::FACING_RIGHT)
 	{
@@ -63,7 +60,7 @@ void Character::Update(float deltaTime, SDL_Event e)
 {
 	Vector2D old_pos = GetPosition();
 	Vector2D new_pos = old_pos;
-	bool gravity = true;
+	bool gravity = false;
 	mCanMove = true;
 
 	if(mMovingLeft)
@@ -73,80 +70,75 @@ void Character::Update(float deltaTime, SDL_Event e)
 
 	new_pos.y += gravityForce * deltaTime;
 
-	for (int y = 0; y < mCurrentTileMap->GetHeight(); y++)
+	int centralXPositionInGrid = (int)(mPosition.x + (mSingleSpriteWidth * 0.50f)) / 32;
+	int centralYPositionInGrid = (int)(mPosition.y + (mSingleSpriteHeight * 0.50f)) / 32;
+	int footPositionInGrid = (int)(mPosition.y + (mSingleSpriteHeight)) / 32;
+	int headPositionInGrid = (int)(mPosition.y) / 32;
+
+	int rightSidePositionInGrid = (int)(mPosition.x + mSingleSpriteWidth) / 32;
+	int leftSidePositionInGrid = (int)mPosition.x / 32;
+
+	// Get position in grid and add gravity based on the collision detected
+	if (mCurrentTileMap != nullptr)
 	{
-		for (int x = 0; x < mCurrentTileMap->GetWidth(); x++)
+		if (mCurrentTileMap->GetTileAt(centralXPositionInGrid, footPositionInGrid) == nullptr)
 		{
-			if (mCurrentTileMap->GetTileAt(x, y) == nullptr) continue;
-
-			if (mCurrentTileMap->GetTileAt(x, y)->GetCollisionType() == CollisionType::TILE_SOLID)
-			{
-				
-				if (Collisions::Instance()->Box(mCurrentTileMap->GetTileAt(x, y)->GetBlock()->GetCollisionBox(), Rect2D(new_pos.x, new_pos.y + GetHeight() - 3, GetWidth(), 2)))
-				{
-					// Collision!
-					//mPosition = old_pos;
-					gravity = false;
-					if (!mJumping)
-						mCanJump = true;
-				}
-				
-
-				// Detect if head bumbs into a tile
-				else if (Collisions::Instance()->Box(mCurrentTileMap->GetTileAt(x, y)->GetBlock()->GetCollisionBox(), Rect2D(new_pos.x, new_pos.y, GetWidth(), 1)))
-				{
-					if (mJumping)
-						mJumping = false;
-					mPosition = Vector2D(old_pos.x, old_pos.y + 1);
-					gravity = false;
-				}
-
-			}
+			// Asumming there is no tile, we are in air
+			AddGravity(deltaTime);
 		}
-	}
-
-	/*
-	// Check through the tilemap and ensure collision happens
-	for (unsigned int i = 0; i < mCurrentTileMap->mTileMap.size(); i++)
-	{
-		if (mCurrentTileMap->mTileMap[i]->GetCollisionType() == CollisionType::TILE_NONWALKABLE)
+		else
 		{
-			// Check if the new position is colliding with the player
-			if (Collisions::Instance()->Box(mCurrentTileMap->mTileMap[i]->GetBlock()->GetCollisionBox(), Rect2D(new_pos.x, new_pos.y + GetHeight() - 2, GetWidth(), 1)))
-			{
-				// Collision!
-				mPosition = old_pos;
-				gravity = false;
-				if(!mJumping)
-					mCanJump = true;
-				
-			}
+			mCanJump = true;
+		}
 
-			// Detect if head bumbs into a tile
-			if (Collisions::Instance()->Box(mCurrentTileMap->mTileMap[i]->GetBlock()->GetCollisionBox(), Rect2D(new_pos.x, new_pos.y, GetWidth(), 1)))
+		// Check if the head bumps into a block
+		if (mCurrentTileMap->GetTileAt(centralXPositionInGrid, headPositionInGrid) != nullptr)
+		{
+			if (mCurrentTileMap->GetTileAt(centralXPositionInGrid, headPositionInGrid)->GetCollisionType() == CollisionType::TILE_SOLID)
 			{
+				// If the tile is solid, push the player down
 				if (mJumping)
 					mJumping = false;
-				mPosition = Vector2D(old_pos.x, old_pos.y + 1);
-				gravity = false;
+				mPosition.y += 10;
+			}
+		}
+		
+		// Sideway collision
+		if (mfacingDirection == FACING::FACING_RIGHT)
+		{
+			if (mCurrentTileMap->GetTileAt(rightSidePositionInGrid, centralYPositionInGrid) != nullptr)
+			{
+				// If the right side collides with a solid tile, stop movement
+				if (mCurrentTileMap->GetTileAt(rightSidePositionInGrid, centralYPositionInGrid)->GetCollisionType() == CollisionType::TILE_SOLID)
+				{
+					mCanMove = false;
+					mPosition = Vector2D(old_pos.x - 1, old_pos.y);
+				}
+			}
+		}
+		else if (mfacingDirection == FACING::FACING_LEFT)
+		{
+			if (mCurrentTileMap->GetTileAt(leftSidePositionInGrid, centralYPositionInGrid) != nullptr)
+			{
+				// If the left side collides with a solid tile, stop movement
+				if (mCurrentTileMap->GetTileAt(leftSidePositionInGrid, centralYPositionInGrid)->GetCollisionType() == CollisionType::TILE_SOLID)
+				{
+					mCanMove = false;
+					mPosition = Vector2D(old_pos.x + 1, old_pos.y);
+				}
 			}
 		}
 	}
-	*/
 
 	// Update Frame
 	UpdateFrame(deltaTime);
-	
-	if(gravity)
-		AddGravity(deltaTime);
-
-
 
 	// Control movement
 	if (mCanMove)
 	{
 		if (mMovingLeft)
 			MoveLeft(deltaTime);
+			
 		else if (mMovingRight)
 			MoveRight(deltaTime);
 	}
@@ -181,6 +173,7 @@ void Character::Jump()
 void Character::AddGravity(float deltaTime)
 {
 	mPosition.y += gravityForce * deltaTime;
+	mCanJump = false;
 }
 
 void Character::SetPosition(Vector2D newPosition)

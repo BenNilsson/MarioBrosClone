@@ -12,6 +12,11 @@
 	1 = platform
 	2 = floor
 	3 = question mark block
+	4 = step
+	5 = pipe top left
+	6 = pipe top right
+	7 = pipe bottom left
+	8 = pipe bottom right
 */
 
 class TileMap

@@ -1,8 +1,8 @@
 #pragma once
 
 // Screen Dimensions
-#define SCREEN_WIDTH 512
-#define SCREEN_HEIGHT 412
+#define SCREEN_WIDTH 700
+#define SCREEN_HEIGHT 438
 
 // Tile sizes
 #define TILE_WIDTH 32

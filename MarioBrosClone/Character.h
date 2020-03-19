@@ -29,7 +29,7 @@ public:
 	bool GetAlive() { return mAlive; }
 	void SetCanMove(bool move);
 	bool GetCanMove() { return mCanMove; }
-	bool IsGrounded() { return mGrounded; }
+	
 
 	float GetWidth() { return mSingleSpriteWidth; }
 	float GetHeight() { return mSingleSpriteHeight; }
@@ -39,7 +39,6 @@ protected:
 	SDL_Renderer* mRenderer;
 	Vector2D mPosition;
 	Sprite* mSprite;
-
 
 	virtual void MoveLeft(float deltaTime);
 	virtual void MoveRight(float deltaTime);
@@ -66,8 +65,5 @@ protected:
 	float mJumpForce;
 	float movementSpeed = 220.0f;
 	bool mCanMove;
-	bool mGrounded;
-
-	float mPreviousBottom;
 
 };
