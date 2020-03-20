@@ -5,6 +5,7 @@
 #include "SoundManager.h"
 #include "Collisions.h"
 #include "Camera.h"
+#include "TileMap.h"
 
 Character::Character(SDL_Renderer* renderer, std::string imagePath, Vector2D startPosition, TileMap* map)
 {
@@ -20,6 +21,7 @@ Character::Character(SDL_Renderer* renderer, std::string imagePath, Vector2D sta
 	mJumping = false;
 	mCanMove = true;
 	mCanJump = true;
+	mAlive = true;
 	mCollisionRadius = 15.0f;
 	mfacingDirection = FACING::FACING_RIGHT;
 
@@ -152,9 +154,12 @@ void Character::Update(float deltaTime, SDL_Event e)
 		// Reduce jump force
 		mJumpForce -= JUMP_FORCE_DECREMENT * deltaTime;
 
-		if (mJumpForce <= 0.0f)
-			mJumping = false;
 
+		if (mJumpForce <= 0.0f)
+		{
+			mJumpForce = 0.0f;
+			mJumping = false;
+		}
 	}
 
 }

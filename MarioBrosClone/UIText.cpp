@@ -8,12 +8,14 @@ UIText::UIText(SDL_Renderer* renderer)
 	default_font = TTF_OpenFont("Fonts/04B_30__.ttf", 24);
 }
 
-UIText::UIText(SDL_Renderer* renderer, const char* text, SDL_Color color)
+UIText::UIText(SDL_Renderer* renderer, const char* text, SDL_Color color, int width, int height)
 {
 	mRenderer = renderer;
 	default_font = TTF_OpenFont("Fonts/04B_30__.ttf", 24);
 	Text = text;
 	mColor = color;
+	mRect.w = width;
+	mRect.h = height;
 
 	mSurface = TTF_RenderText_Solid(default_font, Text, mColor);
 	mTexture = SDL_CreateTextureFromSurface(mRenderer, mSurface);
@@ -46,8 +48,6 @@ void UIText::Draw()
 
 	mRect.x = Position->x;
 	mRect.y = Position->y;
-	mRect.w = 100;
-	mRect.h = 25;
 
 	SDL_RenderCopy(mRenderer, mTexture, NULL, &mRect);
 }

@@ -41,6 +41,9 @@ int main(int argc, char* args[])
 		GameManager::GetInstance()->gameScreenManager->SetRenderer(gRenderer);
 		GameManager::GetInstance()->gameScreenManager->ChangeScreen(SCREEN_INTRO);
 
+		// Load score
+		GameManager::GetInstance()->LoadScore();
+
 		// Initialise Camera
 		Camera::GetInstance();
 

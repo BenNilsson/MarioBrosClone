@@ -9,7 +9,7 @@ class UIText
 {
 public:
 	UIText(SDL_Renderer* renderer);
-	UIText(SDL_Renderer* renderer, const char*, SDL_Color color);
+	UIText(SDL_Renderer* renderer, const char*, SDL_Color color, int width = 100, int height = 25);
 	~UIText();
 
 	void Draw();

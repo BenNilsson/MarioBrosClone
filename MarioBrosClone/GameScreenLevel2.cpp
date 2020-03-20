@@ -2,7 +2,7 @@
 #include "SoundManager.h"
 #include <fstream>
 #include "Camera.h"
-
+#include "TileMap.h"
 
 GameScreenLevel2::GameScreenLevel2(SDL_Renderer* renderer) : GameScreen(mRenderer)
 {
@@ -105,13 +105,13 @@ void GameScreenLevel2::SetUpTileMap()
 			columns++;
 	}
 
-	int** map;
-	map = new int*[rows];
+	char** map;
+	map = new char*[rows];
 
 	// Predefine map
 	for (unsigned int i = 0; i < rows; i++)
 	{
-		map[i] = new int[columns];
+		map[i] = new char[columns];
 	}
 
 	// Hop back to the beginning of the file

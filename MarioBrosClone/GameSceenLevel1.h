@@ -9,12 +9,12 @@
 #include "PowBlock.h"
 #include "ScreenShake.h"
 #include "Coin.h"
-#include "TileMap.h"
 #include "Flag.h"
 #include <vector>
 #include "UIText.h"
 #include "BlockQuestionMark.h"
 
+class TileMap;
 class Sprite;
 class CharacterMario;
 class PowBlock;

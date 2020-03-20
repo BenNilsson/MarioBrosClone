@@ -2,9 +2,9 @@
 #include "SDL.h"
 #include <iostream>
 #include "Commons.h"
-#include "TileMap.h"
 
 class Sprite;
+class TileMap;
 
 class Character
 {
@@ -25,10 +25,12 @@ public:
 	bool IsJumping() { return mJumping; }
 	void CancelJump();
 	void SetCanJump(bool jump);
+	bool IsAlive() { return mAlive; }
 	void SetAlive(bool boolean);
 	bool GetAlive() { return mAlive; }
 	void SetCanMove(bool move);
 	bool GetCanMove() { return mCanMove; }
+	FACING GetFacingDirection() { return mfacingDirection; }
 	
 
 	float GetWidth() { return mSingleSpriteWidth; }

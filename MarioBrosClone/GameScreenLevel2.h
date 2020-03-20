@@ -6,6 +6,8 @@
 #include "CharacterLuigi.h"
 #include "ScreenShake.h"
 
+class TileMap;
+
 class GameScreenLevel2 : GameScreen
 {
 

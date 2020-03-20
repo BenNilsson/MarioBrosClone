@@ -5,6 +5,7 @@
 #include "Constants.h"
 #include "Commons.h"
 #include "GameScreen.h"
+#include "CharacterKoopa.h"
 
 /*
 	TILE MAP IDs
@@ -17,6 +18,7 @@
 	6 = pipe top right
 	7 = pipe bottom left
 	8 = pipe bottom right
+	k = koopa
 */
 
 class TileMap
@@ -27,7 +29,7 @@ public:
 	TileMap(SDL_Renderer* renderer);
 	~TileMap();
 
-	void GenerateTileMap(int** map, int rows, int columns);
+	void GenerateTileMap(char** map, int rows, int columns);
 	void DrawTileMap();
 
 	Tile* GetTileAt(int x, int y);
@@ -37,8 +39,12 @@ public:
 
 	CollisionType GetCollision(int x, int y);
 
+	bool IsLoaded() { return mLoaded; }
+
+	std::vector<CharacterKoopa*> mKoopas;
+
 private:
-	int** mMap;
+	char** mMap;
 	SDL_Renderer* mRenderer;
 
 	std::vector<std::vector<Tile*>>* mTiles;
@@ -46,7 +52,6 @@ private:
 	int mWidth;
 	int mHeight;
 
-	Sprite* block;
-	Sprite* floor;
+	bool mLoaded;
 
 };

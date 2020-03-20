@@ -3,6 +3,7 @@
 #include "CharacterKoopa.h"
 #include "Sprite.h"
 #include "Constants.h"
+#include <iostream>
 
 CharacterKoopa::CharacterKoopa(SDL_Renderer* renderer, std::string imagePath, Vector2D startPos, TileMap* map, float speed, FACING direction) : Character(renderer, imagePath, startPos, map)
 {
@@ -14,6 +15,7 @@ CharacterKoopa::CharacterKoopa(SDL_Renderer* renderer, std::string imagePath, Ve
 	mAlive = true;
 	jumpFrame = 5;
 	frameCount = 4;
+	mUpdateRange = 700;
 }
 
 CharacterKoopa::~CharacterKoopa()
