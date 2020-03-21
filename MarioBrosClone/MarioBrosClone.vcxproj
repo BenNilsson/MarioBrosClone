@@ -142,6 +142,7 @@
     <ClCompile Include="GameScreenIntro.cpp" />
     <ClCompile Include="GameScreenLevel2.cpp" />
     <ClCompile Include="GameScreenManager.cpp" />
+    <ClCompile Include="GameScreenWon.cpp" />
     <ClCompile Include="PowBlock.cpp" />
     <ClCompile Include="ScreenShake.cpp" />
     <ClCompile Include="SoundManager.cpp" />
@@ -176,6 +177,7 @@
     <ClInclude Include="GameScreenIntro.h" />
     <ClInclude Include="GameScreenLevel2.h" />
     <ClInclude Include="GameScreenManager.h" />
+    <ClInclude Include="GameScreenWon.h" />
     <ClInclude Include="PowBlock.h" />
     <ClInclude Include="ScreenShake.h" />
     <ClInclude Include="SDL\include\SDL_ttf.h" />

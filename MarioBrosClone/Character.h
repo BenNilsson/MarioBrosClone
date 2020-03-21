@@ -16,6 +16,7 @@ public:
 	virtual void Update(float deltaTime, SDL_Event e);
 	
 	void Jump();
+	void JumpSmall();
 	void AddGravity(float deltaTime);
 	void SetPosition(Vector2D newPosition);
 	void SetMovementSpeed(float speed);
@@ -29,7 +30,9 @@ public:
 	void SetAlive(bool boolean);
 	bool GetAlive() { return mAlive; }
 	void SetCanMove(bool move);
+	bool CanJump() { return mCanJump; }
 	bool GetCanMove() { return mCanMove; }
+	bool IsFalling() { return mVelocityDelta.y == -1; }
 	FACING GetFacingDirection() { return mfacingDirection; }
 	
 
@@ -67,5 +70,7 @@ protected:
 	float mJumpForce;
 	float movementSpeed = 220.0f;
 	bool mCanMove;
+
+	Vector2D mVelocityDelta;
 
 };

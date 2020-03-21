@@ -25,6 +25,8 @@ CharacterLuigi::~CharacterLuigi()
 
 void CharacterLuigi::Update(float deltaTime, SDL_Event e)
 {
+	if (!mAlive) return;
+
 	// Handle events
 	switch (e.type)
 	{

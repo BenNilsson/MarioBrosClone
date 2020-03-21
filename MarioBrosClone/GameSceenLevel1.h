@@ -37,6 +37,10 @@ private:
 	CharacterLuigi* characterLuigi;
 
 	PowBlock* mPowBlock;
+
+	void CheckForGameOver();
+	void CheckForRestart(SDL_Event e);
+
 	void UpdatePowBlock();
 
 	void UpdateEnemies(float deltaTime, SDL_Event e);
@@ -47,12 +51,7 @@ private:
 
 	void UpdateQuestionMarkBlocks(float deltaTime, SDL_Event e);
 
-	Flag* flag;
-
-	std::vector<CharacterKoopa*> mKoopas;
 	int enemyIndexToDelete;
-
-	std::vector<Coin*> mCoins;
 	int coinIndexToDelete;
 
 	void SetUpTileMap();

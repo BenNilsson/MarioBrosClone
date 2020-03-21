@@ -22,14 +22,28 @@ private:
 
 	TileMap* tileMap;
 
-	bool SetUpLevel();
-
 	CharacterMario* characterMario;
 	CharacterLuigi* characterLuigi;
 
+	bool SetUpLevel();
 	void SetUpTileMap();
 
+	void CheckForGameOver();
+	void CheckForRestart(SDL_Event e);
+
+	void UpdateEnemies(float deltaTime, SDL_Event e);
+	void UpdateQuestionMarkBlocks(float deltaTime, SDL_Event e);
+	void UpdateCoins(float deltaTime, SDL_Event e);
+
+	void CreateCoin(Vector2D position);
+
+	int enemyIndexToDelete;
+	int coinIndexToDelete;
+
+
 	ScreenShake* screenShake;
+
+	float mLastCamXPos;
 
 	bool levelIsSetup;
 };

@@ -14,13 +14,14 @@ public:
 	void Update();
 	void Render(int camX, int camY);
 
+	SCREENS* mScreenToChangeTo;
+	Character* mCharacter;
+
 private:
 	SDL_Renderer* mRenderer;
 	Sprite* mSprite;
 	Rect2D mCollisionBox;
 	Vector2D mPosition;
 
-	SCREENS* mScreenToChangeTo;
-	Character* mCharacter;
 };
 

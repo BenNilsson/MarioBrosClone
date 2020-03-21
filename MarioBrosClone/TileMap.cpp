@@ -80,6 +80,27 @@ void TileMap::GenerateTileMap(char** map, int rows, int columns)
 			case 'k':
 				mKoopas.push_back(new CharacterKoopa(mRenderer, "Textures/Koopa.png", Vector2D(column * 32, row * 32), this, 80.0f, FACING::FACING_RIGHT));
 				break;
+			case 'r':
+				mKoopas.push_back(new CharacterKoopa(mRenderer, "Textures/Koopa.png", Vector2D(column * 32, row * 32), this, 80.0f, FACING::FACING_RIGHT, true));
+				break;
+			case 'p':
+				(*mTiles)[column][row] = new Tile(new Block(mRenderer, "Textures/block-blue.png", Block::BlockType::BLOCK_PLATFORM, Vector2D(column * 32, row * 32)), CollisionType::TILE_SOLID);
+				break;
+			case 'f':
+				(*mTiles)[column][row] = new Tile(new Block(mRenderer, "Textures/floor-blue.png", Block::BlockType::BLOCK_FLOOR, Vector2D(column * 32, row * 32)), CollisionType::TILE_SOLID);
+				break;
+			case 'q':
+				(*mTiles)[column][row] = new Tile(new BlockQuestionMark(mRenderer, "Textures/QuestionMarkBlock-blue.png", Block::BlockType::BLOCK_QUESTION_MARK, Vector2D(column * 32, row * 32)), CollisionType::TILE_SOLID);
+				break;
+			case 's':
+				(*mTiles)[column][row] = new Tile(new Block(mRenderer, "Textures/step-blue.png", Block::BlockType::BLOCK_STEP, Vector2D(column * 32, row * 32)), CollisionType::TILE_SOLID);
+				break;
+			case 'c':
+				mCoins.push_back(new Coin(mRenderer, "Textures/coin.png", Vector2D(column * 32, row * 32)));
+				break;
+			case 'w':
+				mFlag = new Flag(mRenderer, Vector2D((column * 32) - 19, (row * 32) - 198), nullptr, nullptr);
+				break;
 			}
 
 		}

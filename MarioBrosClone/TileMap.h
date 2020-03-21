@@ -6,6 +6,8 @@
 #include "Commons.h"
 #include "GameScreen.h"
 #include "CharacterKoopa.h"
+#include "Coin.h"
+#include "Flag.h"
 
 /*
 	TILE MAP IDs
@@ -19,6 +21,12 @@
 	7 = pipe bottom left
 	8 = pipe bottom right
 	k = koopa
+	p = platform BLUE
+	f = floor BLUE
+	q = question mark block BLUE
+	s = step BLUE
+	c = coin
+	w = flag
 */
 
 class TileMap
@@ -42,6 +50,9 @@ public:
 	bool IsLoaded() { return mLoaded; }
 
 	std::vector<CharacterKoopa*> mKoopas;
+	std::vector<Coin*> mCoins;
+
+	Flag* mFlag;
 
 private:
 	char** mMap;

@@ -24,7 +24,7 @@ Character::Character(SDL_Renderer* renderer, std::string imagePath, Vector2D sta
 	mAlive = true;
 	mCollisionRadius = 15.0f;
 	mfacingDirection = FACING::FACING_RIGHT;
-
+	mVelocityDelta = Vector2D(0, 0);
 	frame = 1;
 
 }
@@ -40,6 +40,8 @@ Character::~Character()
 
 void Character::Render(int camX, int camY)
 {
+	if (!mAlive) return;
+
 	// Get the position of the spritesheet
 	int left = mSingleSpriteWidth * (frame - 1);
 
@@ -60,6 +62,10 @@ void Character::Render(int camX, int camY)
 
 void Character::Update(float deltaTime, SDL_Event e)
 {
+	if (mPosition.y >= 438) mAlive = false;
+
+	if (!mAlive) return;
+
 	Vector2D old_pos = GetPosition();
 	Vector2D new_pos = old_pos;
 	bool gravity = false;
@@ -91,6 +97,7 @@ void Character::Update(float deltaTime, SDL_Event e)
 		else
 		{
 			mCanJump = true;
+			mVelocityDelta.y = 1;
 		}
 
 		// Check if the head bumps into a block
@@ -175,8 +182,16 @@ void Character::Jump()
 	}
 }
 
+void Character::JumpSmall()
+{
+	mJumpForce = INITIAL_JUMP_FORCE / 1.5;
+	mJumping = true;
+	mCanJump = false;
+}
+
 void Character::AddGravity(float deltaTime)
 {
+	if(!IsJumping()) mVelocityDelta.y = -1;
 	mPosition.y += gravityForce * deltaTime;
 	mCanJump = false;
 }

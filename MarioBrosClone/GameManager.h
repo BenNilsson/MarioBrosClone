@@ -25,6 +25,7 @@ public:
 		INGAME,
 		DEAD,
 		GAMEOVER,
+		WON
 	};
 
 	void ChangeState(GameManager::GameState state);

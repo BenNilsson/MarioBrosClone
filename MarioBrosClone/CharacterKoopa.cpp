@@ -3,9 +3,10 @@
 #include "CharacterKoopa.h"
 #include "Sprite.h"
 #include "Constants.h"
+#include "TileMap.h"
 #include <iostream>
 
-CharacterKoopa::CharacterKoopa(SDL_Renderer* renderer, std::string imagePath, Vector2D startPos, TileMap* map, float speed, FACING direction) : Character(renderer, imagePath, startPos, map)
+CharacterKoopa::CharacterKoopa(SDL_Renderer* renderer, std::string imagePath, Vector2D startPos, TileMap* map, float speed, FACING direction, bool smart) : Character(renderer, imagePath, startPos, map)
 {
 	mInjured = false;
 	movementSpeed = speed;
@@ -16,6 +17,7 @@ CharacterKoopa::CharacterKoopa(SDL_Renderer* renderer, std::string imagePath, Ve
 	jumpFrame = 5;
 	frameCount = 4;
 	mUpdateRange = 700;
+	mSmartKoopa = smart;
 }
 
 CharacterKoopa::~CharacterKoopa()
@@ -77,6 +79,7 @@ void CharacterKoopa::Update(float deltaTime, SDL_Event e)
 
 	// Call charcacter's update function
 	Character::Update(deltaTime, e);
+
 	
 }
 

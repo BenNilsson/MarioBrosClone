@@ -4,6 +4,7 @@
 #include "GameSceenLevel1.h"
 #include "GameScreenLevel2.h"
 #include "GameScreenIntro.h"
+#include "GameScreenWon.h"
 
 class GameScreen;
 
@@ -28,4 +29,5 @@ private:
 	GameScreenLevel1* tempScreen;
 	GameScreenLevel2* tempScreenLvl2;
 	GameScreenIntro* tempScreenIntro;
+	GameScreenWon* tempScreenWon;
 };
