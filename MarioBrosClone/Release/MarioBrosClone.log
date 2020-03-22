@@ -1,0 +1,20 @@
+﻿  GameScreenLevel2.cpp
+C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\Camera.h(28,61): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\Camera.h(28,50): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\GameScreenLevel2.cpp(17,27): warning C4390: ';': empty controlled statement found; is this the intent?
+C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\GameScreenLevel2.cpp(72,106): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\GameScreenLevel2.cpp(72,66): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\GameScreenLevel2.cpp(78,107): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\GameScreenLevel2.cpp(78,67): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\GameScreenLevel2.cpp(82,102): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\GameScreenLevel2.cpp(82,62): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\GameScreenLevel2.cpp(204,232): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\GameScreenLevel2.cpp(230,232): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\GameScreenLevel2.cpp(545,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\GameScreenLevel2.cpp(555,29): warning C4018: '<': signed/unsigned mismatch
+  Generating code
+  3 of 592 functions ( 0.5%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    10 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  MarioBrosClone.vcxproj -> C:\Users\krota\Desktop\MarioBrosClone\Release\MarioBrosClone.exe

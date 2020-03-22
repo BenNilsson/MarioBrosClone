@@ -62,9 +62,12 @@ void Character::Render(int camX, int camY)
 
 void Character::Update(float deltaTime, SDL_Event e)
 {
-	if (mPosition.y >= 438) mAlive = false;
-
 	if (!mAlive) return;
+
+	if (mPosition.y >= 438)
+	{
+		mAlive = false;
+	}
 
 	Vector2D old_pos = GetPosition();
 	Vector2D new_pos = old_pos;
@@ -105,6 +108,9 @@ void Character::Update(float deltaTime, SDL_Event e)
 		{
 			if (mCurrentTileMap->GetTileAt(centralXPositionInGrid, headPositionInGrid)->GetCollisionType() == CollisionType::TILE_SOLID)
 			{
+				// Play sound
+				soundmanager::SoundManager::GetInstance()->PlaySFX("SFX/bump.wav");
+
 				// If the tile is solid, push the player down
 				if (mJumping)
 					mJumping = false;

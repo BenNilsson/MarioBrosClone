@@ -42,7 +42,7 @@ int main(int argc, char* args[])
 		GameManager::GetInstance()->gameScreenManager->ChangeScreen(SCREEN_INTRO);
 
 		// Load score
-		GameManager::GetInstance()->LoadScore();
+		GameManager::GetInstance()->LoadHighScore();
 
 		// Initialise Camera
 		Camera::GetInstance();
@@ -211,10 +211,16 @@ bool Update()
 		{
 			hasFocus = true;
 			newTime = SDL_GetTicks();
+
+			// Unpause music
+			soundmanager::SoundManager::GetInstance()->ResumeMusic();
 		}
 		else if (e.window.event == SDL_WINDOWEVENT_FOCUS_LOST)
 		{
 			hasFocus = false;
+
+			// Pause music
+			soundmanager::SoundManager::GetInstance()->PauseMusic();
 		}
 	}
 

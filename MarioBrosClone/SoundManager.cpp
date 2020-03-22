@@ -63,4 +63,28 @@ void SoundManager::PlaySFX(std::string path)
 	}
 }
 
+void soundmanager::SoundManager::PauseMusic()
+{
+	if (currentState != ERROR)
+	{
+		if (currentState == PLAYING)
+		{
+			Mix_PauseMusic();
+			currentState = PAUSED;
+		}
+	}
+}
+
+void soundmanager::SoundManager::ResumeMusic()
+{
+	if (currentState != ERROR)
+	{
+		if (currentState == PAUSED)
+		{
+			Mix_ResumeMusic();
+			currentState = PLAYING;
+		}
+	}
+}
+
 

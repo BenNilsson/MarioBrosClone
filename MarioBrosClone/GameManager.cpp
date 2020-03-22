@@ -70,9 +70,9 @@ void GameManager::AddScore(int add)
 	}
 }
 
-void GameManager::SaveScore()
+void GameManager::SaveHighScore()
 {
-	std::ofstream outfile("score.dat");
+	std::ofstream outfile("highscore.txt");
 
 	// Check whether the file was opened
 	if (!outfile.is_open())
@@ -87,11 +87,11 @@ void GameManager::SaveScore()
 	outfile.close();
 }
 
-int GameManager::LoadScore()
+int GameManager::LoadHighScore()
 {
 	int highScore = 0;
 
-	std::ifstream infile("score.dat");
+	std::ifstream infile("highscore.txt");
 
 	// Check if the file was opened
 	if (infile.is_open())
@@ -109,7 +109,7 @@ int GameManager::LoadScore()
 
 		// Create the file
 		std::ofstream outStream;
-		outStream.open("score.dat");
+		outStream.open("highscore.txt");
 	}
 
 	return highScore;

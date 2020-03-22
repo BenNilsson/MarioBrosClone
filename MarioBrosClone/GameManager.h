@@ -40,8 +40,8 @@ public:
 	UIText* mScoreText;
 	UIText* mHighscoreText;
 
-	void SaveScore();
-	int LoadScore();
+	void SaveHighScore();
+	int LoadHighScore();
 
 private:
 	static GameManager* instance;
@@ -53,7 +53,7 @@ private:
 	void Init()
 	{
 		mScore = 0;
-		mHighscore = LoadScore();
+		mHighscore = LoadHighScore();
 	}
 };
 

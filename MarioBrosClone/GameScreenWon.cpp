@@ -3,6 +3,7 @@
 #include "Constants.h"
 #include <iostream>
 #include "GameManager.h"
+#include "SoundManager.h"
 
 GameScreenWon::GameScreenWon(SDL_Renderer* renderer) : GameScreen(renderer)
 {
@@ -33,6 +34,13 @@ GameScreenWon::GameScreenWon(SDL_Renderer* renderer) : GameScreen(renderer)
 
 	if (GameManager::GetInstance()->mScoreText != nullptr)
 		GameManager::GetInstance()->mScoreText->Position = new Vector2D(Vector2D((SCREEN_WIDTH * 0.40f) - (mCoinBigSprite->GetWidth() * 0.50f) + 50, 262));
+
+	// Stop all music
+	if (soundmanager::SoundManager::GetInstance()->IsPlaying())
+	{
+		soundmanager::SoundManager::GetInstance()->StopMusic();
+		soundmanager::SoundManager::GetInstance()->PlaySFX("SFX/smb_world_clear.wav");
+	}
 }
 
 GameScreenWon::~GameScreenWon()
@@ -86,6 +94,7 @@ void GameScreenWon::Update(float deltaTime, SDL_Event e)
 
 	if (mTimeElapsed >= renderInfoAfterTime)
 		GameManager::GetInstance()->ChangeState(GameManager::GameState::WON);
+
 	else if (mTimeElapsed >= 5.0f)
 		mTimeElapsed = 5;
 

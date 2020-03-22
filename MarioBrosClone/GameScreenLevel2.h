@@ -5,6 +5,7 @@
 #include "CharacterMario.h"
 #include "CharacterLuigi.h"
 #include "ScreenShake.h"
+#include "UIText.h"
 
 class TileMap;
 
@@ -28,12 +29,18 @@ private:
 	bool SetUpLevel();
 	void SetUpTileMap();
 
-	void CheckForGameOver();
+	void CheckForGameOver(float deltaTime);
 	void CheckForRestart(SDL_Event e);
+	bool CheckFlagCollision();
 
 	void UpdateEnemies(float deltaTime, SDL_Event e);
 	void UpdateQuestionMarkBlocks(float deltaTime, SDL_Event e);
 	void UpdateCoins(float deltaTime, SDL_Event e);
+	void HandleViewportCollision();
+	void UpdateCameraPosition();
+
+	bool RenderDeathInfo();
+	void UpdateDeathInfo(float deltaTime);
 
 	void CreateCoin(Vector2D position);
 
@@ -46,4 +53,17 @@ private:
 	float mLastCamXPos;
 
 	bool levelIsSetup;
+
+	Sprite* mLogoSprite;
+	Sprite* mCoinBigSprite;
+	Sprite* mInfoSprite;
+
+	UIText* mYouLostText;
+
+	const float renderLogoAfterTime = 0.50f;
+	const float renderWonTextAfterTime = 1.0f;
+	const float renderCoinDataAfterTime = 1.50f;
+	const float renderInfoAfterTime = 2.0f;
+
+	float mTimeElapsedAfterDeath;
 };

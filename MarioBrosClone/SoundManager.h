@@ -27,6 +27,8 @@ namespace soundmanager {
 		void PlayMusic(std::string path);
 		void StopMusic();
 		void PlaySFX(std::string path);
+		void PauseMusic();
+		void ResumeMusic();
 
 		inline bool IsStopped() const { return currentState == STOPPED; }
 		inline bool IsPlaying() const { return currentState == PLAYING; }
@@ -39,6 +41,7 @@ namespace soundmanager {
 			ERROR = 0,
 			WAITING,
 			STOPPED,
+			PAUSED,
 			PLAYING
 		};
 
