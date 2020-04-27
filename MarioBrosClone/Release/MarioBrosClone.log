@@ -1,20 +1,205 @@
-﻿  GameScreenLevel2.cpp
-C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\Camera.h(28,61): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\Camera.h(28,50): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\GameScreenLevel2.cpp(17,27): warning C4390: ';': empty controlled statement found; is this the intent?
-C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\GameScreenLevel2.cpp(72,106): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\GameScreenLevel2.cpp(72,66): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\GameScreenLevel2.cpp(78,107): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\GameScreenLevel2.cpp(78,67): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\GameScreenLevel2.cpp(82,102): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\GameScreenLevel2.cpp(82,62): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\GameScreenLevel2.cpp(204,232): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\GameScreenLevel2.cpp(230,232): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\GameScreenLevel2.cpp(545,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\krota\Desktop\MarioBrosClone\MarioBrosClone\GameScreenLevel2.cpp(555,29): warning C4018: '<': signed/unsigned mismatch
-  Generating code
-  3 of 592 functions ( 0.5%) were compiled, the rest were copied from previous compilation.
-    0 functions were new in current compilation
-    10 functions had inline decision re-evaluated but remain unchanged
-  Finished generating code
-  MarioBrosClone.vcxproj -> C:\Users\krota\Desktop\MarioBrosClone\Release\MarioBrosClone.exe
+﻿  Block.cpp
+D:\MarioBrosClone\MarioBrosClone\Block.cpp(15,40): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\Block.cpp(16,42): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\Block.cpp(36,50): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\Block.cpp(36,30): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  BlockQuestionMark.cpp
+D:\MarioBrosClone\MarioBrosClone\BlockQuestionMark.cpp(7,43): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\BlockQuestionMark.cpp(14,18): warning C4150: deletion of pointer to incomplete type 'SDL_Renderer'; no destructor called
+D:\MarioBrosClone\MarioBrosClone\SDL\include\SDL_render.h(132): message : see declaration of 'SDL_Renderer'
+D:\MarioBrosClone\MarioBrosClone\BlockQuestionMark.cpp(39,14): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\BlockQuestionMark.cpp(41,45): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
+D:\MarioBrosClone\MarioBrosClone\BlockQuestionMark.cpp(41,45): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\BlockQuestionMark.cpp(41,65): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
+D:\MarioBrosClone\MarioBrosClone\BlockQuestionMark.cpp(41,65): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\BlockQuestionMark.cpp(43,50): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\BlockQuestionMark.cpp(43,30): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  Camera.cpp
+D:\MarioBrosClone\MarioBrosClone\Camera.h(28,61): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\Camera.h(28,50): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\Camera.cpp(10,17): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\Camera.cpp(11,17): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  Character.cpp
+D:\MarioBrosClone\MarioBrosClone\Camera.h(28,61): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\Camera.h(28,50): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\Character.cpp(33,18): warning C4150: deletion of pointer to incomplete type 'SDL_Renderer'; no destructor called
+D:\MarioBrosClone\MarioBrosClone\SDL\include\SDL_render.h(132): message : see declaration of 'SDL_Renderer'
+D:\MarioBrosClone\MarioBrosClone\Character.cpp(45,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\Character.cpp(48,45): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
+D:\MarioBrosClone\MarioBrosClone\Character.cpp(48,45): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\Character.cpp(48,65): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
+D:\MarioBrosClone\MarioBrosClone\Character.cpp(48,65): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\Character.cpp(53,51): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\Character.cpp(53,31): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\Character.cpp(58,51): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\Character.cpp(58,31): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  CharacterKoopa.cpp
+D:\MarioBrosClone\MarioBrosClone\CharacterKoopa.cpp(14,43): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\CharacterKoopa.cpp(15,42): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\CharacterKoopa.cpp(25,18): warning C4150: deletion of pointer to incomplete type 'SDL_Renderer'; no destructor called
+D:\MarioBrosClone\MarioBrosClone\SDL\include\SDL_render.h(132): message : see declaration of 'SDL_Renderer'
+D:\MarioBrosClone\MarioBrosClone\CharacterKoopa.cpp(89,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\CharacterKoopa.cpp(93,29): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\CharacterKoopa.cpp(96,45): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
+D:\MarioBrosClone\MarioBrosClone\CharacterKoopa.cpp(96,45): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\CharacterKoopa.cpp(96,65): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
+D:\MarioBrosClone\MarioBrosClone\CharacterKoopa.cpp(96,65): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\CharacterKoopa.cpp(99,64): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
+D:\MarioBrosClone\MarioBrosClone\CharacterKoopa.cpp(99,64): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\CharacterKoopa.cpp(99,84): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
+D:\MarioBrosClone\MarioBrosClone\CharacterKoopa.cpp(99,84): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\CharacterKoopa.cpp(103,51): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\CharacterKoopa.cpp(103,31): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\CharacterKoopa.cpp(107,51): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\CharacterKoopa.cpp(107,31): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  CharacterLuigi.cpp
+D:\MarioBrosClone\MarioBrosClone\Camera.h(28,61): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\Camera.h(28,50): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\CharacterLuigi.cpp(11,43): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\CharacterLuigi.cpp(12,42): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\CharacterLuigi.cpp(19,18): warning C4150: deletion of pointer to incomplete type 'SDL_Renderer'; no destructor called
+D:\MarioBrosClone\MarioBrosClone\SDL\include\SDL_render.h(132): message : see declaration of 'SDL_Renderer'
+D:\MarioBrosClone\MarioBrosClone\CharacterLuigi.cpp(75,96): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\CharacterLuigi.cpp(75,56): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  CharacterMario.cpp
+D:\MarioBrosClone\MarioBrosClone\Camera.h(28,61): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\Camera.h(28,50): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\CharacterMario.cpp(11,43): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\CharacterMario.cpp(12,42): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\CharacterMario.cpp(19,18): warning C4150: deletion of pointer to incomplete type 'SDL_Renderer'; no destructor called
+D:\MarioBrosClone\MarioBrosClone\SDL\include\SDL_render.h(132): message : see declaration of 'SDL_Renderer'
+D:\MarioBrosClone\MarioBrosClone\CharacterMario.cpp(74,96): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\CharacterMario.cpp(74,56): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  Coin.cpp
+D:\MarioBrosClone\MarioBrosClone\Coin.cpp(12,43): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\Coin.cpp(13,42): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\Coin.cpp(25,18): warning C4150: deletion of pointer to incomplete type 'SDL_Renderer'; no destructor called
+D:\MarioBrosClone\MarioBrosClone\SDL\include\SDL_render.h(132): message : see declaration of 'SDL_Renderer'
+D:\MarioBrosClone\MarioBrosClone\Coin.cpp(34,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\Coin.cpp(36,45): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
+D:\MarioBrosClone\MarioBrosClone\Coin.cpp(36,45): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\Coin.cpp(36,65): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
+D:\MarioBrosClone\MarioBrosClone\Coin.cpp(36,65): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\Coin.cpp(38,50): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\Coin.cpp(38,30): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  Collisions.cpp
+  Flag.cpp
+D:\MarioBrosClone\MarioBrosClone\Flag.cpp(20,104): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\Flag.cpp(29,18): warning C4150: deletion of pointer to incomplete type 'SDL_Renderer'; no destructor called
+D:\MarioBrosClone\MarioBrosClone\SDL\include\SDL_render.h(132): message : see declaration of 'SDL_Renderer'
+D:\MarioBrosClone\MarioBrosClone\Flag.cpp(43,50): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\Flag.cpp(43,30): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  GameManager.cpp
+  GameSceenLevel1.cpp
+D:\MarioBrosClone\MarioBrosClone\Camera.h(28,61): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\Camera.h(28,50): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\GameSceenLevel1.cpp(16,27): warning C4390: ';': empty controlled statement found; is this the intent?
+D:\MarioBrosClone\MarioBrosClone\GameSceenLevel1.cpp(73,97): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\GameSceenLevel1.cpp(73,57): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\GameSceenLevel1.cpp(76,102): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\GameSceenLevel1.cpp(76,62): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\GameSceenLevel1.cpp(81,107): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\GameSceenLevel1.cpp(81,67): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\GameSceenLevel1.cpp(87,106): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\GameSceenLevel1.cpp(87,66): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\GameSceenLevel1.cpp(269,232): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\GameSceenLevel1.cpp(296,232): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\GameSceenLevel1.cpp(647,20): warning C4018: '<': signed/unsigned mismatch
+D:\MarioBrosClone\MarioBrosClone\GameSceenLevel1.cpp(657,29): warning C4018: '<': signed/unsigned mismatch
+  GameScreen.cpp
+  GameScreenIntro.cpp
+  GameScreenLevel2.cpp
+D:\MarioBrosClone\MarioBrosClone\Camera.h(28,61): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\Camera.h(28,50): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\GameScreenLevel2.cpp(17,27): warning C4390: ';': empty controlled statement found; is this the intent?
+D:\MarioBrosClone\MarioBrosClone\GameScreenLevel2.cpp(72,106): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\GameScreenLevel2.cpp(72,66): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\GameScreenLevel2.cpp(78,107): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\GameScreenLevel2.cpp(78,67): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\GameScreenLevel2.cpp(82,102): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\GameScreenLevel2.cpp(82,62): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\GameScreenLevel2.cpp(204,232): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\GameScreenLevel2.cpp(230,232): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\GameScreenLevel2.cpp(545,20): warning C4018: '<': signed/unsigned mismatch
+D:\MarioBrosClone\MarioBrosClone\GameScreenLevel2.cpp(555,29): warning C4018: '<': signed/unsigned mismatch
+  GameScreenManager.cpp
+  GameScreenWon.cpp
+D:\MarioBrosClone\MarioBrosClone\GameScreenWon.cpp(48,18): warning C4150: deletion of pointer to incomplete type 'SDL_Renderer'; no destructor called
+D:\MarioBrosClone\MarioBrosClone\SDL\include\SDL_render.h(132): message : see declaration of 'SDL_Renderer'
+  PowBlock.cpp
+D:\MarioBrosClone\MarioBrosClone\PowBlock.cpp(18,43): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\PowBlock.cpp(19,42): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\PowBlock.cpp(21,44): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\PowBlock.cpp(37,12): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\PowBlock.cpp(40,46): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
+D:\MarioBrosClone\MarioBrosClone\PowBlock.cpp(40,46): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\PowBlock.cpp(40,66): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
+D:\MarioBrosClone\MarioBrosClone\PowBlock.cpp(40,66): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\PowBlock.cpp(43,51): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\PowBlock.cpp(43,31): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  ScreenShake.cpp
+  SoundManager.cpp
+  Generating Code...
+  Compiling...
+  Source.cpp
+D:\MarioBrosClone\MarioBrosClone\Camera.h(28,61): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\Camera.h(28,50): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Sprite.cpp
+D:\MarioBrosClone\MarioBrosClone\Sprite.cpp(60,41): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
+D:\MarioBrosClone\MarioBrosClone\Sprite.cpp(60,41): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\Sprite.cpp(60,56): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
+D:\MarioBrosClone\MarioBrosClone\Sprite.cpp(60,56): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+  Tile.cpp
+  TileMap.cpp
+D:\MarioBrosClone\MarioBrosClone\Camera.h(28,61): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\Camera.h(28,50): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\TileMap.cpp(18,18): warning C4150: deletion of pointer to incomplete type 'SDL_Renderer'; no destructor called
+D:\MarioBrosClone\MarioBrosClone\SDL\include\SDL_render.h(132): message : see declaration of 'SDL_Renderer'
+D:\MarioBrosClone\MarioBrosClone\TileMap.cpp(46,33): warning C4018: '<': signed/unsigned mismatch
+D:\MarioBrosClone\MarioBrosClone\TileMap.cpp(48,40): warning C4018: '<': signed/unsigned mismatch
+D:\MarioBrosClone\MarioBrosClone\TileMap.cpp(57,142): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\TileMap.cpp(57,132): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\TileMap.cpp(60,139): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\TileMap.cpp(60,129): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\TileMap.cpp(63,171): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\TileMap.cpp(63,161): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\TileMap.cpp(66,137): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\TileMap.cpp(66,127): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\TileMap.cpp(69,144): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\TileMap.cpp(69,134): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\TileMap.cpp(72,145): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\TileMap.cpp(72,135): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\TileMap.cpp(75,147): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\TileMap.cpp(75,137): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\TileMap.cpp(78,148): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\TileMap.cpp(78,138): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\TileMap.cpp(81,101): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\TileMap.cpp(81,91): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\TileMap.cpp(84,101): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\TileMap.cpp(84,91): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\TileMap.cpp(87,147): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\TileMap.cpp(87,137): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\TileMap.cpp(90,144): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\TileMap.cpp(90,134): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\TileMap.cpp(93,176): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\TileMap.cpp(93,166): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\TileMap.cpp(96,142): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\TileMap.cpp(96,132): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\TileMap.cpp(99,89): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\TileMap.cpp(99,79): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\TileMap.cpp(102,73): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\TileMap.cpp(102,56): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\TileMap.cpp(121,91): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\TileMap.cpp(121,51): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  UIText.cpp
+D:\MarioBrosClone\MarioBrosClone\UIText.cpp(30,21): warning C4150: deletion of pointer to incomplete type '_TTF_Font'; no destructor called
+D:\MarioBrosClone\MarioBrosClone\SDL\include\SDL_ttf.h(98): message : see declaration of '_TTF_Font'
+D:\MarioBrosClone\MarioBrosClone\UIText.cpp(37,17): warning C4150: deletion of pointer to incomplete type 'SDL_Texture'; no destructor called
+D:\MarioBrosClone\MarioBrosClone\SDL\include\SDL_render.h(138): message : see declaration of 'SDL_Texture'
+D:\MarioBrosClone\MarioBrosClone\UIText.cpp(40,18): warning C4150: deletion of pointer to incomplete type 'SDL_Renderer'; no destructor called
+D:\MarioBrosClone\MarioBrosClone\SDL\include\SDL_render.h(132): message : see declaration of 'SDL_Renderer'
+D:\MarioBrosClone\MarioBrosClone\UIText.cpp(49,20): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+D:\MarioBrosClone\MarioBrosClone\UIText.cpp(50,20): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  Generating Code...
+  LINK : /LTCG specified but no code generation required; remove /LTCG from the link command line to improve linker performance
+  MarioBrosClone.vcxproj -> D:\MarioBrosClone\Release\MarioBrosClone.exe

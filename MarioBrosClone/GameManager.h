@@ -1,7 +1,7 @@
 #pragma once
-#include "GameScreenManager.h"
 #ifndef _GAMEMANAGER_H
 #define _GAMEMANAGER_H
+#include "GameScreenManager.h"
 
 class GameManager
 {

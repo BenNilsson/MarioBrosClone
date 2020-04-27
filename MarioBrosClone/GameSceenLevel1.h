@@ -1,5 +1,6 @@
 #pragma once
 #include "SDL.h"
+
 #include "Commons.h"
 #include "GameScreen.h"
 #include "Character.h"
@@ -10,9 +11,10 @@
 #include "ScreenShake.h"
 #include "Coin.h"
 #include "Flag.h"
-#include <vector>
 #include "UIText.h"
 #include "BlockQuestionMark.h"
+
+#include <vector>
 
 class TileMap;
 class Sprite;

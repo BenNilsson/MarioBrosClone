@@ -1,7 +1,6 @@
 #include "Character.h"
 #include "Sprite.h"
 #include "Constants.h"
-#include <iostream>
 #include "SoundManager.h"
 #include "Collisions.h"
 #include "Camera.h"

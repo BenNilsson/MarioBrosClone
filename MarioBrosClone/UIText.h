@@ -3,6 +3,7 @@
 #include "SDL.h"
 #include "SDL_ttf.h"
 #include "Commons.h"
+
 #include <string>
 
 class UIText

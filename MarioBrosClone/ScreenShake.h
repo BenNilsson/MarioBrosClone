@@ -1,7 +1,8 @@
+#pragma once
 #include "Constants.h"
 #include "CharacterKoopa.h"
+
 #include <vector>
-#pragma once
 
 class ScreenShake
 {

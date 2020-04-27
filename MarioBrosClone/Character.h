@@ -1,7 +1,9 @@
 #pragma once
 #include "SDL.h"
-#include <iostream>
 #include "Commons.h"
+
+
+#include <iostream>
 
 class Sprite;
 class TileMap;

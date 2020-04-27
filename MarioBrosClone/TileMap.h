@@ -1,6 +1,5 @@
 #pragma once
 #include "Tile.h"
-#include <vector>
 #include "Sprite.h"
 #include "Constants.h"
 #include "Commons.h"
@@ -8,6 +7,8 @@
 #include "CharacterKoopa.h"
 #include "Coin.h"
 #include "Flag.h"
+
+#include <vector>
 
 /*
 	TILE MAP IDs
